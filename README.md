@@ -1,6 +1,6 @@
 
-#Car Rental Application
-##Agile User Stories:
+# Car Rental Application
+## Agile User Stories:
 1.	As a user, I should be able to signup in ‘car rental application’ so that I can login to the application.
 2.	As a user, I should be able to login into the system by entering correct ‘User name’ & ‘Password’ so that I will be redirected to ‘home page’ of the application.
 3.	As a user, I should be able to reset my password so that I can access my account.
