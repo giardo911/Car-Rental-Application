@@ -16,3 +16,4 @@
 13.	As an owner of a car, I should be able to update the details of the car.
 14.	As an owner of a car, I should be able to rate the customer.
 15.	As an owner of a car, I should be able to approve/reject  the car booking request of my car.  
+<img src="./Untitled Diagram (1).svg">
