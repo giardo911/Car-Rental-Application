@@ -15,5 +15,7 @@
 12.	As an owner of a car, I should be able to remove the car from the list so that it is removed from the list of cars in the application.
 13.	As an owner of a car, I should be able to update the details of the car.
 14.	As an owner of a car, I should be able to rate the customer.
-15.	As an owner of a car, I should be able to approve/reject  the car booking request of my car.  
+15.	As an owner of a car, I should be able to approve/reject  the car booking request of my car. 
+
+## Domain Driven Design for Project 
 <img src="./Untitled Diagram (1).svg">
