@@ -1,0 +1,17 @@
+{
+  "name": "car-rental-server",
+  "version": "1.0.0",
+  "description": "The application server will have REST API exposed which can be used by the application to add and update existing listings of the cars and also book and cancel any bookings done by the customer.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.13"
+  }
+}
