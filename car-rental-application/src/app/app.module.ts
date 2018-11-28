@@ -10,6 +10,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CarsComponent } from './cars/cars.component';
 import { CarsService } from './services/cars.services';
 import { RegisterComponent } from './register/register.component';
+import { HttpClientModule } from '@angular/common/http';
+import { UsersService } from './services/users.service';
+import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+
+
 
 
 @NgModule({
@@ -25,8 +30,11 @@ import { RegisterComponent } from './register/register.component';
     BrowserModule,
     AppRoutingModule,
     AngularFontAwesomeModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [CarsService],
+  providers: [CarsService, UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
