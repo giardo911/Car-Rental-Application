@@ -7,26 +7,26 @@ import { CarDetailsComponent } from './car-details/car-details.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CarsComponent } from './cars/cars.component';
+import { CarsService } from './services/cars.services';
 import { RegisterComponent } from './register/register.component';
-import {AgmCoreModule} from '@agm/core';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NavbarComponent,
-    RegisterComponent
+    CarsComponent,
+    RegisterComponent,
     CarDetailsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFontAwesomeModule,
-    AgmCoreModule.forRoot({
-      apiKey : "AIzaSyAMbKWGMwqv8GJhaVj1XKMXFZeLdzzXK"
-    })
   ],
-  providers: [],
+  providers: [CarsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
