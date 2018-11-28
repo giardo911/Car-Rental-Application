@@ -15,7 +15,7 @@ import {AgmCoreModule} from '@agm/core';
     AppComponent,
     HomeComponent,
     NavbarComponent,
-    RegisterComponent
+    RegisterComponent,
     CarDetailsComponent,
   ],
   imports: [
@@ -23,7 +23,7 @@ import {AgmCoreModule} from '@agm/core';
     AppRoutingModule,
     AngularFontAwesomeModule,
     AgmCoreModule.forRoot({
-      apiKey : "AIzaSyAMbKWGMwqv8GJhaVj1XKMXFZeLdzzXK"
+    //  apiKey : "AIzaSyAMbKWGMwqv8GJhaVj1XKMXFZeLdzzXK"
     })
   ],
   providers: [],
