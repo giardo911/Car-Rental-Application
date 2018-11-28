@@ -1,6 +1,5 @@
-
 .navbar-default{
-  background:  #ff751a;
+  background:#000000;
   color: #ffff;
 }
 .navbar-nav li a,.navbar-brand{
@@ -13,7 +12,7 @@
   background-color: #000000;
 }
 .dropdown-menu > li >a:hover{
-  background-color:#ff751a;
+  background-color:black;
   color: #ffff;
 }
 .dropdown-toggle:active{
@@ -21,5 +20,5 @@
 }
 .navbar-default .navbar-nav > .open > a{
   background: #ffff;
-  color: #000000;
+  color: #000000
 }
