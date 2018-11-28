@@ -11,6 +11,12 @@ import { CarsComponent } from './cars/cars.component';
 import { CarsService } from './services/cars.services';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { UsersService } from './services/users.service';
+import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+
+
+
 
 @NgModule({
   declarations: [
@@ -26,8 +32,11 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     AngularFontAwesomeModule,
   FormsModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [CarsService],
+  providers: [CarsService, UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
