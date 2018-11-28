@@ -7,23 +7,32 @@
   <div id="carousel" class="carousel slide" data-ride="carousel">
     <!-- Menu -->
     <ol class="carousel-indicators">
-        <li data-target="#carousel" data-slide-to="0" class="active"></li>
+      
+    
+        <li data-target="#Carousel" *ngFor="let x of carImages;let i = index" [attr.data-slide-to]="i" ngClass="i == 0 ? 'active' : ''"></li>
+    
+      
+      <!-- <li data-target="#carousel" data-slide-to="0" class="active"></li>
         <li data-target="#carousel" data-slide-to="1"></li>
-        <li data-target="#carousel" data-slide-to="2"></li>
+        <li data-target="#carousel" data-slide-to="2"></li> -->
     </ol>
     
     <!-- Items -->
-    <div class="carousel-inner">
+    <div class="carousel-inner"  *ngFor= 'let car of carImages'>
         
-        <div class="item active">
-            <img src="assets/images/car2.png" alt="Slide 1" />
-        </div>
-        <div class="item">
+
+      <div *ngFor="let j of carImages; let k = index" [ngClass]="k == 0 ? 'item active' : 'item'">
+        <img src={{carImages[k]}} alt="Event Image">
+    </div>
+        <!-- <div class="item ">
+            <img src='car'  alt="Slide 1" />
+        </div> -->
+        <!-- <div class="item">
             <img src="assets/images/car10.png" alt="Slide 2" />
-        </div>
-        <div class="item">
+        </div> -->
+        <!-- <div class="item">
             <img src="assets/images/car12.png" alt="Slide 3" />
-        </div>
+        </div> -->
     </div> 
     <a href="#carousel" class="left carousel-control" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left"></span>
@@ -42,45 +51,45 @@
     <div class="col-sm-8">
       <br>
       <p class="carDescription"> THE CAR</p>
-      <span><span class="carLabel names"><b> {{CarName}} </b></span>
-        <span class="desc-f20-B names" ><b>2006</b></span>
+      <span><span class="carLabel names"><b> {{carName}} </b></span>
+        <span class="desc-f20-B names" ><b>{{carYear}}</b></span>
       </span>
       <fa name="stroopwafel" ></fa>
-      <p class="carDescription">Title description, Dec 7, 2017</p>
+      
       <div class="padding-right">  
           <i class="stroopwafel"></i>
-          <span class="padding-right"> <span class="glyphicon glyphicon-oil"></span> <span class="carDescription"> &nbsp;&nbsp; 24 MPG</span></span>
+          <span class="padding-right"> <span class="glyphicon glyphicon-oil"></span> <span class="carDescription"> &nbsp;&nbsp; {{milage}}MPG</span></span>
         
-          <span class="padding-right"> <span class="glyphicon glyphicon-oil"></span> <span class="carDescription">  &nbsp;&nbsp;Gas(Premium)</span></span>
+          <span class="padding-right"> <span class="glyphicon glyphicon-oil"></span> <span class="carDescription">  &nbsp;&nbsp; {{fuelType}}</span></span>
       </div>
       <div class="padding-right">  
-          <span class="padding-right"> <span class="glyphicon glyphicon-compressed"></span> <span class="carDescription">&nbsp;&nbsp; 2 Doors</span></span>
+          <span class="padding-right"> <span class="glyphicon glyphicon-compressed"></span> <span class="carDescription">&nbsp;&nbsp; {{doorCount}} Doors</span></span>
         
-          <span class="padding-right"> <span class="glyphicon glyphicon-bed"></span> <span class="carDescription">&nbsp;&nbsp; 2 Seats</span></span>
+          <span class="padding-right"> <span class="glyphicon glyphicon-bed"></span> <span class="carDescription">&nbsp;&nbsp; {{seatCount}} Seats</span></span>
       </div>
       
       <hr class="half-rule"/>
       
       <div class="">
       <p class="carDescription">DESCRIPTION</p>
-      <p class="carDescription">Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+      <p class="carDescription">{{description}}</p>
       <br>
     </div>
     <hr class="half-rule"/>
     
   <div>
       <p class="carDescription">FEATURES</p>
-      <p> Features ::::::::: Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+      <p> {{features}}</p>
     </div>
     <hr class="half-rule"/> 
     <div>
         <p class="carDescription">PARKING DETAILS</p>
-        <p> Parking details will come here ::::::::: Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+        <p> {{parkingDetails}} </p>
       </div>
       <hr class="half-rule"/>
       <div>
           <p class="carDescription">GUIDELINES</p>
-          <p> GUIDELINES ::::::::: Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+          <p> {{guideLines}} </p>
         </div>
         <hr class="half-rule"/>
     </div>
@@ -92,28 +101,28 @@
       <span class="currency-style" >per day</span>
       </span>
       <hr class="half-rule"/> 
-      <div class="">
-      <div>
-        <form action="">
+      
+        <form  (ngSubmit)="onCheckout(f)" #f='ngForm'>
+        <div class="form-group">
+        
           <div class="bookingDetailsHeading" > <label for="" >Trip Start </label> </div>
-          <span class="bookingDetailsHeading">
-          <input class="form-control dateStyle" type="date" id="example-date-input">
+          
+          <input class="form-control dateStyle" type="date" name="startDate" id="example-date-input" >
           <input class="form-control timeStyle" type="time" value="13:45:00" id="example-time-input">
-        </span>
-        </div>
+        
         <div class="bookingDetailsHeading" > <label for="" >Trip End</label> </div>
-        <span class="bookingDetailsHeading">
-        <input class="form-control dateStyle" type="date" value="2011-08-19" id="example-date-input">
-        <input class="form-control timeStyle" type="time" value="13:45:00" id="example-time-input">
-      </span>
+        
+        <input class="form-control dateStyle" type="date"  value="2011-08-19" id="example-date-input">
+        <input class="form-control timeStyle" type="time" value="13:45:00"  id="example-time-input">
+      </div>
+      
       <div>
         <br>
-          <button type="submit" class="btn btn-primary btn-warning  btn-block" (click)="onCheckout()">Proceed to Checkout</button>
+          <button type="submit" class="btn btn-primary btn-warning  btn-block" >Proceed to Checkout</button>
 
       </div>
     </form>
-    </div>
-      <!-- <hr class="half-rule"/> -->
+          <!-- <hr class="half-rule"/> -->
       <div>
         <!-- <h5>Map::::</h5> -->
 <!-- <agm-map [latitude] ="latitude" [longitude]= "longitude"> -->
@@ -125,22 +134,22 @@
       <p class="carDescription">DISTANCE INCLUDED</p>
       <div class="reservationDetails">
         <div><b>Day</b></div>
-        <div><b>150 mi</b></div>
+        <div><b>{{dailyDistance}} mi</b></div>
       </div>
       <div class="reservationDetails">
         <div><b>Week</b></div>
-        <div> <b>750 mi </b></div>
+        <div> <b>{{weeklyDistance}} mi </b></div>
       </div>
       <div class="reservationDetails">
         <div><b>Month</b></div>
-        <div><b>1500 mi</b></div>
+        <div><b>{{monthlyDistance}} mi</b></div>
       </div>
       <hr class="half-rule"/>
       <div class="ownerDetails">
        
           <div>
              <div><p class="carDescription">OWNED BY</p> </div> <br>
-             <div> <p class="carDescription names"> <b>Mr. Acharya </b></p>  </div>
+             <div> <p class="carDescription names"> <b>{{ownerName}} </b></p>  </div>
           </div>
           <div class="ownerImg"> <img src="https://d1zgdcrdir5wgt.cloudfront.net/media/driver/gqvKGqN4SPSZIH5JnKp2Eg.80x80.jpg" alt=""></div>
         </div>

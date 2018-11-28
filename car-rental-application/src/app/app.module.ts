@@ -10,7 +10,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CarsComponent } from './cars/cars.component';
 import { CarsService } from './services/cars.services';
 import { RegisterComponent } from './register/register.component';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,6 +25,7 @@ import { RegisterComponent } from './register/register.component';
     BrowserModule,
     AppRoutingModule,
     AngularFontAwesomeModule,
+  FormsModule,
   ],
   providers: [CarsService],
   bootstrap: [AppComponent]

@@ -4,7 +4,7 @@
 
 <div class="container">
       <div class="row">
-        <a class=" col-sm-3 card" href="#" *ngFor="let car of cars">
+        <a class=" col-sm-3 card" [routerLink]="['/cars',car.id]" *ngFor="let car of cars">
           <div class="card-header">
               <img class="card-img-top" [src]="car.carImagePath" alt="Card image cap">
               <span class="badge badge-light">${{car.carPrice}}/<span class="small">day</span></span>
