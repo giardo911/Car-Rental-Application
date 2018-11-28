@@ -42,7 +42,7 @@
     <div class="col-sm-8">
       <br>
       <p class="carDescription"> THE CAR</p>
-      <span><span class="carLabel names"><b> MAZDA MX-5 MIATA </b></span>
+      <span><span class="carLabel names"><b> {{CarName}} </b></span>
         <span class="desc-f20-B names" ><b>2006</b></span>
       </span>
       <fa name="stroopwafel" ></fa>
@@ -88,15 +88,16 @@
       <br>
       <span>
           <span class="price-style">$</span> 
-      <span class="price-style"> <b>50</b></span>
+      <span class="price-style"> <b>{{price}}</b></span>
       <span class="currency-style" >per day</span>
       </span>
       <hr class="half-rule"/> 
       <div class="">
       <div>
+        <form action="">
           <div class="bookingDetailsHeading" > <label for="" >Trip Start </label> </div>
           <span class="bookingDetailsHeading">
-          <input class="form-control dateStyle" type="date" value="2011-08-19" id="example-date-input">
+          <input class="form-control dateStyle" type="date" id="example-date-input">
           <input class="form-control timeStyle" type="time" value="13:45:00" id="example-time-input">
         </span>
         </div>
@@ -107,16 +108,17 @@
       </span>
       <div>
         <br>
-          <button type="button" class="btn btn-primary btn-warning  btn-block">Proceed to Checkout</button>
+          <button type="submit" class="btn btn-primary btn-warning  btn-block" (click)="onCheckout()">Proceed to Checkout</button>
 
       </div>
+    </form>
     </div>
-      <hr class="half-rule"/>
+      <!-- <hr class="half-rule"/> -->
       <div>
-        <h5>Map::::</h5>
-<agm-map [latitude] ="latitude" [longitude]= "longitude">
+        <!-- <h5>Map::::</h5> -->
+<!-- <agm-map [latitude] ="latitude" [longitude]= "longitude"> -->
 
-</agm-map>
+<!-- </agm-map> -->
 
       </div>
       <hr class="half-rule"/>
