@@ -41,11 +41,12 @@ let UserSchema = new Schema({
         required: "State is required"
     },
     Zip: {
-        type: Number,
+        type: String,
         required: "ZipCode is required"
     },
     Alerts: {
-        type: Number
+        type: Number,
+        Default: 0
     },
     /**
      * car created date.

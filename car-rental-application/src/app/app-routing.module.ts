@@ -5,7 +5,6 @@ import { CarDetailsComponent } from './car-details/car-details.component';
 import { CarsComponent } from './cars/cars.component';
 
 import { RegisterComponent } from './register/register.component';
-import {CarDetailsComponent} from './car-details/car-details.component';
 import { from } from 'rxjs';
 const routes: Routes = [
   {path: 'register', component: RegisterComponent},
