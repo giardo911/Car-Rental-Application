@@ -89,7 +89,7 @@ this.carImages =[this.imgPath,'assets/images/car10.png','assets/images/car12.png
 
 onCheckout(f){
 console.log("in checkout ::::::");
-console.log("Date:::::::::::::::::::::"+f.startDate.value);
+console.log("Date:::::::::::::::::::::"+f.value.startDate);
 
 
 
