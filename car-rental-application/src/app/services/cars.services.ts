@@ -57,6 +57,13 @@ export class CarsService {
       carPrice: 54,
     }
   ];
+  private users = 
+  [
+    {
+      userName: 'Rajat',
+      Password: 'Test'
+    }
+   ] 
   getCars() {
     return this.cars;
   }
@@ -67,5 +74,13 @@ export class CarsService {
       }
     );
     return car;
+  }
+  getUser(name: string) {
+    const user = this.users.find(
+      (c) => {
+        return c.userName === name;
+      }
+    );
+    return user;
   }
 }
