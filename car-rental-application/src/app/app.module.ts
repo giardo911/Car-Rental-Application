@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CarDetailsComponent } from './cars/car-details/car-details.component';
@@ -11,8 +10,9 @@ import { CarsComponent } from './cars/cars.component';
 import { CarsService } from './services/cars.services';
 import { RegisterComponent } from './register/register.component';
 import { LoginPageComponent } from './login-page/login-page.component';
-
-
+import { HttpClientModule } from '@angular/common/http';
+import { UsersService } from './services/users.service';
+import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,9 +27,11 @@ import { LoginPageComponent } from './login-page/login-page.component';
     BrowserModule,
     AppRoutingModule,
     AngularFontAwesomeModule,
-    FormsModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [CarsService],
+  providers: [CarsService, UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
