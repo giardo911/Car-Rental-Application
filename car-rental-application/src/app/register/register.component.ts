@@ -72,9 +72,15 @@ export class RegisterComponent implements OnInit {
       'State': this.registerForm.get('state').value,
       'Zip': this.registerForm.get('zip').value,
       'Alerts': this.registerForm.get('alerts').value
-  };
+    };
 
-  this.Users.putUser(user);
+    if (!this.Users.checkUserEmailExists(this.registerForm.get('email').value)){
+      this.Users.putUser(user);
+    }
+    else {
+      console.log('Email already exisits');
+      return;
+    }
   }
 
 }

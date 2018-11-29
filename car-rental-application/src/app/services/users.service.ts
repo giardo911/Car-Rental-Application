@@ -55,4 +55,27 @@ export class UsersService {
     );
     return user;
   }
+
+  checkUserEmailExists(emailId) {
+    this.httpClient.get('http://localhost:3000/users/email/' + emailId).subscribe(
+      data => {
+        this.users = data as string [];    // FILL THE ARRAY WITH DATA.
+        console.log(this.users);
+      },
+      (err: HttpErrorResponse) => {
+        console.log (err.message);
+      }
+    );
+
+    console.log(this.users + ' '  + this.users.length);
+
+    if  (this.users.length !== 0) {
+      console.log(this.users);
+      return true;
+    }
+    else{
+      return false;
+    }
+
+  }
 }
