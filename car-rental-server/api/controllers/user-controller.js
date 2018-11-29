@@ -17,8 +17,9 @@ exports.list = function (request, response) {
         response.status(200);
         response.json(users);
     };
-    userService.search({}, callback);
-};
+        
+    userService.search(request.query, callback);
+};      
 
 /**
  * Creates a new sticky with the request JSON and
@@ -50,4 +51,18 @@ exports.put = function (request, response) {
     };
     user._id = request.params.userId;
     userService.update(user, callback);
+};
+
+/**
+ * Returns a sticky object in JSON.
+ *
+ * @param {request} {HTTP request object}
+ * @param {response} {HTTP response object}
+ */
+exports.findByEmail = function (request, response) {
+    let callback = function (user) {
+        response.status(200);
+        response.json(user);
+    };
+    userService.findByEmail(request.params.emailId, callback);
 };
