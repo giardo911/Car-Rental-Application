@@ -17,6 +17,7 @@ exports.list = function (request, response) {
         response.status(200);
         response.json(cars);
     };
+    console.log("Hello")
     carService.search({}, callback);
 };
 
