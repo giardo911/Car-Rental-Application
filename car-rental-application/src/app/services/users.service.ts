@@ -8,19 +8,19 @@ export class UsersService {
   constructor(private httpClient: HttpClient) {
   }
   users = [];
-
-  getUsers() {
-    console.log('In get users');
-    this.httpClient.get('http://localhost:3000/users/').subscribe(
-      data => {
-        this.users = data as string [];    // FILL THE ARRAY WITH DATA.
-        console.log(this.users);
+  user = {};
+   getUsers(){
+    let promise = new Promise((resolve, reject) => {
+      this.httpClient.get<Array<any>>('http://localhost:3000/users')
+      .subscribe(data => {
+        console.log(data as string []);
+        resolve(data as string[]);
       },
-      (err: HttpErrorResponse) => {
-        console.log (err.message);
-      }
-    );
-    console.log(this.users);
+      error => {
+        reject(error);
+      });
+    });
+    return promise;
   }
 
   putUser(input) {
@@ -47,13 +47,25 @@ export class UsersService {
             }
         );
   }
-  getUser(id: String) {
-    const user = this.users.find(
-      (c) => {
-        return c.id === id;
-      }
-    );
-    return user;
+  getUser(query: String): Promise<any> {
+
+    let promise = new Promise((resolve, reject) => {
+
+      this.httpClient.get('http://localhost:3000/users?'+ query).subscribe(
+        data => {
+          resolve(data);
+          console.log(data);
+        },
+        (err: HttpErrorResponse) => {
+          console.log (err.message);
+        }
+      );
+
+
+    });
+    return promise;
+
+
   }
 
   checkUserEmailExists(emailId) {
