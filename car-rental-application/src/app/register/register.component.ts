@@ -76,17 +76,26 @@ export class RegisterComponent implements OnInit {
     };
 
 
-    let existingUser = await this.Users.checkUserEmailExists(this.registerForm.get('email').value);
-    console.log(existingUser);
+    this.Users.getUser('Email=' + this.registerForm.get('email').value).then(
+      data => {
+      console.log(JSON.stringify(data));
+        // console.log(data.length > 0);
+        // console.log(data[0].Password === form.value.password);
+        // console.log("First"+ data[0].Password+"Second"+form.value.password)
+        if (data.length > 0 )
+        {
+          console.log('User already exists');
+          alert('User already exists with this Email address');
+        }
+        else
+        {
+          console.log('New user');
+          this.Users.putUser(user);
+        }
+      }
+    );
 
-    if(!existingUser.length > 0){
-      console.log('it is not an exisitng user');
-      this.Users.putUser(user);
-    }
-    else{
-      console.log('It is an existing user');
-      alert("User Already exists");
-    }
+
 
 
 
