@@ -47,6 +47,7 @@ export class UsersService {
             }
         );
   }
+  
   getUser(id: String) {
     const user = this.users.find(
       (c) => {

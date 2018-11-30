@@ -1,4 +1,10 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+@Injectable()
 export class CarsService {
+  constructor(private httpClient : HttpClient){
+
+  }
   private cars = [
     {
       id : 1,
@@ -153,4 +159,28 @@ export class CarsService {
     );
     return car;
   }
+  putCar(input) {
+    console.log(input);
+    this.httpClient.post('http://localhost:3000/cars',
+      {
+         'FirstName': input.FirstName,
+         'LastName': input.LastName,
+         'Email': input.Email,
+         'Password': input.Password,
+         'Address1': input.Address1,
+         'Address2': input.Address2,
+         'City': input.City,
+         'State': input.State,
+         'Zip': input.Zip,
+         'Alerts': input.Alerts
+      })
+      .subscribe(
+          data => {
+              console.log('POST Request is successful ', data);
+          },
+          error => {
+              console.log('Error', error);
+          }
+      );
+}
 }

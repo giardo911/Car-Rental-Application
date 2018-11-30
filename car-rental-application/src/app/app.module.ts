@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UsersService } from './services/users.service';
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { ListCarComponent } from './list-car/list-car.component';
 
 
 
@@ -25,6 +26,7 @@ import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angu
     CarsComponent,
     RegisterComponent,
     CarDetailsComponent,
+    ListCarComponent,
   ],
   imports: [
     BrowserModule,
