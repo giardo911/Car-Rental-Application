@@ -8,10 +8,10 @@ import { from } from 'rxjs';
 import { LoginPageComponent } from './login-page/login-page.component';
 const routes: Routes = [
   {path: 'register', component: RegisterComponent},
-  {path: '', component: HomeComponent},
+  {path: 'home', component: HomeComponent},
   {path: 'cars', component: CarsComponent},
   {path: 'cars/:id', component: CarDetailsComponent},
-  {path: 'login', component: LoginPageComponent}
+  {path: '', component: LoginPageComponent}
 ];
 
 @NgModule({

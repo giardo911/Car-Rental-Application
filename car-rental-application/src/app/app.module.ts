@@ -13,6 +13,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UsersService } from './services/users.service';
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { AuthenticationService } from './services/authentication.services';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,7 @@ import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angu
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [CarsService, UsersService],
+  providers: [CarsService, UsersService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

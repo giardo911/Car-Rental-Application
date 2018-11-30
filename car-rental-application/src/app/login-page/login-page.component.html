@@ -1,16 +1,30 @@
+<div class="container">
+  <div class="login-form">
+  <div class="main-div">
+      <div class="panel">
+     <h2>Login Into Car Rental Application</h2>
+     <p>Please enter your email and password</p>
+     </div>
+      <form id="Login" (ngSubmit)="onSignIn(f)" #f="ngForm">
 
-<div class="row">
-  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-    <form (ngSubmit)="onSignIn(f)" #f="ngForm">
-      <div class="form-group" >
-        <label for="email">Email</label>
-        <input type="email" id="email"  name="email" ngModel class="form-control">
+          <div class="form-group">
+
+
+              <input type="email" class="form-control" name ="email" ngModel id="email" placeholder="Email Address">
+
+          </div>
+
+          <div class="form-group">
+
+              <input type="password" class="form-control" id="password" ngModel name="password" placeholder="Password">
+
+          </div>
+          <div class="forgot">
+          <a href="reset.html">Forgot password?</a>
+  </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+
+      </form>
       </div>
-      <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password"  name="password" ngModel class="form-control">
-      </div>
-      <button type ="submit" class="btn btn-primary">Sing In</button>
-    </form>
   </div>
 </div>

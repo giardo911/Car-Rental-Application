@@ -9,7 +9,7 @@ export class UsersService {
   }
   users = [];
   user = {};
-   getUsers(){
+   getUsers() {
     let promise = new Promise((resolve, reject) => {
       this.httpClient.get<Array<any>>('http://localhost:3000/users')
       .subscribe(data => {
@@ -51,7 +51,7 @@ export class UsersService {
 
     let promise = new Promise((resolve, reject) => {
 
-      this.httpClient.get('http://localhost:3000/users?'+ query).subscribe(
+      this.httpClient.get('http://localhost:3000/users?Email=' + query).subscribe(
         data => {
           resolve(data);
           console.log(data);
