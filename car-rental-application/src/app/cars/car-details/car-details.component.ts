@@ -9,7 +9,7 @@ import {FormGroup} from '@angular/forms'
 })
 export class CarDetailsComponent implements OnInit {
 
-private carObj ;
+private carObj ={};
  
   latitude = 51.678418;
 longitude = 7.809007;
@@ -43,27 +43,35 @@ constructor(private carservice:  CarsService,private active : ActivatedRoute) {
   }
 
   ngOnInit() {
-let id =+ this.active.snapshot.params['id'];
+let id = this.active.snapshot.params['id'];
     console.log("ID::::;"+id);
     
 
 
 this.active.params.subscribe(
   (params) => { 
-   id =+ params['id'];
+   id = params['id'];
   }
 )
-this.carObj= this.carservice.getCar(id);
-console.log("carNmae::::"+this.carObj.carName);
+ this.carservice.getCar(id).then(
+   
+   data =>{
+     console.log("DATA:::::::"+data[0].carName)
+     this.carObj =data[0]
+     this.populateCarsDetails(this.carObj);
+      
+    }
+ );
 
-this.populateCarsDetails(this.carObj);
+
+
 
 }
 
 
 
 populateCarsDetails(carObj){
-console.log("abc");
+console.log("abc"+carObj);
 
 
 this.price = carObj.carPrice;
@@ -76,7 +84,7 @@ this.milage = carObj.milage
 this.fuelType = carObj.fuelType
 this.features = carObj.features
 this.parkingDetails = carObj.parkingDetails
-this.guideLines =carObj.guideLines
+this.guideLines = 'No guidelines '
 this.dailyDistance = carObj.dailyDistance
 this.weeklyDistance = carObj.weeklyDistance
 this.monthlyDistance = carObj.monthlyDistance
