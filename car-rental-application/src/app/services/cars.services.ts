@@ -163,13 +163,22 @@ export class CarsService {
     return promise;
 
   }
-  getCar(id: Number) {
-    const car = this.cars.find(
-      (c) => {
-        return c.id === id;
-      }
-    );
-    return car;
+  getCar(query) {
+    let promise = new Promise((resolve, reject) => {
+
+      this.httpClient.get('http://localhost:3000/cars?_id='+ query).subscribe(
+        data => {
+          resolve(data);
+          console.log(data);
+        }
+       
+      );
+
+
+    });
+    return promise;
+
+
   }
   putCar(input) {
     console.log(input);
