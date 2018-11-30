@@ -13,6 +13,11 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UsersService } from './services/users.service';
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { ListCarComponent } from './list-car/list-car.component';
+
+
+
+
 import { AuthenticationService } from './services/authentication.services';
 @NgModule({
   declarations: [
@@ -22,12 +27,14 @@ import { AuthenticationService } from './services/authentication.services';
     CarsComponent,
     RegisterComponent,
     CarDetailsComponent,
+    ListCarComponent,
     LoginPageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFontAwesomeModule,
+  FormsModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule

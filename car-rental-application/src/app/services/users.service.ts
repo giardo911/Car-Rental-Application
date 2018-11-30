@@ -49,6 +49,16 @@ export class UsersService {
             }
         );
   }
+<<<<<<< HEAD
+  
+  getUser(id: String) {
+    const user = this.users.find(
+      (c) => {
+        return c.id === id;
+      }
+    );
+    return user;
+=======
   getUser(query: String): Promise<any> {
 
     let promise = new Promise((resolve, reject) => {
@@ -82,6 +92,7 @@ export class UsersService {
     console.log(result);
     return result;
 
+>>>>>>> 5b8bcc709094e2971b0f7b0301b3e476cd266be6
   }
 
 }
