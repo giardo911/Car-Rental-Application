@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, from } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
 @Injectable()
@@ -8,6 +8,8 @@ export class UsersService {
   constructor(private httpClient: HttpClient) {
   }
   users = [];
+
+
   user = {};
    getUsers() {
     let promise = new Promise((resolve, reject) => {
@@ -68,26 +70,18 @@ export class UsersService {
 
   }
 
-  checkUserEmailExists(emailId) {
-    this.httpClient.get('http://localhost:3000/users/email/' + emailId).subscribe(
-      data => {
-        this.users = data as string [];    // FILL THE ARRAY WITH DATA.
-        console.log(this.users);
-      },
-      (err: HttpErrorResponse) => {
-        console.log (err.message);
-      }
-    );
+  // async checkUserEmailExists(emailId) {
+  //   const response = await fetch('http://localhost:3000/users?Email=' + emailId);
+  //   const json = await response.json();
+  //   console.log(json);
+  //   console.log(json);
+  // }
 
-    console.log(this.users + ' '  + this.users.length);
-
-    if  (this.users.length !== 0) {
-      console.log(this.users);
-      return true;
-    }
-    else{
-      return false;
-    }
+  async checkUserEmailExists(emailId) {
+    let result = await this.httpClient.get('http://localhost:3000/users?Email=' + emailId).toPromise();
+    console.log(result);
+    return result;
 
   }
+
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { __await } from 'tslib';
 
 @Component({
   selector: 'app-register',
@@ -52,7 +53,7 @@ export class RegisterComponent implements OnInit {
     this.Users.getUsers();
   }
 
-  addUser() {
+  async addUser() {
     this.submitted = true;
     if (this.registerForm.invalid) {
       console.log(this.registerForm.errors);
@@ -74,13 +75,31 @@ export class RegisterComponent implements OnInit {
       'Alerts': this.registerForm.get('alerts').value
     };
 
-    if (!this.Users.checkUserEmailExists(this.registerForm.get('email').value)){
-      this.Users.putUser(user);
-    }
-    else {
-      console.log('Email already exisits');
-      return;
-    }
+
+    this.Users.getUser('Email=' + this.registerForm.get('email').value).then(
+      data => {
+      console.log(JSON.stringify(data));
+        // console.log(data.length > 0);
+        // console.log(data[0].Password === form.value.password);
+        // console.log("First"+ data[0].Password+"Second"+form.value.password)
+        if (data.length > 0 )
+        {
+          console.log('User already exists');
+          alert('User already exists with this Email address');
+        }
+        else
+        {
+          console.log('New user');
+          this.Users.putUser(user);
+        }
+      }
+    );
+
+
+
+
+
+
   }
 
 }
