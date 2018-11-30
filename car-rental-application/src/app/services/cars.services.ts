@@ -1,5 +1,12 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+@Injectable()
 export class CarsService {
-  private cars = [
+  constructor(private http: HttpClient) {
+
+  }
+   cars = [
     {
       id : 1,
       carName: 'Honda CRV',
@@ -57,15 +64,20 @@ export class CarsService {
       carPrice: 54,
     }
   ];
-  private users = 
-  [
-    {
-      userName: 'Rajat',
-      Password: 'Test'
-    }
-   ] 
-  getCars() {
-    return this.cars;
+
+  getCars():Promise<any> {
+    let promise = new Promise((resolve, reject) => {
+      this.http.get<Array<any>>('http://localhost:3000/cars')
+      .subscribe(data => {
+        console.log(data as string []);
+        resolve(data as string[]);
+      },
+      error => {
+        reject(error);
+      });
+    });
+    return promise;
+
   }
   getCar(id: Number) {
     const car = this.cars.find(
@@ -75,12 +87,5 @@ export class CarsService {
     );
     return car;
   }
-  getUser(name: string) {
-    const user = this.users.find(
-      (c) => {
-        return c.userName === name;
-      }
-    );
-    return user;
-  }
+
 }
