@@ -148,8 +148,20 @@ export class CarsService {
       seatCount: '4',
     }
   ];
-  getCars() {
-    return this.cars;
+
+  getCars():Promise<any> {
+    let promise = new Promise((resolve, reject) => {
+      this.httpClient.get<Array<any>>('http://localhost:3000/cars')
+      .subscribe(data => {
+        console.log(data as string []);
+        resolve(data as string[]);
+      },
+      error => {
+        reject(error);
+      });
+    });
+    return promise;
+
   }
   getCar(id: Number) {
     const car = this.cars.find(

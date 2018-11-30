@@ -1,5 +1,5 @@
 /**
- * Service for sticky operations.
+ * Service for user operations.
  */
 
 'use strict';
@@ -18,7 +18,7 @@ let throwError = function (error) {
 };
 
 /**
- * Returns an array of sticky object matching the search parameters.
+ * Returns an array of user object matching the search parameters.
  *
  * @param {Object} params {Search parameters}
  * @param {function} callback {Sucess callback function}
@@ -28,11 +28,13 @@ exports.search = function (params, callback) {
         throwError(err);
         callback(users);
     };
+    console.log(params);
     User.find(params, resultCallback);
 };
 
+
 /**
- * Saves and returns the new sticky object.
+ * Saves and returns the new user object.
  *
  * @param {Object} user {User object}
  * @param {function} callback {Sucess callback function}
@@ -47,7 +49,7 @@ exports.save = function (user, callback) {
 };
 
 /**
- * Updates and returns the sticky object.
+ * Updates and returns the user object.
  *
  * @param {Object} user {User object}
  * @param {function} callback {Sucess callback function}
@@ -63,4 +65,18 @@ exports.update = function (user, callback) {
     }, user, {
         new: true
     }, resultCallback);
+};
+
+/**
+ * Returns the user object matching the emailid.
+ *
+ * @param {string} emailId {Id of the sticky object}
+ * @param {function} callback {Sucess callback function}
+ */
+exports.findByEmail = function (emailId, callback) {
+    let resultCallback = function (err, user) {
+        throwError(err);
+        callback(user);
+    };
+    User.findOne({ Email: emailId }, resultCallback );
 };
