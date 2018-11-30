@@ -7,16 +7,15 @@
         <li><a [routerLink]="['/']">Home </a></li>
         <li><a   routerLink="/cardetails">List your car</a></li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Learn More
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Welcome {{user}}
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">How Does It works</a></li>
-            <li><a href="#">Rent a Car</a></li>
-            <li><a href="#">Make Money From Your Car</a></li>
+            <li><a href="#">My bookings</a></li>
+            <li><a href="#">Account Settings</a></li>
+            <li><a href="#" (click)="logout()">Logout</a></li>
+
           </ul>
         </li>
-      <li><a [routerLink]="['/register']"  ><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a [routerLink]="['/login']"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
   </div>
 </nav>

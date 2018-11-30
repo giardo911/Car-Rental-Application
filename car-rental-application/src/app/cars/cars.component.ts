@@ -7,11 +7,17 @@ import { Router} from '@angular/router';
   styleUrls: ['./cars.component.scss']
 })
 export class CarsComponent implements OnInit {
-   cars: {id: Number, carName: String, carImagePath: string, carTrips: Number, carPrice: Number}[] = [];
+   cars = [];
   constructor(private carsService: CarsService, private route: Router) { }
 
   ngOnInit() {
-    this.cars = this.carsService.getCars();
+    this.cars = this.carsService.cars;
+    this.carsService.getCars().then((data) => {
+       console.log(JSON.stringify(data));
+       this.cars = data as string [];
+       console.log(this.cars)
+    });
+
   }
 
 }
