@@ -1,0 +1,18 @@
+<div class="container header">
+</div>
+<div class="container">
+      <div class="row">
+        <a class=" col-sm-3 card" [routerLink]="['/cars',car._id]" *ngFor="let car of cars">
+          <div class="card-header">
+              <img class="card-img-top" src="../../assets/images/homePageImage.jpg" alt="Card image cap">
+              <span class="badge badge-light">${{car.price}}/<span class="small">day</span></span>
+          </div>
+          <div class="card-body">
+            <h2 class="card-title">{{car.make}}<span class="year small" id="year"></span></h2>
+            <div class="stars"><p>{{car.trips}} trips</p></div>
+          </div>
+        </a>
+    </div>
+</div>
+
+
