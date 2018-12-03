@@ -9,5 +9,7 @@ module.exports = function (app) {
     carRoutes(app);
     let userRoutes = require('./routes/user-route');
     userRoutes(app);
+    let uploadRoutes = require('./routes/file-route');
+    uploadRoutes(app);
 
 };
