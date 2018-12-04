@@ -30,7 +30,6 @@ export class LoginPageComponent implements OnInit {
         else {
           this.route.navigate(['']);
         }
-
       }
     );
 
