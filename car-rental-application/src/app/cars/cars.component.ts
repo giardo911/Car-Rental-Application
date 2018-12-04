@@ -11,7 +11,7 @@ export class CarsComponent implements OnInit {
   constructor(private carsService: CarsService, private route: Router) { }
 
   ngOnInit() {
-    this.cars = this.carsService.cars;
+    
     this.carsService.getCars().then((data) => {
        console.log(JSON.stringify(data));
        this.cars = data as string [];
