@@ -26,6 +26,8 @@ export class UsersService {
     return promise;
   }
 
+
+
   putUser(input) {
       console.log(input.FirstName);
       this.httpClient.post('http://localhost:3000/users',
@@ -50,6 +52,33 @@ export class UsersService {
             }
         );
   }
+
+  updateUser(input) {
+    console.log(input.FirstName);
+    this.httpClient.put('http://localhost:3000/users/' + input.userId,
+      {
+         'FirstName': input.FirstName,
+         'LastName': input.LastName,
+         'Email': input.Email,
+         'Password': input.Password,
+         'Address1': input.Address1,
+         'Address2': input.Address2,
+         'City': input.City,
+         'State': input.State,
+         'Zip': input.Zip,
+         'Alerts': input.Alerts
+      })
+      .subscribe(
+          data => {
+              console.log('PUT Request is successful ', data);
+          },
+          error => {
+              console.log('Error', error);
+          }
+      );
+}
+
+
   getUser(query: String): Promise<any> {
 
     let promise = new Promise((resolve, reject) => {
@@ -63,12 +92,22 @@ export class UsersService {
           console.log (err.message);
         }
       );
-
-
     });
     return promise;
+  }
 
-
+  getUserById(id): Promise<any>{
+    let promise = new Promise((resolve, reject) => {
+      this.httpClient.get<Array<any>>('http://localhost:3000/users/' + id)
+      .subscribe(data => {
+        console.log(data);
+        resolve(data);
+      },
+      error => {
+        reject(error);
+      });
+    });
+    return promise;
   }
 
   // async checkUserEmailExists(emailId) {

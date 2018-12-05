@@ -53,6 +53,16 @@ exports.put = function (request, response) {
     userService.update(user, callback);
 };
 
+
+exports.find = function (request, response) {
+    let callback = function (user) {
+        response.status(200);
+        response.json(user);
+    };
+    let id = request.params.userId;
+    userService.findById(id, callback);
+};
+
 /**
  * Returns a sticky object in JSON.
  *

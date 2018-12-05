@@ -67,6 +67,16 @@ exports.update = function (user, callback) {
     }, resultCallback);
 };
 
+exports.findById = function (id, callback) {
+    let resultCallback = function (err, user) {
+        throwError(err);
+        callback(user);
+    };
+    User.findById(id,resultCallback);
+};
+
+
+
 /**
  * Returns the user object matching the emailid.
  *

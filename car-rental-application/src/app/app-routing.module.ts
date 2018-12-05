@@ -7,13 +7,15 @@ import {CarDetailsComponent} from './cars/car-details/car-details.component';
 import { from } from 'rxjs';
 import { ListCarComponent } from './list-car/list-car.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: '', component: LoginPageComponent},
  {path: 'cars', component: CarsComponent},
   {path: 'cars/:id', component: CarDetailsComponent},
   {path: 'listCar' , component: ListCarComponent},
-  {path: 'home', component: HomeComponent}
+  {path: 'home', component: HomeComponent},
+  {path: 'account-settings', component: AccountSettingsComponent}
 ];
 
 @NgModule({

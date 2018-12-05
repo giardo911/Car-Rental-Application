@@ -15,7 +15,7 @@ export class AccountSettingsComponent implements OnInit {
 
     constructor(private Users: UsersService, private formBuilder: FormBuilder, private active : ActivatedRoute) { }
 
-  oldUser = {};
+  userObj = {};
 
   states = [
     'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia',
@@ -25,6 +25,9 @@ export class AccountSettingsComponent implements OnInit {
     'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia',
     'Wisconsin', 'Wyoming'
 ];
+
+   userId = '5bfde6b4bfe07e93a0c6537f';
+
 
 
   ngOnInit() {
@@ -48,12 +51,12 @@ export class AccountSettingsComponent implements OnInit {
     (params) => {
       id = params['id'];
     })
-    this.Users.getUser("jay@test.com").then(
+    this.Users.getUserById(this.userId).then(
 
     data =>{
-    console.log("DATA:::::::"+data[0].Email)
-    this.oldUser =data[0];
-    this.populateUserDetails(this.oldUser);
+    console.log(data);
+    this.userObj =data;
+    this.populateUserDetails(this.userObj);
   });
 }
 
@@ -72,8 +75,8 @@ export class AccountSettingsComponent implements OnInit {
 
   populateUserDetails(user){
     console.log(user);
-    this.registerForm.controls['firstName'].setValue = user.FirstName;
-    this.registerForm.contains['lastName'].setValue = user.LastName;
+
+
   }
 
 
@@ -87,6 +90,7 @@ export class AccountSettingsComponent implements OnInit {
     console.log(this.registerForm.get('firstName').value);
 
     let user = {
+      'userId' : this.userId,
       'FirstName': this.registerForm.get('firstName').value,
       'LastName': this.registerForm.get('lastName').value,
       'Email': this.registerForm.get('email').value,
@@ -100,24 +104,8 @@ export class AccountSettingsComponent implements OnInit {
     };
 
 
-    this.Users.getUser('Email=' + this.registerForm.get('email').value).then(
-      data => {
-      console.log(JSON.stringify(data));
-        // console.log(data.length > 0);
-        // console.log(data[0].Password === form.value.password);
-        // console.log("First"+ data[0].Password+"Second"+form.value.password)
-        if (data.length > 0 )
-        {
-          console.log('User already exists');
-          alert('User already exists with this Email address');
-        }
-        else
-        {
-          console.log('New user');
-          this.Users.putUser(user);
-        }
-      });
-    }
+    this.Users.updateUser(user);
+  }
 }
 
 
