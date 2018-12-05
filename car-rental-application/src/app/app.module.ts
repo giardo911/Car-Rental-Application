@@ -19,6 +19,7 @@ import { ListCarComponent } from './list-car/list-car.component';
 
 
 import { AuthenticationService } from './services/authentication.services';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import { AuthenticationService } from './services/authentication.services';
     CarDetailsComponent,
     ListCarComponent,
     LoginPageComponent,
+    AccountSettingsComponent,
   ],
   imports: [
     BrowserModule,
