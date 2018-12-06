@@ -37,7 +37,7 @@ export class ListCarComponent implements OnInit {
       features:['',[Validators.required]],
       dailyDistance: ['', [Validators.required, Validators.pattern('[0-9]*')]],
       weeklyDistance:['', [Validators.required, Validators.pattern('[0-9]*')]],
-      monthlyDistance:['', [Validators.required, Validators.pattern('[0-9]*')]]
+      monthlyDistance:['', [Validators.required, Validators.pattern('[0-9]*')]],
   });
   }
 
@@ -63,7 +63,7 @@ let car = {
   'description':  this.registerForm.get('description').value,
   'features':  this.registerForm.get('features').value,
   'parkingDetails':  this.registerForm.get('parkingDetails').value,
-  'guidelines':  'Test guidelines',
+  'guidelines':  'NO guidelines',
   'dailyDistance':  this.registerForm.get('dailyDistance').value,
   'weeklyDistance':  this.registerForm.get('weeklyDistance').value,
   'monthlyDistance':  this.registerForm.get('monthlyDistance').value,

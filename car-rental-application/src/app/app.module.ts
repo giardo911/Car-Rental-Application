@@ -14,9 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UsersService } from './services/users.service';
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { ListCarComponent } from './list-car/list-car.component';
-
-
-
+import { AgmCoreModule } from '@agm/core';
 
 import { AuthenticationService } from './services/authentication.services';
 @NgModule({
@@ -37,7 +35,11 @@ import { AuthenticationService } from './services/authentication.services';
   FormsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBxImSYeJl1s7poHFAufKoeuJ6jrdQbPZo',
+      libraries :["places"]
+    })
   ],
   providers: [CarsService, UsersService, AuthenticationService],
   bootstrap: [AppComponent]
