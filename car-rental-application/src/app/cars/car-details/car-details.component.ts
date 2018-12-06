@@ -10,7 +10,7 @@ import {FormGroup} from '@angular/forms'
 export class CarDetailsComponent implements OnInit {
 
 private carObj ={};
- 
+
   latitude = 51.678418;
 longitude = 7.809007;
  registerForm :FormGroup;
@@ -36,7 +36,7 @@ private ownerName : string ="Mr. Iyer" ;
 private carYear :string ;
 private imgPath : string;
 private carImages =[];
-constructor(private carservice:  CarsService,private active : ActivatedRoute) { 
+constructor(private carservice:  CarsService, private active : ActivatedRoute) {
 
 
 
@@ -45,21 +45,21 @@ constructor(private carservice:  CarsService,private active : ActivatedRoute) {
   ngOnInit() {
 let id = this.active.snapshot.params['id'];
     console.log("ID::::;"+id);
-    
+
 
 
 this.active.params.subscribe(
-  (params) => { 
+  (params) => {
    id = params['id'];
   }
 )
  this.carservice.getCar(id).then(
-   
+
    data =>{
      console.log("DATA:::::::"+data[0].carName)
      this.carObj =data[0]
      this.populateCarsDetails(this.carObj);
-      
+
     }
  );
 
@@ -93,7 +93,7 @@ this.doorCount  = carObj.doorCount
 this.seatCount = carObj.seatCount
 this.carImages =[this.imgPath,'assets/images/car10.png','assets/images/car12.png' ]
 }
- 
+
 
 onCheckout(f){
 console.log("in checkout ::::::");
