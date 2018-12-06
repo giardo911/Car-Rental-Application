@@ -15,8 +15,13 @@ import { UsersService } from './services/users.service';
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { ListCarComponent } from './list-car/list-car.component';
 import { AgmCoreModule } from '@agm/core';
-
+import { NpnSliderModule } from "npn-slider";
 import { AuthenticationService } from './services/authentication.services';
+import { FilterPipe } from './filter.pipe';
+import { MoneyPipe } from './money.pipe';
+import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import { PaymentComponent } from './payment/payment.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,19 +32,24 @@ import { AuthenticationService } from './services/authentication.services';
     CarDetailsComponent,
     ListCarComponent,
     LoginPageComponent,
+    FilterPipe,
+    MoneyPipe,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFontAwesomeModule,
-  FormsModule,
+     FormsModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBxImSYeJl1s7poHFAufKoeuJ6jrdQbPZo',
       libraries :["places"]
-    })
+    }),
+    NpnSliderModule,
+    NgbAlertModule
   ],
   providers: [CarsService, UsersService, AuthenticationService],
   bootstrap: [AppComponent]

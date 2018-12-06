@@ -7,17 +7,25 @@ import { Router} from '@angular/router';
   styleUrls: ['./cars.component.scss']
 })
 export class CarsComponent implements OnInit {
+   filters = ['Color', 'seatCount', 'carYear'];
+   filterString;
+   selcetedValue;
+   currentValues = [0, 0];
+   currentValues2 = [2000, 3500];
    cars = [];
   constructor(private carsService: CarsService, private route: Router) { }
 
   ngOnInit() {
-    
+
     this.carsService.getCars().then((data) => {
        console.log(JSON.stringify(data));
        this.cars = data as string [];
-       console.log(this.cars)
+       console.log(this.cars);
     });
 
   }
-
+  onSliderChange(selectedValues: number[]) {
+    console.log(selectedValues);
+    this.currentValues = selectedValues;
+}
 }

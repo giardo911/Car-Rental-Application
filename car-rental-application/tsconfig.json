@@ -19,5 +19,6 @@
       "es2018",
       "dom"
     ]
-  }
+  },
+  "@abp/*": [ "../node_modules/abp-ng2-module/dist/src/*" ]
 }

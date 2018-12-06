@@ -15,7 +15,7 @@ import{Observable} from 'rxjs';
 export class CarDetailsComponent implements OnInit {
   checkoutForm: FormGroup;
 private carObj ={};
- 
+
   latitude = 51.678418;
 longitude = 7.809007;
  registerForm :FormGroup;
@@ -67,7 +67,6 @@ constructor(private carservice:  CarsService,private active : ActivatedRoute,pri
   ngOnInit() {
 let id = this.active.snapshot.params['id'];
     console.log("ID::::;"+id);
-
     this.orderBy="";
    // this.infoWindow = new google.maps.InfoWindow;
    // this.map = new google.maps.Map(this.myId.nativeElement, {
@@ -79,17 +78,17 @@ let id = this.active.snapshot.params['id'];
   //this.getLocation("Landon");
 
 this.active.params.subscribe(
-  (params) => { 
+  (params) => {
    id = params['id'];
   }
 )
  this.carservice.getCar(id).then(
-   
+
    data =>{
      console.log("DATA:::::::"+data[0].carName)
      this.carObj =data[0]
      this.populateCarsDetails(this.carObj);
-      
+
     }
  );
 
@@ -151,7 +150,7 @@ this.doorCount  = carObj.doorCount
 this.seatCount = carObj.seatCount
 this.carImages =[this.imgPath,'assets/images/car10.png','assets/images/car12.png' ]
 }
- 
+
 
 onCheckout(f){
 console.log("in checkout ::::::");
