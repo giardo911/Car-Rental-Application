@@ -18,6 +18,8 @@ import { NpnSliderModule } from "npn-slider";
 import { AuthenticationService } from './services/authentication.services';
 import { FilterPipe } from './filter.pipe';
 import { MoneyPipe } from './money.pipe';
+import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -31,17 +33,18 @@ import { MoneyPipe } from './money.pipe';
     LoginPageComponent,
     FilterPipe,
     MoneyPipe,
-
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFontAwesomeModule,
-  FormsModule,
+     FormsModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NpnSliderModule
+    NpnSliderModule,
+    NgbAlertModule
   ],
   providers: [CarsService, UsersService, AuthenticationService],
   bootstrap: [AppComponent]
