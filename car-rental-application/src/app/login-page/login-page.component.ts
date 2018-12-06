@@ -15,15 +15,12 @@ export class LoginPageComponent implements OnInit {
   constructor(private carService: CarsService, private route: Router, private auth: AuthenticationService) { }
 
   ngOnInit() {
+    this.auth.logout();
   }
   onSignIn(form: NgForm) {
     const username = form.value.email;
-    console.log(username)
     this.auth.login(username).then(
       data => {
-      console.log(JSON.stringify(data));
-      console.log("First "+data[0].Password+"Second "+form.value.password)
-      console.log(data.length > 0 && data[0].Password === form.value.password)
         if (data.length > 0 && data[0].Password === form.value.password) {
           this.route.navigate(['home']);
         }

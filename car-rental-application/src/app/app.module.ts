@@ -14,11 +14,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { UsersService } from './services/users.service';
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { ListCarComponent } from './list-car/list-car.component';
-
-
-
-
+import { NpnSliderModule } from "npn-slider";
 import { AuthenticationService } from './services/authentication.services';
+import { FilterPipe } from './filter.pipe';
+import { MoneyPipe } from './money.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +29,9 @@ import { AuthenticationService } from './services/authentication.services';
     CarDetailsComponent,
     ListCarComponent,
     LoginPageComponent,
+    FilterPipe,
+    MoneyPipe,
+
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { AuthenticationService } from './services/authentication.services';
   FormsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NpnSliderModule
   ],
   providers: [CarsService, UsersService, AuthenticationService],
   bootstrap: [AppComponent]
