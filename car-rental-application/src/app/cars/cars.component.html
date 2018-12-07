@@ -22,10 +22,11 @@
           <select class="form-control" [(ngModel)]='selcetedValue' name="selectFilter">
               <option [value]="filter"  *ngFor="let  filter of filters">{{filter}}</option>
           </select>
-
           <npn-slider [min]="10" [max]="200" (onChange)="onSliderChange($event)"></npn-slider>
         <button type="submit" class="btn btn-primary mb-2">Search</button>
       </form>
+      <button type="button" class="btn btn-primary mb-2" (click)="open(content)">More Filter</button>
+
 </div>
 <div class="container">
       <div class="row">
@@ -41,5 +42,6 @@
         </a>
     </div>
 </div>
+
 
 

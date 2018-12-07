@@ -18,6 +18,7 @@ import { NpnSliderModule } from "npn-slider";
 import { AuthenticationService } from './services/authentication.services';
 import { FilterPipe } from './filter.pipe';
 import { MoneyPipe } from './money.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { PaymentComponent } from './payment/payment.component';
 
@@ -44,7 +45,7 @@ import { PaymentComponent } from './payment/payment.component';
     FormsModule,
     ReactiveFormsModule,
     NpnSliderModule,
-    NgbAlertModule
+    NgbModule
   ],
   providers: [CarsService, UsersService, AuthenticationService],
   bootstrap: [AppComponent]

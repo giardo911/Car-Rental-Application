@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CarsService} from '../services/cars.services';
 import { Router} from '@angular/router';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-cars',
   templateUrl: './cars.component.html',
@@ -13,7 +14,8 @@ export class CarsComponent implements OnInit {
    currentValues = [0, 0];
    currentValues2 = [2000, 3500];
    cars = [];
-  constructor(private carsService: CarsService, private route: Router) { }
+   closeResult : string;
+  constructor(private carsService: CarsService, private route: Router, private modalService: NgbModal) { }
 
   ngOnInit() {
 
@@ -27,5 +29,25 @@ export class CarsComponent implements OnInit {
   onSliderChange(selectedValues: number[]) {
     console.log(selectedValues);
     this.currentValues = selectedValues;
+}
+
+open(content) {
+  console.log(content);
+  this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.closeResult = `Closed with: ${result}`;
+  }, (reason) => {
+    console.log('hellow');
+    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  });
+}
+
+private getDismissReason(reason: any): string {
+  if (reason === ModalDismissReasons.ESC) {
+    return 'by pressing ESC';
+  } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+    return 'by clicking on a backdrop';
+  } else {
+    return  `with: ${reason}`;
+  }
 }
 }
