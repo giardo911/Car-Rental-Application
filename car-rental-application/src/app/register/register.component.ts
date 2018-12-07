@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
     submitted = false;
 
-    constructor(private Users: UsersService, private formBuilder: FormBuilder ,private route:Router) { }
+    constructor(private Users: UsersService, private formBuilder: FormBuilder, private router : Router) { }
 
 
   states = [
@@ -64,9 +64,6 @@ export class RegisterComponent implements OnInit {
       console.log(this.registerForm.invalid);
       return;
   }
-
-
-
     console.log(this.registerForm.get('firstName').value);
 
     let user = {
@@ -82,13 +79,9 @@ export class RegisterComponent implements OnInit {
       'Alerts': this.registerForm.get('alerts').value
     };
 
-
     this.Users.getUser('Email=' + this.registerForm.get('email').value).then(
       data => {
       console.log(JSON.stringify(data));
-        // console.log(data.length > 0);
-        // console.log(data[0].Password === form.value.password);
-        // console.log("First"+ data[0].Password+"Second"+form.value.password)
         if (data.length > 0 )
         {
           console.log('User already exists');
@@ -98,10 +91,13 @@ export class RegisterComponent implements OnInit {
         {
           console.log('New user');
           this.Users.putUser(user);
-          this.route.navigate(['/']);
+          alert('Registration Successful');
+          this.router.navigate(['/']);
+
         }
       }
     );
+
 
 
 

@@ -12,7 +12,7 @@ export class PaymentComponent implements OnInit {
  private startDate =localStorage.startdate
  private endDate =localStorage.enddate
  private startTime =localStorage.startTime
- private endTime = localStorage.endTime 
+ private endTime = localStorage.endTime
 private bookingprice  =localStorage.bookingPrice
 
  constructor(private carservice:CarsService) { }
@@ -20,22 +20,24 @@ private bookingprice  =localStorage.bookingPrice
   ngOnInit() {
 
     this.userObj = JSON.parse(localStorage.currentUser)
-this.username = this.userObj['_id'];
+    console.log(this.userObj[0]._id);
+this.username = this.userObj[0]._id;
   }
 
 
 payment(){
   console.log("doing payment::::::");
-  
+
  let payment ={
 'userName' : this.username,
 'carId' : this.carId,
 'startDate' : this.startDate,
-'endDate' : this.endDate, 
+'endDate' : this.endDate,
 'bookingprice' : this.bookingprice
 
- }
- //this.carservice.doPayment(payment);
+ };
+
+ this.carservice.doPayment(payment);
 
 
   }

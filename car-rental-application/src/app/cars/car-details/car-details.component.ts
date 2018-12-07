@@ -34,13 +34,14 @@ show: boolean = false;
   totalprice
 
    geocoder;
-    
+
  //infowindow = new google.maps.InfoWindow();
 
  private days : any
 endDate :Date;
 startTime;
 endTime;
+id;
 private startDate1 : Date;
 private price: number = 100;
 private carName: string = 'Mazda';
@@ -59,13 +60,13 @@ private ownerName : string ="Mr. Iyer" ;
 private carYear :string ;
 private imgPath : string;
 private carImages =[];
-constructor(private carservice:  CarsService,private active : ActivatedRoute,private formBuilder: FormBuilder, private route: Router) { 
+constructor(private carservice:  CarsService,private active : ActivatedRoute,private formBuilder: FormBuilder, private route: Router) {
 
   }
 
   ngOnInit() {
-let id = this.active.snapshot.params['id'];
-    console.log("ID::::;"+id);
+ this.id = this.active.snapshot.params['id'];
+    console.log("ID::::;"+this.id);
     this.orderBy="";
    // this.infoWindow = new google.maps.InfoWindow;
    // this.map = new google.maps.Map(this.myId.nativeElement, {
@@ -78,10 +79,10 @@ let id = this.active.snapshot.params['id'];
 
 this.active.params.subscribe(
   (params) => {
-   id = params['id'];
+   this.id = params['id'];
   }
 )
- this.carservice.getCar(id).then(
+ this.carservice.getCar(this.id).then(
 
    data =>{
      console.log("DATA:::::::"+data[0].carName)
@@ -102,7 +103,7 @@ getLocation() {
   //   if (status == google.maps.GeocoderStatus.OK) {
   //       this.map.setCenter(results[0].geometry.location);
   //       console.log("location:::"+results[0].geometry.location);
-        
+
   //       //var marker = new google.maps.Marker({map: this.map,position: results[0].geometry.location,icon: imageURL,title: title});
   //   }})
 
@@ -111,7 +112,7 @@ getLocation() {
  let that = this;
    let loc = "Boston";
  console.log("in location::::");
- 
+
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (position) {
       that.pos = {
@@ -159,7 +160,7 @@ console.log("Date:::::::::::::::::::::"+f.value.startDate);
 
 //   getLocation(address: string): Observable<any> {
 //     console.log('Getting address: '+ address);
-  
+
 //     let geocoder = new google.maps.Geocoder();
 //     return Observable.create(observer => {
 //         geocoder.geocode({
@@ -169,7 +170,7 @@ console.log("Date:::::::::::::::::::::"+f.value.startDate);
 //                 observer.next(results[0].geometry.location);
 //                 observer.complete();
 //                 console.log("location::"+results[0].geometry.location);
-                
+
 //             } else {
 //                 console.log('Error: ', results, ' & Status: ', status);
 //                 observer.error();
@@ -284,7 +285,7 @@ this.endDate = new Date (f.value.endDate);
 this.startTime =f.value.stTime;
 this.endTime = f.value.endTime;
 
-console.log("end dtm::::"+(f.value.endDate + f.value.endTime))
+console.log("end dtm::::"+(f.value.endDate + ' ' + f.value.endTime + '.00'));
 console.log(this.startTime)
 console.log(this.endTime)
 
@@ -298,11 +299,10 @@ console.log(days);
 console.log(this.price);
 
  this.totalprice =this.price * days;
-console.log("price::::"+this.totalprice);
-this.newObj= JSON.parse(localStorage.currentCar);
-localStorage.setItem( 'carId',this.newObj['_id'] );
-localStorage.setItem('startdate',(f.value.stDate + f.value.stTime) )
-localStorage.setItem('enddate',(f.value.endDate + f.value.endTime) )
+
+localStorage.setItem( 'carId',this.id);
+localStorage.setItem('startdate',(f.value.stDate + ' ' + f.value.stTime + '.00') )
+localStorage.setItem('enddate',(f.value.endDate + ' ' +  f.value.endTime + '.00') )
 localStorage.setItem('bookingPrice',this.totalprice)
 
 this.newObj= JSON.parse(localStorage.currentUser);
@@ -317,7 +317,7 @@ this.datevalidate1(f.value.stDate,f.value.endDate);
 }
 
 datevalidate1(stdt: string , eddt: string){
-  
+
   // this.days = eddt - stdt;
   if(stdt > eddt){
     console.log("validating dt::");
