@@ -18,7 +18,7 @@ export class LoginPageComponent implements OnInit {
   message = new Subject<string>();
   status:string;
   constructor(private carService: CarsService, private route: Router,
-    private auth: AuthenticationService, private alertConfig: NgbAlertConfig) { }
+    private auth: AuthenticationService) { }
 
   ngOnInit() {
     this.auth.logout();

@@ -1,30 +1,44 @@
 <app-navbar></app-navbar>
 <div class="container header">
     <form class="form-inline">
+      <h1>Search by Date</h1>
         <div class="form-group">
             <label for="inputPassword2" class="sr-only">Where</label>
-            <input type="where" class="form-control" id="inputPassword2" placeholder="Place">
+            <input type="where" class="form-control" id="" placeholder="Place">
         </div>
         <div class="form-group">
           <label for="inputPassword2" class="sr-only">From</label>
-          <input type="date" class="form-control" id="inputPassword2" placeholder="From">
-
+          <input type="date" class="form-control" id="" placeholder="From">
         </div>
         <div class="form-group">
             <label for="inputPassword2" class="sr-only">Until</label>
-            <input type="date" class="form-control" id="inputPassword2" placeholder="Until">
+            <input type="date" class="form-control" id="" placeholder="Until">
             <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
           </div>
+          <button type="submit" class="btn btn-primary mb-2">Search</button>
+          <hr>
+          <h1>More Filters</h1>
            <div class="form-group">
             <label for="Filter" class="sr-only">Filter</label>
-            <input class="form-control" type="text" value="" id=""name="filter"[(ngModel)]="filterString">
+            <input class="form-control" type="text" value="" id=""name="filter"[(ngModel)]="filterString" placeholder="Enter Filter Value">
           </div>
           <select class="form-control" [(ngModel)]='selcetedValue' name="selectFilter">
               <option [value]="filter"  *ngFor="let  filter of filters">{{filter}}</option>
           </select>
+          <br>
+          <br>
+          <div class="jumbtron ">
+            <div class="row">
+              <div class="col-xs-1 col-md-5">
+                <h4>Price Filter</h4>
+                <npn-slider [min]="10" [max]="200" (onChange)="onSliderChange($event)"></npn-slider>
+              </div>
 
-          <npn-slider [min]="10" [max]="200" (onChange)="onSliderChange($event)"></npn-slider>
-        <button type="submit" class="btn btn-primary mb-2">Search</button>
+            </div>
+
+          </div>
+
+
       </form>
 </div>
 <div class="container">
@@ -41,5 +55,6 @@
         </a>
     </div>
 </div>
+
 
 
