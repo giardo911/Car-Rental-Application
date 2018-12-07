@@ -23,7 +23,8 @@ let CarSchema = new Schema({
     },
     carTrips: {
         type: Number,
-        required: "Trips is required"
+        required: "Trips is required",
+        default : 0
     },
     carPrice: {
         type: Number,
@@ -57,9 +58,9 @@ let CarSchema = new Schema({
         type: Number,
         required: "monthlyDistance is required"
     },
-    ownerName: {
+    userId: {
         type: String,
-        required: "ownerName is required"
+        required: "userId is required"
     },
     milage: {
         type: String,
