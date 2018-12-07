@@ -149,7 +149,7 @@ export class CarsService {
     }
   ];
 
-  getCars():Promise<any> {
+  getCars(): Promise<any> {
     let promise = new Promise((resolve, reject) => {
       this.httpClient.get<Array<any>>('http://localhost:3000/cars')
       .subscribe(data => {
@@ -171,7 +171,7 @@ export class CarsService {
           resolve(data);
           console.log(data);
         }
-       
+
       );
 
 
@@ -184,16 +184,46 @@ export class CarsService {
     console.log(input);
     this.httpClient.post('http://localhost:3000/cars',
       {
-         'FirstName': input.FirstName,
-         'LastName': input.LastName,
-         'Email': input.Email,
-         'Password': input.Password,
-         'Address1': input.Address1,
-         'Address2': input.Address2,
-         'City': input.City,
-         'State': input.State,
-         'Zip': input.Zip,
-         'Alerts': input.Alerts
+        carName: input.carName,
+        carYear: input.carYear,
+        carImagePath: input.carImagePath,
+        carTrips: 0,
+        userId:  input.userId,
+        carPrice: input.carPrice,
+        description: input.description,
+        features: input.features,
+        parkingDetails: input.parkingDetails,
+        guidelines: input.guidelines,
+        dailyDistance: input.dailyDistance,
+        weeklyDistance: input.weeklyDistance,
+        monthlyDistance: input.monthlyDistance,
+        milage:  input.milage,
+        fuelType:  input.fuelType,
+        doorCount: input.doorCount,
+        seatCount: input.seatCount,
+      })
+      .subscribe(
+          data => {
+              console.log('POST Request is successful ', data);
+          },
+          error => {
+              console.log('Error', error);
+          }
+      );
+}
+
+
+
+doPayment(payment){
+  console.log(payment);
+    this.httpClient.post('http://localhost:3000/bookings',
+      {
+         'userId': payment.userName,
+         'carId': payment.carId,
+         'booking_startTime': payment.startDate,
+         'booking_endTime': payment.endDate,
+         'booking_price': payment.bookingprice,
+
       })
       .subscribe(
           data => {

@@ -14,11 +14,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { UsersService } from './services/users.service';
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { ListCarComponent } from './list-car/list-car.component';
-
-
-
-
+import { AgmCoreModule } from '@agm/core';
+import { NpnSliderModule } from "npn-slider";
 import { AuthenticationService } from './services/authentication.services';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { FileService } from './services/files.service';
+import { FilterPipe } from './filter.pipe';
+import { MoneyPipe } from './money.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import { PaymentComponent } from './payment/payment.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,17 +35,27 @@ import { AuthenticationService } from './services/authentication.services';
     CarDetailsComponent,
     ListCarComponent,
     LoginPageComponent,
+    AccountSettingsComponent,
+    FilterPipe,
+    MoneyPipe,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFontAwesomeModule,
-  FormsModule,
+    FormsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBxImSYeJl1s7poHFAufKoeuJ6jrdQbPZo',
+      libraries :["places"]
+    }),
+    NpnSliderModule,
+    NgbModule
   ],
-  providers: [CarsService, UsersService, AuthenticationService],
+  providers: [CarsService, UsersService, AuthenticationService, FileService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

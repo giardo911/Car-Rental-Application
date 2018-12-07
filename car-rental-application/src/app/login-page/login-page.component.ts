@@ -4,33 +4,41 @@ import { CarsService } from '../services/cars.services';
 import { Router } from '@angular/router';
 import { UsersService } from '../services/users.service';
 import { AuthenticationService } from '../services/authentication.services';
+import { NgbAlertConfig } from '@ng-bootstrap/ng-bootstrap';
+import {debounceTime} from 'rxjs/operators';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: ['./login-page.component.scss'],
+  providers: [NgbAlertConfig]
 })
 export class LoginPageComponent implements OnInit {
-
-  constructor(private carService: CarsService, private route: Router, private auth: AuthenticationService) { }
+  message = new Subject<string>();
+  status:string;
+  constructor(private carService: CarsService, private route: Router,
+    private auth: AuthenticationService) { }
 
   ngOnInit() {
+    this.auth.logout();
+    this.message.subscribe((m) => this.status = m);
+    this.message.pipe(
+      debounceTime(5000)
+    ).subscribe(() => this.status = null);
   }
   onSignIn(form: NgForm) {
     const username = form.value.email;
-    console.log(username)
     this.auth.login(username).then(
       data => {
-      console.log(JSON.stringify(data));
-      console.log("First "+data[0].Password+"Second "+form.value.password)
-      console.log(data.length > 0 && data[0].Password === form.value.password)
         if (data.length > 0 && data[0].Password === form.value.password) {
           this.route.navigate(['home']);
+
         }
         else {
+          this.message.next(`Invalid User Credentails Please Check your password or Click On Register if New User`);
           this.route.navigate(['']);
         }
-
       }
     );
 

@@ -6,6 +6,11 @@
      <p>Please enter your email and password</p>
      </div>
       <form id="Login" (ngSubmit)="onSignIn(f)" #f="ngForm">
+          <p>
+              <ngb-alert *ngIf=status type="danger">
+                {{status}}
+              </ngb-alert>
+            </p>
 
           <div class="form-group">
 
@@ -20,9 +25,14 @@
 
           </div>
           <div class="forgot">
-          <a href="reset.html">Forgot password?</a>
-  </div>
+          <a href="#">Forgot password?</a>
+
+
+      </div>
           <button type="submit" class="btn btn-primary">Login</button>
+          <br>
+          <br>
+          <a class="btn btn-primary" [routerLink]="['/register']">Register</a>
 
       </form>
       </div>
