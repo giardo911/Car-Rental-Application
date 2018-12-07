@@ -21,6 +21,7 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { FileService } from './services/files.service';
 import { FilterPipe } from './filter.pipe';
 import { MoneyPipe } from './money.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { PaymentComponent } from './payment/payment.component';
 import { MyCarsComponent } from './my-cars/my-cars.component';
@@ -54,7 +55,7 @@ import { MyCarsComponent } from './my-cars/my-cars.component';
       libraries :["places"]
     }),
     NpnSliderModule,
-    NgbAlertModule,
+    NgbModule
   ],
   providers: [CarsService, UsersService, AuthenticationService, FileService],
   bootstrap: [AppComponent]
