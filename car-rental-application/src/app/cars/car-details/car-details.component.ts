@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarsService } from '../../services/cars.services';
 import { ActivatedRoute } from '@angular/router';
+import {Router} from '@angular/router'
 import * as moment from 'moment';
 //import {FormGroup} from '@angular/forms';
 import{Observable} from 'rxjs';
@@ -15,7 +16,7 @@ import{Observable} from 'rxjs';
 export class CarDetailsComponent implements OnInit {
   checkoutForm: FormGroup;
 private carObj ={};
-
+private newObj={};
   latitude = 51.678418;
 longitude = 7.809007;
  registerForm :FormGroup;
@@ -30,7 +31,7 @@ show: boolean = false;
   zipcode: string;
   selectedStore: any;
   orderBy: string;
-
+  totalprice
 
    geocoder;
     
@@ -58,9 +59,7 @@ private ownerName : string ="Mr. Iyer" ;
 private carYear :string ;
 private imgPath : string;
 private carImages =[];
-constructor(private carservice:  CarsService,private active : ActivatedRoute,private formBuilder: FormBuilder) { 
-
-
+constructor(private carservice:  CarsService,private active : ActivatedRoute,private formBuilder: FormBuilder, private route: Router) { 
 
   }
 
@@ -295,7 +294,20 @@ var end = moment(this.endDate); // another date
 var duration = moment.duration(end.diff(now));
 var days = duration.asDays();
 console.log(days)
+ this.totalprice =this.price * days;
+console.log("price::::"+this.totalprice);
+this.newObj= JSON.parse(localStorage.currentCar);
+localStorage.setItem( 'carId',this.newObj['_id'] );
+localStorage.setItem('startdate', f.value.stDate )
+localStorage.setItem('enddate', f.value.endDate )
+localStorage.setItem('starttime', f.value.stTime )
+localStorage.setItem('enddate',f.value.endTime )
+localStorage.setItem('enddate',f.value.endTime)
+localStorage.setItem('bookingPrice',this.totalprice)
 
+this.newObj= JSON.parse(localStorage.currentCar);
+console.log("user::::::::"+ this.newObj['_id']);
+this.route.navigate(['payment']);
 this.datevalidate1(f.value.stDate,f.value.endDate);
 
 

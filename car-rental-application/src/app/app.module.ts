@@ -49,7 +49,7 @@ import { PaymentComponent } from './payment/payment.component';
       libraries :["places"]
     }),
     NpnSliderModule,
-    NgbAlertModule
+    NgbAlertModule,
   ],
   providers: [CarsService, UsersService, AuthenticationService],
   bootstrap: [AppComponent]

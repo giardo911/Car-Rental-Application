@@ -38,6 +38,10 @@ export class ListCarComponent implements OnInit {
       dailyDistance: ['', [Validators.required, Validators.pattern('[0-9]*')]],
       weeklyDistance:['', [Validators.required, Validators.pattern('[0-9]*')]],
       monthlyDistance:['', [Validators.required, Validators.pattern('[0-9]*')]],
+      doors:['', [Validators.required, Validators.pattern('[0-9]*')]],
+      seats : ['', [Validators.required, Validators.pattern('[0-9]*')]],
+      milage : ['', [Validators.required,Validators.pattern('[0-9]*')]],
+      fuelType : ['', [Validators.required]]
   });
   }
 
@@ -68,10 +72,10 @@ let car = {
   'weeklyDistance':  this.registerForm.get('weeklyDistance').value,
   'monthlyDistance':  this.registerForm.get('monthlyDistance').value,
  // 'ownerName':  this.registerForm.get('firstName').value,
-  'milage':  40 ,
-  'fuelType':  'Gas',
-  'doorCount': 4,
-  'seatCount':  4
+  'milage':   this.registerForm.get('milage').value ,
+  'fuelType':  this.registerForm.get('fuelType').value ,
+  'doorCount':this.registerForm.get('doors').value ,
+  'seatCount': this.registerForm.get('seats').value 
 }
 this.carservice.putCar(car);
 }
