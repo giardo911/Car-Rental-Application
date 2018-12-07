@@ -279,11 +279,12 @@ console.log("Date:::::::::::::::::::::"+f.value.startDate);
 proceed(f: NgForm){
   this.startDate =new Date ( f.value.stDate);
   console.log(this.startDate)
+this.endTime = f.value.endTime;
 this.endDate = new Date (f.value.endDate);
 this.startTime =f.value.stTime;
 this.endTime = f.value.endTime;
 
-console.log(this.endDate)
+console.log("end dtm::::"+(f.value.endDate + f.value.endTime))
 console.log(this.startTime)
 console.log(this.endTime)
 
@@ -293,20 +294,19 @@ var now = moment(this.startDate); //todays date
 var end = moment(this.endDate); // another date
 var duration = moment.duration(end.diff(now));
 var days = duration.asDays();
-console.log(days)
+console.log(days);
+console.log(this.price);
+
  this.totalprice =this.price * days;
 console.log("price::::"+this.totalprice);
 this.newObj= JSON.parse(localStorage.currentCar);
 localStorage.setItem( 'carId',this.newObj['_id'] );
-localStorage.setItem('startdate', f.value.stDate )
-localStorage.setItem('enddate', f.value.endDate )
-localStorage.setItem('starttime', f.value.stTime )
-localStorage.setItem('enddate',f.value.endTime )
-localStorage.setItem('enddate',f.value.endTime)
+localStorage.setItem('startdate',(f.value.stDate + f.value.stTime) )
+localStorage.setItem('enddate',(f.value.endDate + f.value.endTime) )
 localStorage.setItem('bookingPrice',this.totalprice)
 
-this.newObj= JSON.parse(localStorage.currentCar);
-console.log("user::::::::"+ this.newObj['_id']);
+this.newObj= JSON.parse(localStorage.currentUser);
+console.log("user::::::::"+ localStorage.currentUser);
 this.route.navigate(['payment']);
 this.datevalidate1(f.value.stDate,f.value.endDate);
 
