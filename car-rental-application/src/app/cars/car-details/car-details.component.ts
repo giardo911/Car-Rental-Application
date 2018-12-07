@@ -65,6 +65,8 @@ constructor(private carservice:  CarsService,private active : ActivatedRoute,pri
   }
 
   ngOnInit() {
+    this.newObj= JSON.parse(localStorage.currentUser)[0];
+console.log( this.newObj);
  this.id = this.active.snapshot.params['id'];
     console.log("ID::::;"+this.id);
     this.orderBy="";
@@ -85,16 +87,13 @@ this.active.params.subscribe(
  this.carservice.getCar(this.id).then(
 
    data =>{
-     console.log("DATA:::::::"+data[0].carName)
+     console.log(data[0]);
      this.carObj =data[0]
+     console.log(this.carObj);
      this.populateCarsDetails(this.carObj);
 
     }
  );
-
-
-
-
 }
 
 getLocation() {
@@ -305,8 +304,7 @@ localStorage.setItem('startdate',(f.value.stDate + ' ' + f.value.stTime + '.00')
 localStorage.setItem('enddate',(f.value.endDate + ' ' +  f.value.endTime + '.00') )
 localStorage.setItem('bookingPrice',this.totalprice)
 
-this.newObj= JSON.parse(localStorage.currentUser);
-console.log("user::::::::"+ localStorage.currentUser);
+
 this.route.navigate(['payment']);
 this.datevalidate1(f.value.stDate,f.value.endDate);
 

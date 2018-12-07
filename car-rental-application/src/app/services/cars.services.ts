@@ -180,6 +180,21 @@ export class CarsService {
 
 
   }
+
+
+  getCarsforUser(userId) {
+    let promise = new Promise((resolve, reject) => {
+
+      this.httpClient.get('http://localhost:3000/cars?userId=' + userId).subscribe(
+        data => {
+          resolve(data);
+          console.log(data);
+        });
+    });
+    return promise;
+  }
+
+
   putCar(input) {
     console.log(input);
     this.httpClient.post('http://localhost:3000/cars',
