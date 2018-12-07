@@ -71,7 +71,7 @@ let car = {
   'dailyDistance':  this.registerForm.get('dailyDistance').value,
   'weeklyDistance':  this.registerForm.get('weeklyDistance').value,
   'monthlyDistance':  this.registerForm.get('monthlyDistance').value,
- // 'ownerName':  this.registerForm.get('firstName').value,
+  'ownerName':  JSON.parse(localStorage.currentCar)[0].firstName,
   'milage':   this.registerForm.get('milage').value ,
   'fuelType':  this.registerForm.get('fuelType').value ,
   'doorCount':this.registerForm.get('doors').value ,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { CarsService } from '../services/cars.services';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
@@ -15,12 +15,29 @@ export class PaymentComponent implements OnInit {
  private endTime = localStorage.endTime 
 private bookingprice  =localStorage.bookingPrice
 
- constructor() { }
+ constructor(private carservice:CarsService) { }
 
   ngOnInit() {
 
     this.userObj = JSON.parse(localStorage.currentUser)
 this.username = this.userObj['_id'];
+  }
+
+
+payment(){
+  console.log("doing payment::::::");
+  
+ let payment ={
+'userName' : this.username,
+'carId' : this.carId,
+'startDate' : this.startDate,
+'endDate' : this.endDate, 
+'bookingprice' : this.bookingprice
+
+ }
+ //this.carservice.doPayment(payment);
+
+
   }
 
 }
