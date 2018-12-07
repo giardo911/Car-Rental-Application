@@ -17,6 +17,8 @@ import { ListCarComponent } from './list-car/list-car.component';
 import { AgmCoreModule } from '@agm/core';
 import { NpnSliderModule } from "npn-slider";
 import { AuthenticationService } from './services/authentication.services';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { FileService } from './services/files.service';
 import { FilterPipe } from './filter.pipe';
 import { MoneyPipe } from './money.pipe';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
@@ -32,6 +34,7 @@ import { PaymentComponent } from './payment/payment.component';
     CarDetailsComponent,
     ListCarComponent,
     LoginPageComponent,
+    AccountSettingsComponent,
     FilterPipe,
     MoneyPipe,
     PaymentComponent,
@@ -40,7 +43,7 @@ import { PaymentComponent } from './payment/payment.component';
     BrowserModule,
     AppRoutingModule,
     AngularFontAwesomeModule,
-     FormsModule,
+    FormsModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -51,7 +54,7 @@ import { PaymentComponent } from './payment/payment.component';
     NpnSliderModule,
     NgbAlertModule,
   ],
-  providers: [CarsService, UsersService, AuthenticationService],
+  providers: [CarsService, UsersService, AuthenticationService, FileService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

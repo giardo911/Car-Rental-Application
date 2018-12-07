@@ -50,7 +50,18 @@ exports.put = function (request, response) {
         response.json(user);
     };
     user._id = request.params.userId;
+    console.log(user);
     userService.update(user, callback);
+};
+
+
+exports.find = function (request, response) {
+    let callback = function (user) {
+        response.status(200);
+        response.json(user);
+    };
+    let id = request.params.userId;
+    userService.findById(id, callback);
 };
 
 /**

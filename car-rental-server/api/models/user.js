@@ -44,6 +44,9 @@ let UserSchema = new Schema({
         type: String,
         required: "ZipCode is required"
     },
+    ProfilePicPath: {
+        type: String
+    },
     Alerts: {
         type: Number,
         Default: 0

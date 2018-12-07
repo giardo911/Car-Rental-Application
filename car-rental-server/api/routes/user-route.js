@@ -11,7 +11,9 @@ module.exports = function (app) {
         .post(userController.post);
     
     app.route('/users/:userId')
+        .get(userController.find)
         .put(userController.put)
+
     
     app.route('/users/email/:emailId')
         .get(userController.findByEmail)

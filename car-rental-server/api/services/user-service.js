@@ -5,6 +5,7 @@
 'use strict';
 const mongoose = require('mongoose'),
     User = mongoose.model('users');
+const fs = require('fs');
 
 /**
  * Throws error if error object is present.
@@ -66,6 +67,16 @@ exports.update = function (user, callback) {
         new: true
     }, resultCallback);
 };
+
+exports.findById = function (id, callback) {
+    let resultCallback = function (err, user) {
+        throwError(err);
+        callback(user);
+    };
+    User.findById(id,resultCallback);
+};
+
+
 
 /**
  * Returns the user object matching the emailid.

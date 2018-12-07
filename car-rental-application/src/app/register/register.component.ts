@@ -37,6 +37,7 @@ export class RegisterComponent implements OnInit {
       city: ['', [Validators.required]],
       state: ['', [Validators.required]],
       zip: ['', [Validators.required, Validators.pattern('[0-9]*')]],
+      profPic: [],
       alerts: ['', [Validators.requiredTrue]]
   });
   }
@@ -53,6 +54,8 @@ export class RegisterComponent implements OnInit {
     this.Users.getUsers();
   }
 
+
+
   async addUser() {
     this.submitted = true;
     if (this.registerForm.invalid) {
@@ -60,6 +63,9 @@ export class RegisterComponent implements OnInit {
       console.log(this.registerForm.invalid);
       return;
   }
+
+
+
     console.log(this.registerForm.get('firstName').value);
 
     let user = {
