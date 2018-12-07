@@ -1,3 +1,4 @@
+
 <div class="container ">
 
   <div class="container ">
@@ -41,8 +42,8 @@
       <div class="col-sm-8">
         <br>
         <p class="carDescription"> THE CAR</p>
-        <span><span class="carLabel names"><b> MAZDA MX-5 MIATA </b></span>
-          <span class="desc-f20-B names" ><b>2006</b></span>
+        <span><span class="carLabel names"><b> {{carName}} </b></span>
+          <span class="desc-f20-B names" ><b>{{carYear}}</b></span>
         </span>
         <fa name="stroopwafel" ></fa>
         <p class="carDescription">Title description, Dec 7, 2017</p>
@@ -92,28 +93,36 @@
         </span>
         <hr class="half-rule"/>
         <div class="">
-        <div>
+            <form  (ngSubmit)="proceed(f)" #f='ngForm'>
+          <div>
+           
             <div class="bookingDetailsHeading" > <label for="" >Trip Start </label> </div>
             <span class="bookingDetailsHeading">
-            <input class="form-control dateStyle" type="date" value="2011-08-19" id="example-date-input">
-            <input class="form-control timeStyle" type="time" value="13:45:00" id="example-time-input">
+            <input class="form-control dateStyle" type="date" name="stDate" ngModel id="stdt">
+            <input class="form-control timeStyle" type="time" name="stTime" ngModel id="stTime">
           </span>
           </div>
           <div class="bookingDetailsHeading" > <label for="" >Trip End</label> </div>
           <span class="bookingDetailsHeading">
-          <input class="form-control dateStyle" type="date" value="2011-08-19" id="example-date-input">
-          <input class="form-control timeStyle" type="time" value="13:45:00" id="example-time-input">
+          <input class="form-control dateStyle" type="date" name="endDate" ngModel id="example-date-input">
+          <input class="form-control timeStyle" type="time" name="endTime" ngModel id="example-time-input">
         </span>
         <div>
           <br>
-            <button type="button" class="btn btn-primary btn-warning  btn-block">Proceed to Checkout</button>
-  
+            <button type="submit" class="btn btn-primary   btn-block">Proceed to Checkout</button>
+            <div *ngIf="(f.value.stDate > f.value.endDate) ">Start date is greater than End date</div>
         </div>
+        </form>
       </div>
         <hr class="half-rule"/>
-        <div>
-          <h5>Map::::</h5>
-  
+        <div id="map">
+        <h5>Map::::</h5>
+          <agm-map [latitude]="latitude" [longitude]="longitude"> 
+            <agm-marker  [latitude]="latitude" [longitude]="longitude" ></agm-marker>
+          
+          </agm-map>
+
+
   
         </div>
         <hr class="half-rule"/>

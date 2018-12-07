@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UsersService } from './services/users.service';
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { ListCarComponent } from './list-car/list-car.component';
+import { AgmCoreModule } from '@agm/core';
 import { NpnSliderModule } from "npn-slider";
 import { AuthenticationService } from './services/authentication.services';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
@@ -46,8 +47,12 @@ import { PaymentComponent } from './payment/payment.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBxImSYeJl1s7poHFAufKoeuJ6jrdQbPZo',
+      libraries :["places"]
+    }),
     NpnSliderModule,
-    NgbAlertModule
+    NgbAlertModule,
   ],
   providers: [CarsService, UsersService, AuthenticationService, FileService],
   bootstrap: [AppComponent]

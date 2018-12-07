@@ -204,4 +204,27 @@ export class CarsService {
           }
       );
 }
+
+
+
+doPayment(payment){
+  console.log(payment);
+    this.httpClient.post('http://localhost:3000/bookings',
+      {
+         'userId': payment.userName,
+         'carId': payment.carId,
+         'startDate': payment.startDate,
+         'endDate': payment.endDate,
+         'bookingprice': payment.bookingprice,
+         
+      })
+      .subscribe(
+          data => {
+              console.log('POST Request is successful ', data);
+          },
+          error => {
+              console.log('Error', error);
+          }
+      );
+}
 }
