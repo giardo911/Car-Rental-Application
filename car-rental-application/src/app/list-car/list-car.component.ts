@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { CarsService } from '../services/cars.services';
+import { JsonPipe } from '@angular/common';
+import { FileService } from '../services/files.service';
 @Component({
   selector: 'app-list-car',
   templateUrl: './list-car.component.html',
@@ -10,8 +12,10 @@ export class ListCarComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   file;
- 
-  constructor( private formBuilder: FormBuilder, private carservice:CarsService) { }
+  filePath;
+  user = JSON.parse(localStorage.currentUser);
+
+  constructor( private formBuilder: FormBuilder, private carservice:CarsService, private Files: FileService) { }
 
   states = [
     'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia',
@@ -56,35 +60,44 @@ export class ListCarComponent implements OnInit {
 
 
   }
-  
-let car = {
-    
-  'carName':  this.registerForm.get('carName').value,
-  'carYear':  this.registerForm.get('carYear').value,
-  //'carImagePath':  this.registerForm.get('firstName').value,
- 
-  'carPrice': this.registerForm.get('carPrice').value,
-  'description':  this.registerForm.get('description').value,
-  'features':  this.registerForm.get('features').value,
-  'parkingDetails':  this.registerForm.get('parkingDetails').value,
-  'guidelines':  'NO guidelines',
-  'dailyDistance':  this.registerForm.get('dailyDistance').value,
-  'weeklyDistance':  this.registerForm.get('weeklyDistance').value,
-  'monthlyDistance':  this.registerForm.get('monthlyDistance').value,
-  'ownerName':  JSON.parse(localStorage.currentCar)[0].firstName,
-  'milage':   this.registerForm.get('milage').value ,
-  'fuelType':  this.registerForm.get('fuelType').value ,
-  'doorCount':this.registerForm.get('doors').value ,
-  'seatCount': this.registerForm.get('seats').value 
-}
-this.carservice.putCar(car);
+
+  console.log(this.user[0]._id);
+  this.Files.uploadFile(this.file, this.user[0]._id).then(
+
+    data =>{
+    this.filePath = data;
+    alert(this.filePath);
+    console.log(this.filePath);
+
+    let car = {
+      'carName':  this.registerForm.get('carName').value,
+      'carYear':  this.registerForm.get('carYear').value,
+      'userId' :  this.user[0]._id,
+      'carImagePath':  this.filePath,
+
+      'carPrice': this.registerForm.get('carPrice').value,
+      'description':  this.registerForm.get('description').value,
+      'features':  this.registerForm.get('features').value,
+      'parkingDetails':  this.registerForm.get('parkingDetails').value,
+      'guidelines':  'NO guidelines',
+      'dailyDistance':  this.registerForm.get('dailyDistance').value,
+      'weeklyDistance':  this.registerForm.get('weeklyDistance').value,
+      'monthlyDistance':  this.registerForm.get('monthlyDistance').value,
+      'milage':   this.registerForm.get('milage').value ,
+      'fuelType':  this.registerForm.get('fuelType').value ,
+      'doorCount':this.registerForm.get('doors').value ,
+      'seatCount': this.registerForm.get('seats').value
+    }
+    this.carservice.putCar(car);
+    alert("After Put");
+});
 }
 
 
-  // onFileUpload(event){
-  //    this.file = event.target.files[0];
-  //    console.log(this.file);
-     
-  //   }
+  onFileUpload(event){
+      this.file = event.target.files[0];
+     console.log(this.file);
+
+    }
 
 }

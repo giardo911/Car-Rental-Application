@@ -19,7 +19,7 @@
             </div>
           </div>
         </div>
-     
+
       <div class="form-group">
         <label for="inputAddress">Car rental price per Day</label>
         <input type="text" class="form-control" id="inputAddress" placeholder="carPrice" formControlName="carPrice" [ngClass]="{ 'is-invalid': submitted && f.carPrice.errors }">
@@ -28,7 +28,7 @@
             <div *ngIf="f.carPrice.errors.pattern">Rental Price should be Number</div>
         </div>
       </div>
-      
+
       <div class="form-group">
         <label for="inputAddress2">Address 2</label>
         <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" formControlName="address2" >
@@ -98,7 +98,7 @@
     </div>
     <div class="form-group col-md-3">
         <label for="fuelType">Fuel type</label>
-        <input type="text" class="form-control" id="fuelType" formControlName="fuelType" [ngClass]="{ 'is-invalid': submitted && f.fuelType.errors }"> 
+        <input type="text" class="form-control" id="fuelType" formControlName="fuelType" [ngClass]="{ 'is-invalid': submitted && f.fuelType.errors }">
         <div *ngIf="submitted && f.fuelType.errors" class="invalid-feedback">
         <div *ngIf="f.fuelType.errors.pattern">Fuel type is required</div>
         </div>
@@ -163,6 +163,12 @@
               <div *ngIf="f.alerts.errors.required">Please accept the terms and conditions!</div>
           </div>
       </div>
+
+      <div class="form-group btn-group">
+          <button class="btn btn-primary btn-lg">Submit</button>
+        </div>
+
+
     </form>
 
 </div>
