@@ -42,6 +42,7 @@ endDate :Date;
 startTime;
 endTime;
 id;
+condition = false;
 private startDate1 : Date;
 private price: number = 100;
 private carName: string = 'Mazda';
@@ -277,6 +278,12 @@ console.log("Date:::::::::::::::::::::"+f.value.startDate);
 */
 
 proceed(f: NgForm){
+
+  console.log(f)
+  this.condition =(f.value.stDate > f.value.endDate);
+
+if (!(f.value.stDate > f.value.endDate)){
+
   this.startDate =new Date ( f.value.stDate);
   console.log(this.startDate)
 this.endTime = f.value.endTime;
@@ -307,6 +314,9 @@ localStorage.setItem('bookingPrice',this.totalprice)
 
 this.route.navigate(['payment']);
 this.datevalidate1(f.value.stDate,f.value.endDate);
+
+}
+
 
 
 
