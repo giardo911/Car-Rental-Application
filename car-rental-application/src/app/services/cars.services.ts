@@ -149,7 +149,7 @@ export class CarsService {
     }
   ];
 
-  getCars():Promise<any> {
+  getCars(): Promise<any> {
     let promise = new Promise((resolve, reject) => {
       this.httpClient.get<Array<any>>('http://localhost:3000/cars')
       .subscribe(data => {

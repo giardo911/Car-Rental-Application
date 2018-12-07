@@ -39,7 +39,6 @@ export class LoginPageComponent implements OnInit {
           this.message.next(`Invalid User Credentails Please Check your password or Click On Register if New User`);
           this.route.navigate(['']);
         }
-
       }
     );
 
