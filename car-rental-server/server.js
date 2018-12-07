@@ -9,19 +9,7 @@ const crypto = require('crypto');
 const path = require('path');
 
 
-let storage = multer.diskStorage({
-  destination: './images/',
-  filename: function (req, file, cb) {
-    crypto.pseudoRandomBytes(16, function (err, raw) {
-      if (err) return cb(err)
 
-      cb(null, path.basename(file.originalname,path.extname(file.originalname)) + '-' + Date.now() + path.extname(file.originalname));
-
-    })
-  }
-})
-
-  let upload = multer({ storage: storage });
 // mongoose instance connection url connection
 mongoose.connect('mongodb://admin:Newuser123@kryptons-shard-00-00-jc3iq.mongodb.net:27017,kryptons-shard-00-01-jc3iq.mongodb.net:27017,kryptons-shard-00-02-jc3iq.mongodb.net:27017/CarRentalDB?ssl=true&replicaSet=Kryptons-shard-0&authSource=admin&retryWrites=true', {
     useMongoClient: true
@@ -44,17 +32,7 @@ app.use(function (req, res, next) {
 });
 
 
-app.post('/profile', upload.single('avatar'), function (req, res, next) {
-    if(!req.file)
-        return res.send("Error uploading file");
-    else{
-        console.log(req.file.filename);
-        
-        res.send("File uploaded successfully");
-    }    
-    // req.file is the `avatar` file
-    // req.body will hold the text fields, if there were any
-  })
+
 
 //Initialize app
 let initApp = require('./api/app');

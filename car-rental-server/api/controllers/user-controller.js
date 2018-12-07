@@ -50,6 +50,7 @@ exports.put = function (request, response) {
         response.json(user);
     };
     user._id = request.params.userId;
+    console.log(user);
     userService.update(user, callback);
 };
 

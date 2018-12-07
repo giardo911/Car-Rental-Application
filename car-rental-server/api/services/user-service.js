@@ -5,6 +5,7 @@
 'use strict';
 const mongoose = require('mongoose'),
     User = mongoose.model('users');
+const fs = require('fs');
 
 /**
  * Throws error if error object is present.

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../services/users.service';
+import { FileService} from '../services/files.service'
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +15,7 @@ export class AccountSettingsComponent implements OnInit {
   registerForm: FormGroup;
     submitted = false;
 
-    constructor(private Users: UsersService, private formBuilder: FormBuilder, private active : ActivatedRoute) { }
+    constructor(private Users: UsersService, private Files: FileService, private formBuilder: FormBuilder, private active : ActivatedRoute) { }
 
   userObj = {};
 
@@ -26,11 +28,16 @@ export class AccountSettingsComponent implements OnInit {
     'Wisconsin', 'Wyoming'
 ];
 
-   userId = '5bfde6b4bfe07e93a0c6537f';
+   user = localStorage.currentUser;
+   filePath: any;
 
 
+   userId = JSON.parse(this.user)[0]._id;
+
+   file: File;
 
   ngOnInit() {
+    console.log(JSON.parse(this.user)[0]._id);
     this.registerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -41,6 +48,7 @@ export class AccountSettingsComponent implements OnInit {
       city: ['', [Validators.required]],
       state: ['', [Validators.required]],
       zip: ['', [Validators.required, Validators.pattern('[0-9]*')]],
+      profPic: [],
       alerts: ['', [Validators.requiredTrue]]
     });
 
@@ -79,6 +87,16 @@ export class AccountSettingsComponent implements OnInit {
 
   }
 
+  checkFile(fileEvent : any){
+    console.log(typeof this.registerForm.get('profPic'));
+    this.file = fileEvent.target.files[0];
+    console.log('size', this.file.size);
+    console.log('type', this.file.type);
+    if(!this.file.type.includes('image')){
+      alert("Please select a valid image file");
+      fileEvent.target.value = '';
+    }
+  }
 
   async addUser() {
     this.submitted = true;
@@ -89,22 +107,33 @@ export class AccountSettingsComponent implements OnInit {
   }
     console.log(this.registerForm.get('firstName').value);
 
-    let user = {
-      'userId' : this.userId,
-      'FirstName': this.registerForm.get('firstName').value,
-      'LastName': this.registerForm.get('lastName').value,
-      'Email': this.registerForm.get('email').value,
-      'Password': this.registerForm.get('password').value,
-      'Address1': this.registerForm.get('address1').value,
-      'Address2': this.registerForm.get('address2').value,
-      'City': this.registerForm.get('city').value,
-      'State': this.registerForm.get('state').value,
-      'Zip': this.registerForm.get('zip').value,
-      'Alerts': this.registerForm.get('alerts').value
-    };
+    this.Files.uploadFile(this.file, this.userId).then(
+
+      data =>{
+      this.filePath = data;
+      console.log(this.filePath);
+      //alert(data as string[]);
+      let user = {
+        'userId' : this.userId,
+        'FirstName': this.registerForm.get('firstName').value,
+        'LastName': this.registerForm.get('lastName').value,
+        'Email': this.registerForm.get('email').value,
+        'Password': this.registerForm.get('password').value,
+        'Address1': this.registerForm.get('address1').value,
+        'Address2': this.registerForm.get('address2').value,
+        'City': this.registerForm.get('city').value,
+        'State': this.registerForm.get('state').value,
+        'Zip': this.registerForm.get('zip').value,
+        'ProfilePicPath' : this.filePath,
+        'Alerts': this.registerForm.get('alerts').value
+      };
 
 
-    this.Users.updateUser(user);
+      this.Users.updateUser(user);
+
+    });
+
+
   }
 }
 

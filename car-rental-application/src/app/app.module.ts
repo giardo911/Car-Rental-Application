@@ -20,6 +20,7 @@ import { ListCarComponent } from './list-car/list-car.component';
 
 import { AuthenticationService } from './services/authentication.services';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { FileService } from './services/files.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,12 +37,12 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
     BrowserModule,
     AppRoutingModule,
     AngularFontAwesomeModule,
-  FormsModule,
+    FormsModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [CarsService, UsersService, AuthenticationService],
+  providers: [CarsService, UsersService, AuthenticationService, FileService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

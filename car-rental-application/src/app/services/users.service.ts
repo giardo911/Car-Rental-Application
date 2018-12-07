@@ -41,6 +41,7 @@ export class UsersService {
            'City': input.City,
            'State': input.State,
            'Zip': input.Zip,
+           'ProfilePic' : input.ProfilePic,
            'Alerts': input.Alerts
         })
         .subscribe(
@@ -55,6 +56,7 @@ export class UsersService {
 
   updateUser(input) {
     console.log(input.FirstName);
+    alert(input.ProfilePicPath);
     this.httpClient.put('http://localhost:3000/users/' + input.userId,
       {
          'FirstName': input.FirstName,
@@ -66,6 +68,7 @@ export class UsersService {
          'City': input.City,
          'State': input.State,
          'Zip': input.Zip,
+         'ProfilePicPath' : input.ProfilePicPath,
          'Alerts': input.Alerts
       })
       .subscribe(
