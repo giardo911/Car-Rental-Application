@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { __await } from 'tslib';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
     submitted = false;
 
-    constructor(private Users: UsersService, private formBuilder: FormBuilder) { }
+    constructor(private Users: UsersService, private formBuilder: FormBuilder ,private route:Router) { }
 
 
   states = [
@@ -91,6 +92,7 @@ export class RegisterComponent implements OnInit {
         {
           console.log('New user');
           this.Users.putUser(user);
+          this.route.navigate(['/']);
         }
       }
     );

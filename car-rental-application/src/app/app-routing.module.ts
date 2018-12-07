@@ -11,11 +11,11 @@ import { PaymentComponent } from './payment/payment.component';
 const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: '', component: LoginPageComponent},
-  {path: 'cars', component: CarsComponent},
+ {path: 'cars', component: CarsComponent},
   {path: 'cars/:id', component: CarDetailsComponent},
   {path: 'listCar' , component: ListCarComponent},
   {path: 'home', component: HomeComponent},
-  {path: 'payments', component: PaymentComponent}
+  {path: 'payment' , component: PaymentComponent}
 ];
 
 @NgModule({
