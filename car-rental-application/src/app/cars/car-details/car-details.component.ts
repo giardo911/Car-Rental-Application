@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import{Observable} from 'rxjs';
  import { GoogleMapsAPIWrapper, MapsAPILoader } from '@agm/core';
  import { FormGroup, FormControl, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { AuthenticationService } from 'src/app/services/authentication.services';
 
 @Component({
   selector: 'app-car-details',
@@ -15,6 +16,7 @@ import{Observable} from 'rxjs';
 })
 export class CarDetailsComponent implements OnInit {
   checkoutForm: FormGroup;
+  isLoggedIn;
 private carObj ={};
 private newObj={};
   latitude = 51.678418;
@@ -61,11 +63,17 @@ private ownerName : string ="Mr. Iyer" ;
 private carYear :string ;
 private imgPath : string;
 private carImages =[];
-constructor(private carservice:  CarsService,private active : ActivatedRoute,private formBuilder: FormBuilder, private route: Router) {
+constructor(private carservice:  CarsService,private active : ActivatedRoute,private formBuilder: FormBuilder, private route: Router, private authService : AuthenticationService) {
 
   }
 
   ngOnInit() {
+    this.isLoggedIn = this.authService.checkLoggedInUser();
+    console.log(this.isLoggedIn);
+    if(!this.isLoggedIn){
+      alert("Kindly Login into your account");
+      this.route.navigate(['']);
+    }
     this.newObj= JSON.parse(localStorage.currentUser)[0];
 console.log( this.newObj);
  this.id = this.active.snapshot.params['id'];

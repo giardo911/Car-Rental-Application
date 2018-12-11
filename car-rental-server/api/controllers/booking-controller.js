@@ -13,9 +13,9 @@ const bookingService = require('../services/booking-service');
  * @param {response} {HTTP response object}
  */
 exports.list = function (request, response) {
-    let callback = function (cars) {
+    let callback = function (bookings) {
         response.status(200);
-        response.json(cars);
+        response.json(bookings);
     };
     bookingService.search(request.query, callback);
 };
@@ -43,4 +43,15 @@ exports.find = function (request, response) {
     };
     let id = request.params.bookingId;
     bookingService.findById(id, callback);
+};
+
+exports.update = function (request, response) {
+    let booking = Object.assign({}, request.body),
+        callback = function (booking) {
+        response.status(200);
+        response.json(booking);
+    };
+    booking._id = request.params.bookingId;
+    console.log(booking);
+    bookingService.update(booking, callback);
 };

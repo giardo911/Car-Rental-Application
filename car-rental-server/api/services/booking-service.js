@@ -28,8 +28,18 @@ exports.search = function (params, callback) {
         throwError(err);
         callback(bookings);
     };
+    // console.log("Inside service : " );
     console.log(params);
-    Booking.find(params, resultCallback);
+    let query = Object.keys(params).map(key => key + '=' + params[key]).join('&');
+    // console.log(query);
+    // console.log(query.includes("startTime") + " " + query.includes("endTime"));
+    if(query.includes("startTime") && query.includes("endTime")){   
+        console.log(params.startTime);
+        Booking.find({booking_startTime : {$gte : params.startTime} , booking_startTime: {$lt : params.endTime}}, resultCallback);
+    }
+    else{    
+        Booking.find(params, resultCallback);
+    }
 };
 
 
@@ -55,4 +65,26 @@ exports.findById = function (id, callback) {
         callback(booking);
     };
     Booking.findById(id,resultCallback);
+};
+
+
+exports.findByDate = function (startDate, endDate, callback) {
+    let resultCallback = function (err, bookings) {
+        throwError(err);
+        callback(bookings);
+    };
+    Booking.find({booking_startDate : {$gte : startDate, $lt : endDate}},resultCallback);
+};
+
+exports.update = function (booking, callback) {
+    let resultCallback = function (err, booking) {
+        throwError(err);
+        callback(booking);
+    };
+    booking.modified_date = new Date();
+    Booking.findOneAndUpdate({
+        _id: booking._id
+    }, booking, {
+        new: true
+    }, resultCallback);
 };
