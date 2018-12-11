@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CarsService} from '../services/cars.services';
 import { Router} from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { AuthenticationService } from '../services/authentication.services';
 @Component({
   selector: 'app-cars',
   templateUrl: './cars.component.html',
@@ -15,10 +16,17 @@ export class CarsComponent implements OnInit {
    currentValues2 = [2000, 3500];
    cars = [];
    closeResult : string;
-  constructor(private carsService: CarsService, private route: Router, private modalService: NgbModal) { }
+   isLoggedIn;
+  constructor(private carsService: CarsService, private route: Router, private modalService: NgbModal, private authService : AuthenticationService) { }
 
   ngOnInit() {
 
+    this.isLoggedIn = this.authService.checkLoggedInUser();
+    console.log(this.isLoggedIn);
+    if(!this.isLoggedIn){
+      alert("Kindly Login into your account");
+      this.route.navigate(['']);
+    }
     this.carsService.getCars().then((data) => {
        console.log(JSON.stringify(data));
        this.cars = data as string [];

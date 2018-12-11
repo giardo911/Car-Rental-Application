@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import{Observable} from 'rxjs';
  import { GoogleMapsAPIWrapper, MapsAPILoader } from '@agm/core';
  import { FormGroup, FormControl, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { AuthenticationService } from 'src/app/services/authentication.services';
 
 @Component({
   selector: 'app-car-details',
@@ -15,6 +16,7 @@ import{Observable} from 'rxjs';
 })
 export class CarDetailsComponent implements OnInit {
   checkoutForm: FormGroup;
+  isLoggedIn;
 private carObj ={};
 private newObj={};
   latitude = 51.678418;
@@ -42,6 +44,7 @@ endDate :Date;
 startTime;
 endTime;
 id;
+condition = false;
 private startDate1 : Date;
 private price: number = 100;
 private carName: string = 'Mazda';
@@ -60,11 +63,19 @@ private ownerName : string ="Mr. Iyer" ;
 private carYear :string ;
 private imgPath : string;
 private carImages =[];
-constructor(private carservice:  CarsService,private active : ActivatedRoute,private formBuilder: FormBuilder, private route: Router) {
+constructor(private carservice:  CarsService,private active : ActivatedRoute,private formBuilder: FormBuilder, private route: Router, private authService : AuthenticationService) {
 
   }
 
   ngOnInit() {
+    this.isLoggedIn = this.authService.checkLoggedInUser();
+    console.log(this.isLoggedIn);
+    if(!this.isLoggedIn){
+      alert("Kindly Login into your account");
+      this.route.navigate(['']);
+    }
+    this.newObj= JSON.parse(localStorage.currentUser)[0];
+console.log( this.newObj);
  this.id = this.active.snapshot.params['id'];
     console.log("ID::::;"+this.id);
     this.orderBy="";
@@ -85,16 +96,13 @@ this.active.params.subscribe(
  this.carservice.getCar(this.id).then(
 
    data =>{
-     console.log("DATA:::::::"+data[0].carName)
+     console.log(data[0]);
      this.carObj =data[0]
+     console.log(this.carObj);
      this.populateCarsDetails(this.carObj);
 
     }
  );
-
-
-
-
 }
 
 getLocation() {
@@ -278,6 +286,12 @@ console.log("Date:::::::::::::::::::::"+f.value.startDate);
 */
 
 proceed(f: NgForm){
+
+  console.log(f)
+  this.condition =(f.value.stDate > f.value.endDate);
+
+if (!(f.value.stDate > f.value.endDate)){
+
   this.startDate =new Date ( f.value.stDate);
   console.log(this.startDate)
 this.endTime = f.value.endTime;
@@ -305,10 +319,12 @@ localStorage.setItem('startdate',(f.value.stDate + ' ' + f.value.stTime + '.00')
 localStorage.setItem('enddate',(f.value.endDate + ' ' +  f.value.endTime + '.00') )
 localStorage.setItem('bookingPrice',this.totalprice)
 
-this.newObj= JSON.parse(localStorage.currentUser);
-console.log("user::::::::"+ localStorage.currentUser);
+
 this.route.navigate(['payment']);
 this.datevalidate1(f.value.stDate,f.value.endDate);
+
+}
+
 
 
 

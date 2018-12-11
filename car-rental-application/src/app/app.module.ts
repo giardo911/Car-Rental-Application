@@ -24,6 +24,7 @@ import { MoneyPipe } from './money.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { PaymentComponent } from './payment/payment.component';
+import { MyCarsComponent } from './my-cars/my-cars.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { PaymentComponent } from './payment/payment.component';
     FilterPipe,
     MoneyPipe,
     PaymentComponent,
+    MyCarsComponent,
   ],
   imports: [
     BrowserModule,
