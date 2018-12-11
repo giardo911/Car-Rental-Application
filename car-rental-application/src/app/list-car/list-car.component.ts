@@ -71,7 +71,6 @@ let car = {
   'dailyDistance':  this.registerForm.get('dailyDistance').value,
   'weeklyDistance':  this.registerForm.get('weeklyDistance').value,
   'monthlyDistance':  this.registerForm.get('monthlyDistance').value,
-  'ownerName':  JSON.parse(localStorage.currentCar)[0].firstName,
   'milage':   this.registerForm.get('milage').value ,
   'fuelType':  this.registerForm.get('fuelType').value ,
   'doorCount':this.registerForm.get('doors').value ,
@@ -81,10 +80,10 @@ this.carservice.putCar(car);
 }
 
 
-  // onFileUpload(event){
-  //    this.file = event.target.files[0];
-  //    console.log(this.file);
+  onFileUpload(event){
+     this.file = event.target.files[0];
+     console.log(this.file);
      
-  //   }
+    }
 
 }
