@@ -180,6 +180,51 @@ export class CarsService {
 
 
   }
+
+
+  getCarsforUser(userId) {
+    let promise = new Promise((resolve, reject) => {
+
+      this.httpClient.get('http://localhost:3000/cars?userId=' + userId).subscribe(
+        data => {
+          resolve(data);
+          console.log(data);
+        });
+    });
+    return promise;
+  }
+
+  updateCar(input, id){
+    console.log(input);
+    this.httpClient.put('http://localhost:3000/cars/' + id,
+      {
+        carName: input.carName,
+        carYear: input.carYear,
+        carImagePath: input.carImagePath,
+        userId:  input.userId,
+        carPrice: input.carPrice,
+        description: input.description,
+        features: input.features,
+        parkingDetails: input.parkingDetails,
+        guidelines: input.guidelines,
+        dailyDistance: input.dailyDistance,
+        weeklyDistance: input.weeklyDistance,
+        monthlyDistance: input.monthlyDistance,
+        milage:  input.milage,
+        fuelType:  input.fuelType,
+        doorCount: input.doorCount,
+        seatCount: input.seatCount,
+      })
+      .subscribe(
+          data => {
+              console.log('PUT Request is successful ', data);
+          },
+          error => {
+              console.log('Error', error);
+          }
+      );
+  }
+
   putCar(input) {
     console.log(input);
     this.httpClient.post('http://localhost:3000/cars',

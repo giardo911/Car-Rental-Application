@@ -29,6 +29,17 @@ export class AuthenticationService {
     return  promise ;
   }
 
+  checkLoggedInUser(){
+    let isLoggedIn = false;
+    let user = localStorage.currentUser;
+    console.log(user);
+    if(user){
+      isLoggedIn = true;
+    }
+    return isLoggedIn;
+  }
+
+
   logout() {
     localStorage.removeItem('currentUser');
   }

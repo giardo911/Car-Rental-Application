@@ -92,8 +92,8 @@
         <span class="currency-style" >per day</span>
         </span>
         <hr class="half-rule"/>
-        <div class="">
-            <form  (ngSubmit)="proceed(f)" #f='ngForm'>
+        <div class="" *ngIf="newObj._id != carObj.userId">
+            <form  (ngSubmit)="proceed(f)" #f="ngForm">
           <div>
 
             <div class="bookingDetailsHeading" > <label for="" >Trip Start </label> </div>
@@ -110,7 +110,7 @@
         <div>
           <br>
             <button type="submit" class="btn btn-primary   btn-block">Proceed to Checkout</button>
-            <div *ngIf="(f.value.stDate > f.value.endDate) ">Start date is greater than End date</div>
+            <div *ngIf=condition>Start date is greater than End date</div>
         </div>
         </form>
       </div>
@@ -159,5 +159,8 @@
         <hr class="hidden-sm hidden-md hidden-lg"> -->
       </div>
     </div>
+    <div class="form-group btn-group">
+        <button class="btn btn-primary btn-lg" *ngIf="newObj._id == carObj.userId">Delete</button>
+      </div>
   </div>
   </div>
