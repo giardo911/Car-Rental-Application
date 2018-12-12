@@ -14,7 +14,14 @@ export class FileService {
 
 
 
-
+/**
+ *
+ * @param input
+ *
+ * @param userId
+ *
+ * Upload file
+ */
 
 
   uploadFile(input, userId) {

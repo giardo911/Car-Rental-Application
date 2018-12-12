@@ -3,7 +3,6 @@ import { UsersService } from '../services/users.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { __await } from 'tslib';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -78,7 +77,9 @@ export class RegisterComponent implements OnInit {
       'Zip': this.registerForm.get('zip').value,
       'Alerts': this.registerForm.get('alerts').value
     };
-
+    /**
+     * Add user
+     */
     this.Users.getUser('Email=' + this.registerForm.get('email').value).then(
       data => {
       console.log(JSON.stringify(data));

@@ -5,7 +5,11 @@ import { HttpClient } from '@angular/common/http';
 export class BookingsService {
 
   constructor(private httpClient:HttpClient) { }
-
+  /**
+   *
+   * @param query
+   * Method to get bookings
+   */
   getBookings(query) {
     let promise = new Promise((resolve, reject) => {
 
@@ -28,6 +32,13 @@ export class BookingsService {
 
 
   }
+  /**
+   *
+   * @param query1
+   * @param query2
+   *
+   * get booking by dates
+   */
   getcarsbydate(query1,query2) {
     let promise = new Promise((resolve, reject) => {
 
@@ -50,7 +61,10 @@ export class BookingsService {
 
 
   }
-
+/**
+ *
+ * @param query Get A booking
+ */
   getBooking(query) {
     let promise = new Promise((resolve, reject) => {
 

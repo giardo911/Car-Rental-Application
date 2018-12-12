@@ -35,7 +35,10 @@ private bookingprice  =localStorage.bookingPrice
     console.log(this.userObj[0]._id);
 this.username = this.userObj[0]._id;
   }
-
+/**
+ *
+ * Adding Payment
+ */
 
 payment(){
   console.log("doing payment::::::");

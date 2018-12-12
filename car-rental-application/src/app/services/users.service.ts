@@ -10,7 +10,10 @@ export class UsersService {
   users = [];
 
 
-
+/**
+ *
+ *Method Name:- Get Users
+ */
   user = {};
    getUsers() {
     let promise = new Promise((resolve, reject) => {
@@ -26,7 +29,12 @@ export class UsersService {
     return promise;
   }
 
-
+  /**
+   *
+   * @param input ]
+   *
+   * To Put user
+   */
 
   putUser(input) {
       console.log(input.FirstName);
@@ -54,6 +62,12 @@ export class UsersService {
         );
   }
 
+  /**
+   *
+   * @param input
+   *
+   * To  update user
+   */
   updateUser(input) {
     console.log(input.FirstName);
     alert(input.ProfilePicPath);
@@ -80,6 +94,12 @@ export class UsersService {
           }
       );
 }
+/**
+ *
+ * @param query
+ *
+ * TO get single user with a paticular user id
+ */
 getUserId(query: String): Promise<any> {
 
   let promise = new Promise((resolve, reject) => {
@@ -97,7 +117,11 @@ getUserId(query: String): Promise<any> {
   return promise;
 }
 
-
+/**
+ *
+ * @param query
+ * get User through email
+ */
   getUser(query: String): Promise<any> {
 
     let promise = new Promise((resolve, reject) => {
