@@ -1,16 +1,16 @@
 <app-navbar></app-navbar>
 <div class="container ">
 
- 
-  
+
+
   <div class="jumbotron  " >
     <div class="container">
       <img [src]="imgPath" class="img1"  />
     </div>
-  
+
   </div>
-  
-  
+
+
 
       <div class="col-sm-8">
         <br>
@@ -88,7 +88,7 @@
       </div>
         <hr class="half-rule"/>
         <div id="map">
-          <agm-map [latitude]="latitude" [longitude]="longitude"> 
+          <agm-map [latitude]="latitude" [longitude]="longitude">
             <agm-marker  [latitude]="latitude" [longitude]="longitude" ></agm-marker>
 
           </agm-map>
@@ -119,10 +119,10 @@
             </div>
             <div class="ownerImg"> <img src="https://d1zgdcrdir5wgt.cloudfront.net/media/driver/gqvKGqN4SPSZIH5JnKp2Eg.80x80.jpg" alt=""></div>
           </div>
-       
+
       </div>
     </div>
 <div class="form-group btn-group">
             <button class="btn btn-primary btn-lg" *ngIf="newObj._id == carObj.userId">Delete</button>
       </div>
-  
+

@@ -18,16 +18,14 @@ export class BookingsService {
         },
         (err) => {
           reject(err);
-        }
-
-      );
-
-
+        });
     });
     return promise;
 
 
   }
+
+  //Get all bookings within a  date range
   getcarsbydate(query1,query2) {
     let promise = new Promise((resolve, reject) => {
 
@@ -36,28 +34,29 @@ export class BookingsService {
         (data) => {
           console.log(data);
           resolve(data);
-
         },
         (err) => {
           reject(err);
-        }
-
-      );
-
-
+        });
     });
     return promise;
 
 
   }
 
+  //Update booking details on DB based on input paramaters
   updateBooking(input,id){
     let params = {};
+    console.log(input);
     if(input.ownerRating){
       params = {"ownerRating" : input.ownerRating}
     }
     if(input.userRating){
       params = {"userRating" : input.userRating}
+    }
+    if(input.active == 0){
+      console.log(input.active);
+      params = {"isActive" : false}
     }
     let promise = new Promise((resolve, reject) => {
 
@@ -76,6 +75,7 @@ export class BookingsService {
     return promise;
   }
 
+  //Get all bookings for a particular car
   getBookingByCar(query){
     let promise = new Promise((resolve, reject) => {
 
@@ -93,6 +93,7 @@ export class BookingsService {
   }
 
 
+  //Ger particular using bookingID
   getBooking(query) {
     let promise = new Promise((resolve, reject) => {
 
@@ -101,7 +102,6 @@ export class BookingsService {
         (data) => {
           console.log(data);
           resolve(data);
-
         },
         (err) => {
           reject(err);

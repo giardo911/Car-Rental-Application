@@ -20,7 +20,7 @@ import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 })
 export class CarDetailsComponent implements OnInit {
 
-  
+
   checkoutForm: FormGroup;
   isLoggedIn;
 private carObj ={};
@@ -42,7 +42,7 @@ show: boolean = false;
   totalprice
 
    geocoder:any;
-    
+
 
  //infowindow = new google.maps.InfoWindow();
 
@@ -73,7 +73,7 @@ private carImages =[];
 private rating;
 constructor(private carservice:  CarsService,config: NgbRatingConfig,private active : ActivatedRoute,private formBuilder: FormBuilder, private route: Router ,public mapsApiLoader: MapsAPILoader,
   private zone: NgZone,
-  private wrapper: GoogleMapsAPIWrapper,private authService : AuthenticationService) { 
+  private wrapper: GoogleMapsAPIWrapper,private authService : AuthenticationService) {
     config.max = 5;
     this.mapsApiLoader = mapsApiLoader;
     this.zone = zone;
@@ -96,7 +96,7 @@ console.log( this.newObj);
  this.id = this.active.snapshot.params['id'];
     console.log("ID::::;"+this.id);
     this.orderBy="";
-  
+
 
 
  //this.getLocation("Landon");
@@ -109,8 +109,8 @@ this.active.params.subscribe(
  this.carservice.getCar(this.id).then(
 
    data =>{
-     console.log(data[0]);
-     this.carObj =data[0]
+     console.log(data);
+     this.carObj =data
      console.log("aaaaaaaaa"+this.carObj);
      this.populateCarsDetails(this.carObj);
 
@@ -184,7 +184,7 @@ this.doorCount  = carObj.doorCount
 this.seatCount = carObj.seatCount
 this.carImages =[this.imgPath,'assets/images/car10.png','assets/images/car12.png' ]
 this.latitude =carObj.latitude
-this.longitude = carObj.longitude 
+this.longitude = carObj.longitude
 }
 
 
