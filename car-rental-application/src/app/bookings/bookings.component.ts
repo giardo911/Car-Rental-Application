@@ -47,7 +47,7 @@ export class BookingsComponent implements OnInit {
 
 
       }
-      console.log(this.listBookings.length);
+      console.log(this.listBookings);
    });
   }
 

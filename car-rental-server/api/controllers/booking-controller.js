@@ -46,6 +46,7 @@ exports.find = function (request, response) {
 };
 
 exports.update = function (request, response) {
+    console.log(request.body);
     let booking = Object.assign({}, request.body),
         callback = function (booking) {
         response.status(200);

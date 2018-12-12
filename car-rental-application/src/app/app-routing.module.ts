@@ -12,6 +12,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { BookingsComponent } from './bookings/bookings.component';
 import { MyCarsComponent } from './my-cars/my-cars.component';
 import { BookingConfirmComponent } from './booking-details/booking-details.component';
+import { CarTripsComponent } from './car-trips/car-trips.component';
 const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: '', component: LoginPageComponent},
@@ -24,7 +25,8 @@ const routes: Routes = [
   {path : 'my-cars', component: MyCarsComponent},
   {path: 'payment' , component: PaymentComponent},
   {path: 'booking-confirm/:id' , component: BookingConfirmComponent},
-  {path: 'bookings', component: BookingsComponent}
+  {path: 'bookings', component: BookingsComponent},
+  {path: 'car-trips', component: CarTripsComponent}
 ];
 
 @NgModule({

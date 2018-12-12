@@ -35,7 +35,7 @@ exports.search = function (params, callback) {
     // console.log(query.includes("startTime") + " " + query.includes("endTime"));
     if(query.includes("startTime") && query.includes("endTime")){   
         console.log(params.startTime);
-        Booking.find({"booking_startTime" : {"$gte" : params.startTime, "$lt" : params.endTime}}, resultCallback);
+        Booking.find( {"$or" : [{"booking_startTime" : {"$gte" : params.startTime, "$lt" : params.endTime}},{ "booking_endTime" : {"$gt" : params.startTime, "$lt" : params.endTime }}]}, resultCallback);
     }
     else{    
         Booking.find(params, resultCallback);
