@@ -95,12 +95,11 @@ constructor(private carservice:  CarsService,config: NgbRatingConfig,private act
     this.newObj= JSON.parse(localStorage.currentUser)[0];
 console.log( this.newObj);
  this.id = this.active.snapshot.params['id'];
-    console.log("ID::::;"+this.id);
     this.orderBy="";
   
 
 
-
+// to get the paramate
 this.active.params.subscribe(
   (params) => {
    this.id = params['id'];
@@ -111,14 +110,14 @@ this.active.params.subscribe(
    data =>{
      console.log(data);
      this.carObj =data
-     console.log("aaaaaaaaa"+this.carObj);
+
      this.populateCarsDetails(this.carObj);
      this.users.getUserById(this.carObj.userId).then(
       data2 => {
        
         this.ownerObj = data2;
         this.ownerName =this.ownerObj.FirstName
-        console.log("ss"+this.ownerObj);
+        
         if(data2.Ratings)
         this.ratingArr = data2.Ratings;
         this.calculateCarDetails(this.ratingArr);
@@ -159,7 +158,7 @@ console.log(this.ownerObj.FirstName);
 console.log(this.latitude);
 console.log(this.longitude);
 
-
+//method to check the
 if(!this.imgPath){
   console.log("no car image");
   
@@ -176,14 +175,14 @@ console.log('no image profile');
   
 }
 }
-
+//method to checkout the form 
 onCheckout(f){
-console.log("in checkout ::::::");
+
 console.log("Date"+f.value.startDate);
   }
 proceed(f: NgForm){
 
-  console.log(f)
+ 
   this.condition =(f.value.stDate > f.value.endDate);
 
 if (!(f.value.stDate > f.value.endDate)){
@@ -229,7 +228,7 @@ datevalidate1(stdt: string , eddt: string){
     }
 }
 
-
+// method to calculate average rating
 calculateCarDetails(ratings){
   for(let i= 0; i<ratings.length; i++){
     this.ratingSum = this.ratingSum + ratings[i].rating;
