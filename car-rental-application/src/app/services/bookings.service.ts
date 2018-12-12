@@ -50,4 +50,23 @@ export class BookingsService {
 
 
   }
+
+  getBooking(query) {
+    let promise = new Promise((resolve, reject) => {
+
+      this.httpClient.get('http://localhost:3000/bookings/' + query).subscribe(
+
+        (data) => {
+          console.log(data);
+          resolve(data);
+
+        },
+        (err) => {
+          reject(err);
+        });
+    });
+    return promise;
+
+
+  }
 }

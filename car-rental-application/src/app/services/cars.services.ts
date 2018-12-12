@@ -166,7 +166,7 @@ export class CarsService {
   getCar(query) {
     let promise = new Promise((resolve, reject) => {
 
-      this.httpClient.get('http://localhost:3000/cars?_id='+ query).subscribe(
+      this.httpClient.get('http://localhost:3000/cars/'+ query).subscribe(
         data => {
           resolve(data);
           console.log(data);
@@ -261,6 +261,7 @@ export class CarsService {
 
 doPayment(payment){
   console.log(payment);
+    let promise = new Promise((resolve, reject) => {
     this.httpClient.post('http://localhost:3000/bookings',
       {
          'userId': payment.userName,
@@ -272,11 +273,13 @@ doPayment(payment){
       })
       .subscribe(
           data => {
-              console.log('POST Request is successful ', data);
+            resolve(data);
+            console.log(data);
           },
           error => {
               console.log('Error', error);
-          }
-      );
+          });
+    });
+    return promise;
 }
 }

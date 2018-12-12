@@ -57,13 +57,13 @@ onSubmit(f:NgForm){
 
  this.booking.getcarsbydate((f.value.from + ':00.000Z'),(f.value.until+':00.000Z')).then(
    (data)=>{
-
+    console.log(data)
   bookedcars = data as string [];
   console.log(bookedcars);
       bookedcars.forEach(element => {
             this.cars = this.cars.filter((car)=>{
 
-              return car['_id']=== element['carId']
+              return car['_id']!== element['carId']
             })
       });
    }

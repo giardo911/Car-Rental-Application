@@ -4,7 +4,7 @@
 
 'use strict';
 const mongoose = require('mongoose'),
-    User = mongoose.model('users');
+User = mongoose.model('users');
 const fs = require('fs');
 
 /**
