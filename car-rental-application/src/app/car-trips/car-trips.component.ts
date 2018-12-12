@@ -45,7 +45,7 @@ export class CarTripsComponent implements OnInit {
             for( let booking of data2 as string[]){
               console.log(booking['_id']);
 
-                let end = new Date(booking['booking_endTime']);
+                let end = new Date(booking['booking_startTime']);
                 console.log(booking['userRating']);
 
                 if(booking['isActive']){
@@ -61,13 +61,11 @@ export class CarTripsComponent implements OnInit {
                 this.booking['end']=end;
                 this.booking['isRated'] = booking['isRated'];
                 this.booking['userRating'] = booking['userRating'];
-                this.booking['ratingId'] = booking['_id'];
                 this.booking['carName'] = data[0].carName;
                 this.booking['carImagePath'] =data[0].carImagePath;
+                console.log(this.booking);
                 this.listBookings.push(this.booking);
-
-
-
+                this.booking = {};
             }
             console.log(this.listBookings);
           });
