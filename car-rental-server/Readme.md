@@ -40,7 +40,7 @@ This whole project was maintained using [Github](https://github.com/) a Versioni
 - **Add New User** <br>
   This api returns a JSON array of newly added users <br>
   ```
-  POST /users {car Object}
+  POST /users {user Object}
   ```
 - **Update Existing User** <br>
   This api returns a JSON array of updated user values <br>
@@ -74,7 +74,7 @@ This whole project was maintained using [Github](https://github.com/) a Versioni
   
 ## Prerequisite
  * Install [Node](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) or latest.
- * Install MongoDB and Apache Tomcat Server.
+ * Install MongoDB.
  
 ## Steps to Run
  * Download or Clone Repository to local directory `git clone URL`.

@@ -112,7 +112,7 @@ export class ListCarComponent implements OnInit {
       this.Files.uploadFile(this.file, this.user[0]._id).then(
         data =>{
         this.filePath = data;
-        alert(this.filePath);
+        //alert(this.filePath);
         console.log(this.filePath);
         this.createCarObj();
         });

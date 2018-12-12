@@ -54,7 +54,6 @@ payment(){
     this.bookingId = data['_id'];
     console.log(this.bookingId);
     this.route.navigate(['booking-confirm/' + this.bookingId]);
-    alert("Test");
   });
 
 
