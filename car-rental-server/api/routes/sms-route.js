@@ -8,6 +8,6 @@ module.exports = function (app) {
     // Sticky Routes for search and create.
     app.route('/send/sms')
         .post(smsController.send);
-    
-        
-};        
+
+
+};
