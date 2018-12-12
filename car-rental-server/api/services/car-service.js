@@ -64,3 +64,11 @@ exports.update = function (car, callback) {
         new: true
     }, resultCallback);
 };
+
+exports.find = function(id, callback){
+    let resultCallback = function (err, car) {
+        throwError(err);
+        callback(car);
+    };
+    Car.findById(id,resultCallback);
+}

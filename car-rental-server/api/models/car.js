@@ -78,6 +78,30 @@ let CarSchema = new Schema({
         type: String,
         required: "seatCount is required"
     },
+    address:{
+        type: String,
+        required: "address is required"
+    },
+    city:{
+        type: String,
+        required: "address is required"
+    },
+    state:{
+        type: String,
+        required: "address is required"
+    },
+    zip:{
+        type: String,
+        required: "address is required"
+    },
+    latitude:{
+        type: Number,
+        required: "address is required"
+    },
+    longitude:{
+        type: Number,
+        required: "address is required"
+    },
 
     /**
      * car created date.
