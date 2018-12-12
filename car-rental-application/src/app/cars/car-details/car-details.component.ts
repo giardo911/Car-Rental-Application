@@ -22,7 +22,7 @@ import { isEmpty } from 'rxjs/operators';
 })
 export class CarDetailsComponent implements OnInit {
 
-  
+
   checkoutForm: FormGroup;
   isLoggedIn;
 private carObj ={};
@@ -39,7 +39,7 @@ orderBy: string;
   private totalprice
  private ownerImg
    geocoder:any;
-    
+
 
  //infowindow = new google.maps.InfoWindow();
 
@@ -96,7 +96,7 @@ constructor(private carservice:  CarsService,config: NgbRatingConfig,private act
 console.log( this.newObj);
  this.id = this.active.snapshot.params['id'];
     this.orderBy="";
-  
+
 
 
 // to get the paramate

@@ -45,18 +45,9 @@ export class RegisterComponent implements OnInit {
 
   get f() { return this.registerForm.controls; }
 
-  getUsers() {
-    console.log('tect');
-    this.submitted = true;
-    if (this.registerForm.invalid) {
-      return;
-  }
-
-    this.Users.getUsers();
-  }
 
 
-
+  //Method to add new user object using Server REST API
   async addUser() {
     this.submitted = true;
     if (this.registerForm.invalid) {
@@ -79,6 +70,7 @@ export class RegisterComponent implements OnInit {
       'Alerts': this.registerForm.get('alerts').value
     };
 
+    //Check if user with same email already exists
     this.Users.getUser('Email=' + this.registerForm.get('email').value).then(
       data => {
       console.log(JSON.stringify(data));
@@ -95,15 +87,7 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(['/']);
 
         }
-      }
-    );
-
-
-
-
-
-
-
+      });
   }
 
 }

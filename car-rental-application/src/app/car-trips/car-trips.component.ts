@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BookingsService } from '../services/bookings.service';
 import { CarsService } from '../services/cars.services';
 import { UsersService } from '../services/users.service';
+import { AuthenticationService } from '../services/authentication.services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-car-trips',
@@ -17,13 +19,23 @@ export class CarTripsComponent implements OnInit {
   selected = 0;
   hovered = 0;
   readonly = false;
+  isLoggedIn;
 
   now = new Date();
 
-  constructor(private bookings:BookingsService,private carsService:CarsService,private userService:UsersService) { }
+  constructor(private bookings:BookingsService,private carsService:CarsService,private userService:UsersService, private authService : AuthenticationService, private route: Router) { }
 
   ngOnInit() {
 
+    //Check if user has logged in
+    this.isLoggedIn = this.authService.checkLoggedInUser();
+    console.log(this.isLoggedIn);
+    if(!this.isLoggedIn){
+      alert("Kindly Login into your account");
+      this.route.navigate(['']);
+    }
+
+    //Get all bookings for cars listed by the currently logged in User
     this.userId = JSON.parse(localStorage.currentUser)[0]._id;
     this.carsService.getCarsforUser(this.userId).then(
       data => {
@@ -35,6 +47,13 @@ export class CarTripsComponent implements OnInit {
 
                 let end = new Date(booking['booking_endTime']);
                 console.log(booking['userRating']);
+
+                if(booking['isActive']){
+                  this.booking['status'] = "Confirmed"
+                }
+                else{
+                  this.booking['status'] = "Cancelled"
+                }
                 this.booking['id']= booking['_id'];
                 this.booking['bookingDate'] =booking['created_date']
                 this.booking['booking_startTime']=booking['booking_startTime'];
@@ -58,5 +77,12 @@ export class CarTripsComponent implements OnInit {
 
   onClick($event){
     alert($event);
+  }
+
+  //Approve Disapprove booking by Owner
+  cancelBooking(input){
+    console.log(input);
+    let params = {"active" : 0}
+    this.bookings.updateBooking(params,input);
   }
 }

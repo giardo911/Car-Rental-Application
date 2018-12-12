@@ -1,5 +1,5 @@
 /**
- * Service for user operations.
+ * Service for Booking operations.
  */
 
 'use strict';
@@ -18,7 +18,7 @@ let throwError = function (error) {
 };
 
 /**
- * Returns an array of user object matching the search parameters.
+ * Returns an array of Booking object matching the search parameters.
  *
  * @param {Object} params {Search parameters}
  * @param {function} callback {Sucess callback function}
@@ -44,9 +44,9 @@ exports.search = function (params, callback) {
 
 
 /**
- * Saves and returns the new user object.
+ * Saves and returns the new Booking object.
  *
- * @param {Object} user {User object}
+ * @param {Object} user {Booking object}
  * @param {function} callback {Sucess callback function}
  */
 exports.save = function (booking, callback) {
