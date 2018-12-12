@@ -61,11 +61,20 @@ exports.update = function (user, callback) {
         callback(user);
     };
     user.modified_date = new Date();
-    User.findOneAndUpdate({
-        _id: user._id
-    }, user, {
-        new: true
-    }, resultCallback);
+    if(user.rating){
+        User.findOneAndUpdate({
+            _id: user._id
+        }, {$push : {"Ratings" : {"rating" : user.rating}}}, {
+            new: true
+        }, resultCallback);
+    }
+    else{
+        User.findOneAndUpdate({
+            _id: user._id
+        }, user, {
+            new: true
+        }, resultCallback);
+    }
 };
 
 exports.findById = function (id, callback) {
@@ -74,7 +83,7 @@ exports.findById = function (id, callback) {
         callback(user);
     };
     User.findById(id,resultCallback);
-};
+};  
 
 
 

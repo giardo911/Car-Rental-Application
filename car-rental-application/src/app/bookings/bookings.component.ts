@@ -16,22 +16,25 @@ export class BookingsComponent implements OnInit {
   ngOnInit() {
 
     this.bookings.getBookings( JSON.parse(localStorage.currentUser)[0]._id).then((data) => {
+      console.log(data as string[]);
       for( let booking of data as string[]){
+        console.log(booking);
         this.booking['id']= booking['_id'];
         this.booking['bookingDate'] =booking['created_date']
         this.booking['booking_startTime']=booking['booking_startTime'];
           this.booking['booking_endTime']=booking['booking_endTime'];
-        this.carsService.getCar(booking['carId']).then((data) => {
+        this.carsService.getCar(booking['carId']).then(data => {
           let car = data as string []
-          this.booking['carName'] = car[0]['carName'];
-          this.booking['carImagePath'] =car[0]['carImagePath'];
+          console.log(car);
+          this.booking['carName'] = car['carName'];
+          this.booking['carImagePath'] =car['carImagePath'];
+          this.listBookings.push(booking);
 
        });
 
-       this.listBookings.push(this.booking);
 
       }
-      console.log(this.listBookings.length);
+      console.log(this.listBookings);
    });
   }
 

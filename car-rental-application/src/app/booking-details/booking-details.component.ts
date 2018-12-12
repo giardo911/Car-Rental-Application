@@ -42,14 +42,17 @@ export class BookingConfirmComponent implements OnInit {
         this.car.getCar(this.bookingObj.carId).then(
           carData => {
             this.carObj = carData;
+            this.user.getUserById(this.carObj.userId).then(
+              ownerData => {
+                this.ownerObj = ownerData;
+              });
           });
-        this.user.getUserById(this.bookingObj.userId).then(
-          ownerData => {
-            this.ownerObj = ownerData;
-          });
+          this.user.getUserById(this.bookingObj.userId).then(
+            userData => {
+              this.userObj = userData;
+            });
       });
 
-      this.userObj = JSON.parse(localStorage.currentUser)[0];
       console.log(this.userObj);
 
 
