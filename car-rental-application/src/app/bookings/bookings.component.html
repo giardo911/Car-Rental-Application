@@ -13,7 +13,9 @@
                       <p>{{'Booking Car Name:-'+book.booking_startTime}}</p>
                       <p>{{'Booking End Time:-'+book.booking_endTime}}</p>
                       <p>{{'Booking Date:-'+book.bookingDate}}</p>
-                      <ngb-rating [(rate)]="selected" (hover)="hovered=$event" (leave)="hovered=0" [readonly]="readonly" *ngIf = "time > book.ISODate" [max]=5></ngb-rating>
+                      <p></p>
+                      <!-- <ngb-rating  [readonly]="readonly" [(rate)]="rating" class="starRate"></ngb-rating> -->
+                      <ngb-rating [(rate)]="selected" (hover)="hovered=$event" (click)="onClick($event)" (leave)="hovered=0" [readonly]="readonly"  [max]=5></ngb-rating>
                         {{selected}}
                     </div>
                     <div class="col-md-8">

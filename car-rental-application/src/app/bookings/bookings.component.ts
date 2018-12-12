@@ -59,4 +59,13 @@ export class BookingsComponent implements OnInit {
    });
   }
 
+
+  onClick($event){
+console.log("in owner rating :::::");
+
+
+
+
+
+  }
 }
