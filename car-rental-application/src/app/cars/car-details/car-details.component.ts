@@ -11,6 +11,8 @@ import{Observable} from 'rxjs';
  import { Component, Input, ViewChild, NgZone, OnInit,AfterViewInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.services';
 import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
+import { UsersService } from 'src/app/services/users.service';
+import { isEmpty } from 'rxjs/operators';
 
 @Component({
   selector: 'app-car-details',
@@ -25,32 +27,27 @@ export class CarDetailsComponent implements OnInit {
   isLoggedIn;
 private carObj ={};
 private newObj={};
-longitude  =72.97699829999999;
- latitude =19.1985353;
+private ownerObj = {};
+longitude   =-71.08546280000002           
+ latitude   = 42.3456431    
  registerForm :FormGroup;
 private startDate : Date;
-show: boolean = false;
- // map: google.maps.Map;
-  infoWindow: any;
-  pos: any;
-  raduisOfSearch: any;
-  yourlocation: any;
-  markers: any[];
-  zipcode: string;
-  selectedStore: any;
-  orderBy: string;
-  totalprice
 
+ 
+ 
+orderBy: string;
+  private totalprice
+ private ownerImg
    geocoder:any;
     
 
  //infowindow = new google.maps.InfoWindow();
 
  private days : any
-endDate :Date;
-startTime;
-endTime;
-id;
+private endDate :Date;
+private startTime;
+private endTime;
+private id;
 condition = false;
 private startDate1 : Date;
 private price: number = 100;
@@ -71,9 +68,13 @@ private carYear :string ;
 private imgPath : string;
 private carImages =[];
 private rating;
+private ratingArr = [];
+private ratingSum = 0;
+private carTempImg='assets/images/Sinnbild_car.png '
+private test_pic = 'assets/images/test-profilepic.png'
 constructor(private carservice:  CarsService,config: NgbRatingConfig,private active : ActivatedRoute,private formBuilder: FormBuilder, private route: Router ,public mapsApiLoader: MapsAPILoader,
   private zone: NgZone,
-  private wrapper: GoogleMapsAPIWrapper,private authService : AuthenticationService) { 
+  private wrapper: GoogleMapsAPIWrapper,private authService : AuthenticationService, private users : UsersService) { 
     config.max = 5;
     this.mapsApiLoader = mapsApiLoader;
     this.zone = zone;
@@ -84,7 +85,7 @@ constructor(private carservice:  CarsService,config: NgbRatingConfig,private act
   }
 
   ngOnInit() {
-    this.rating = 2.5;
+    this.rating = 0;
     this.isLoggedIn = this.authService.checkLoggedInUser();
     console.log(this.isLoggedIn);
     if(!this.isLoggedIn){
@@ -99,7 +100,6 @@ console.log( this.newObj);
   
 
 
- //this.getLocation("Landon");
 
 this.active.params.subscribe(
   (params) => {
@@ -109,62 +109,28 @@ this.active.params.subscribe(
  this.carservice.getCar(this.id).then(
 
    data =>{
-     console.log(data[0]);
-     this.carObj =data[0]
+     console.log(data);
+     this.carObj =data
      console.log("aaaaaaaaa"+this.carObj);
      this.populateCarsDetails(this.carObj);
-
+     this.users.getUserById(this.carObj.userId).then(
+      data2 => {
+       
+        this.ownerObj = data2;
+        this.ownerName =this.ownerObj.FirstName
+        console.log("ss"+this.ownerObj);
+        if(data2.Ratings)
+        this.ratingArr = data2.Ratings;
+        this.calculateCarDetails(this.ratingArr);
+      }
+    )
     }
  );
 }
 
-getLocation() {
-  console.log("in get location::::::::");
-  this.geocoder = new google.maps.Geocoder()
-//  if (!this.geocoder) this.geocoder = new google.maps.Geocoder()
-    this.geocoder.geocode({
-      'address': "10,Ketan society, dhobi ali,tembhi naka thane,Maharashtra, India, 400601"
-    }, (results, status) => {
-      console.log(results);
-      if (status == google.maps.GeocoderStatus.OK) {
-                // decompose the result
-
-                console.log(results[0].geometry.bounds.j.l);
-                console.log(results[0].geometry.bounds.l.l);
-      } else {
-        alert("Sorry, this search produced no results.");
-      }
-    })
-
-  // this.geocoder.geocode({ 'address': "Boston" }, function (results, status) {
-  //   if (status == google.maps.GeocoderStatus.OK) {
-  //       this.map.setCenter(results[0].geometry.location);
-  //       console.log("location:::"+results[0].geometry.location);
-
-  //       //var marker = new google.maps.Marker({map: this.map,position: results[0].geometry.location,icon: imageURL,title: title});
-  //   }})
-
-
-  // this.selectedStore = null;
- let that = this;
-   let loc = "Boston";
- console.log("in location::::");
-
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      that.pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      };
-      console.log(that.pos);
-
-})
-  }
-
-}
+/** Method to map the data  */
 populateCarsDetails(carObj){
 console.log("abc"+carObj);
-
 
 this.price = carObj.carPrice;
 this.carName =carObj.carName;
@@ -182,136 +148,39 @@ this.monthlyDistance = carObj.monthlyDistance
 this.ownerName = carObj.ownerName
 this.doorCount  = carObj.doorCount
 this.seatCount = carObj.seatCount
-this.carImages =[this.imgPath,'assets/images/car10.png','assets/images/car12.png' ]
-this.latitude =carObj.latitude
-this.longitude = carObj.longitude 
+this.carImages =carObj.carImagePath
+this.latitude =carObj.longitude
+this.longitude =carObj.latitude
+this.ownerImg = carObj.ownerImg 
+this.ownerName= this.ownerObj.FirstName
+
+console.log(this.ownerObj.FirstName);
+
+console.log(this.latitude);
+console.log(this.longitude);
+
+
+if(!this.imgPath){
+  console.log("no car image");
+  
+this.imgPath = this.carTempImg
+console.log(this.imgPath);
+
 }
 
+if(!this.ownerImg){
+console.log('no image profile');
+
+  this.ownerImg = this.test_pic
+  console.log( this.ownerImg);
+  
+}
+}
 
 onCheckout(f){
 console.log("in checkout ::::::");
-console.log("Date:::::::::::::::::::::"+f.value.startDate);
+console.log("Date"+f.value.startDate);
   }
-
-
-//   getLocation(address: string): Observable<any> {
-//     console.log('Getting address: '+ address);
-
-//     let geocoder = new google.maps.Geocoder();
-//     return Observable.create(observer => {
-//         geocoder.geocode({
-//             'address': address
-//         }, (results, status) => {
-//             if (status == google.maps.GeocoderStatus.OK) {
-//                 observer.next(results[0].geometry.location);
-//                 observer.complete();
-//                 console.log("location::"+results[0].geometry.location);
-
-//             } else {
-//                 console.log('Error: ', results, ' & Status: ', status);
-//                 observer.error();
-//             }
-//         });
-//     });
-// }
-
-
-
-  //map markers code
-
-  private map
-  initMap() {
-    this.map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 16,
-      center: new google.maps.LatLng(-33.91722, 151.23064)
-    });
-
-    var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-    var icons = {
-      parking: {
-        icon: iconBase + 'parking_lot_maps.png'
-      },
-      library: {
-        icon: iconBase + 'library_maps.png'
-      },
-      info: {
-        icon: iconBase + 'info-i_maps.png'
-      }
-    };
-
-    var features = [
-      {
-        position: new google.maps.LatLng(-33.91721, 151.22630),
-        type: 'info'
-      }, {
-        position: new google.maps.LatLng(-33.91539, 151.22820),
-        type: 'info'
-      }, {
-        position: new google.maps.LatLng(-33.91747, 151.22912),
-        type: 'info'
-      }, {
-        position: new google.maps.LatLng(-33.91910, 151.22907),
-        type: 'info'
-      }, {
-        position: new google.maps.LatLng(-33.91725, 151.23011),
-        type: 'info'
-      }, {
-        position: new google.maps.LatLng(-33.91872, 151.23089),
-        type: 'info'
-      }, {
-        position: new google.maps.LatLng(-33.91784, 151.23094),
-        type: 'info'
-      }, {
-        position: new google.maps.LatLng(-33.91682, 151.23149),
-        type: 'info'
-      }, {
-        position: new google.maps.LatLng(-33.91790, 151.23463),
-        type: 'info'
-      }, {
-        position: new google.maps.LatLng(-33.91666, 151.23468),
-        type: 'info'
-      }, {
-        position: new google.maps.LatLng(-33.916988, 151.233640),
-        type: 'info'
-      }, {
-        position: new google.maps.LatLng(-33.91662347903106, 151.22879464019775),
-        type: 'parking'
-      }, {
-        position: new google.maps.LatLng(-33.916365282092855, 151.22937399734496),
-        type: 'parking'
-      }, {
-        position: new google.maps.LatLng(-33.91665018901448, 151.2282474695587),
-        type: 'parking'
-      }, {
-        position: new google.maps.LatLng(-33.919543720969806, 151.23112279762267),
-        type: 'parking'
-      }, {
-        position: new google.maps.LatLng(-33.91608037421864, 151.23288232673644),
-        type: 'parking'
-      }, {
-        position: new google.maps.LatLng(-33.91851096391805, 151.2344058214569),
-        type: 'parking'
-      }, {
-        position: new google.maps.LatLng(-33.91818154739766, 151.2346203981781),
-        type: 'parking'
-      }, {
-        position: new google.maps.LatLng(-33.91727341958453, 151.23348314155578),
-        type: 'library'
-      }
-    ];
-
-    // Create markers.
-    features.forEach(function(feature) {
-      var marker = new google.maps.Marker({
-        position: feature.position,
-        icon: icons[feature.type].icon,
-        map: this.map
-      });
-    });
-  }
-
-
-
 proceed(f: NgForm){
 
   console.log(f)
@@ -331,7 +200,6 @@ console.log(this.startTime)
 console.log(this.endTime)
 
 
-//let newDate = new Date(dateString);
 var now = moment(this.startDate); //todays date
 var end = moment(this.endDate); // another date
 var duration = moment.duration(end.diff(now));
@@ -349,27 +217,26 @@ localStorage.setItem('bookingPrice',this.totalprice)
 
 this.route.navigate(['payment']);
 this.datevalidate1(f.value.stDate,f.value.endDate);
-
 }
-
-
-
-
-
-
 }
 
 datevalidate1(stdt: string , eddt: string){
 
-  // this.days = eddt - stdt;
+  
   if(stdt > eddt){
     console.log("validating dt::");
     return true;
     }
+}
 
 
+calculateCarDetails(ratings){
+  for(let i= 0; i<ratings.length; i++){
+    this.ratingSum = this.ratingSum + ratings[i].rating;
+  }
+  console.log(this.ratingSum);
 
-
+  this.rating = this.ratingSum/ratings.length
 }
 
 }

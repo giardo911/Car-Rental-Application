@@ -7,7 +7,7 @@ export class PlacePipe implements PipeTransform {
 
   transform(list: any, value: any): any {
     console.log(value);
-    if(list.length==0|| value === '' ) {
+    if(list.length==0|| value === undefined ) {
       return list;
   }
   const resultArray =[];
