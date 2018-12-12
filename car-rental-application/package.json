@@ -23,6 +23,7 @@
     "@angular/router": "~7.0.0",
     "@ng-bootstrap/ng-bootstrap": "^4.0.0",
     "angular-font-awesome": "^3.1.2",
+    "auth0-js": "^9.8.2",
     "bootstrap-sass": "^3.3.7",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
