@@ -7,6 +7,11 @@ export class AuthenticationService {
   constructor(private httpClient: HttpClient,private user:UsersService) {
 
   }
+  /**
+   * Method Name:-Login
+   * Created by :Rajat Acharya
+   *
+   */
   login(user): Promise<any> {
     let promise  = new Promise((resolve, reject) => {
 
