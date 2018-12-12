@@ -4,6 +4,9 @@ import { Router} from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.services';
+import { BookingsComponent } from '../bookings/bookings.component';
+import { BookingsService } from '../services/bookings.service';
+import { element } from 'protractor';
 @Component({
   selector: 'app-cars',
   templateUrl: './cars.component.html',
@@ -18,7 +21,10 @@ export class CarsComponent implements OnInit {
    cars = [];
    closeResult : string;
    isLoggedIn;
-  constructor(private carsService: CarsService, private route: Router, private modalService: NgbModal, private authService : AuthenticationService) { }
+  constructor(private carsService: CarsService,
+     private route: Router, private modalService: NgbModal,
+     private authService : AuthenticationService,
+     private booking:BookingsService) { }
 
   ngOnInit() {
 
@@ -41,6 +47,28 @@ export class CarsComponent implements OnInit {
 }
 
 onSubmit(f:NgForm){
-  console.log(f.value.from)
+  console.log("end dtm::::"+(f.value.from + '.00'));
+  let bookedcars;
+  this.carsService.getCars().then((data) => {
+    console.log(JSON.stringify(data));
+    this.cars = data as string [];
+    console.log(this.cars);
+ });
+
+ this.booking.getcarsbydate((f.value.from + ':00.000Z'),(f.value.until+':00.000Z')).then(
+   (data)=>{
+
+  bookedcars = data as string [];
+  console.log(bookedcars);
+      bookedcars.forEach(element => {
+            this.cars = this.cars.filter((car)=>{
+
+              return car['_id']=== element['carId']
+            })
+      });
+   }
+ )
+  console.log(bookedcars);
+  console.log(this.cars);
 }
 }
