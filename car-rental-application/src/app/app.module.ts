@@ -67,7 +67,7 @@ import { BookingConfirmComponent } from './booking-details/booking-details.compo
     NpnSliderModule,
     NgbModule
   ],
-  providers: [CarsService, UsersService, AuthenticationService, FileService,BookingsService],
+  providers: [CarsService, UsersService, AuthenticationService, FileService,BookingsService,GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
