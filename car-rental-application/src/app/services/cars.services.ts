@@ -149,7 +149,7 @@ export class CarsService {
     }
   ];
 
-  getCars():Promise<any> {
+  getCars(): Promise<any> {
     let promise = new Promise((resolve, reject) => {
       this.httpClient.get<Array<any>>('http://localhost:3000/cars')
       .subscribe(data => {
@@ -171,7 +171,7 @@ export class CarsService {
           resolve(data);
           console.log(data);
         }
-       
+
       );
 
 
@@ -180,20 +180,72 @@ export class CarsService {
 
 
   }
+
+
+  getCarsforUser(userId) {
+    let promise = new Promise((resolve, reject) => {
+
+      this.httpClient.get('http://localhost:3000/cars?userId=' + userId).subscribe(
+        data => {
+          resolve(data);
+          console.log(data);
+        });
+    });
+    return promise;
+  }
+
+  updateCar(input, id){
+    console.log(input);
+    this.httpClient.put('http://localhost:3000/cars/' + id,
+      {
+        carName: input.carName,
+        carYear: input.carYear,
+        carImagePath: input.carImagePath,
+        userId:  input.userId,
+        carPrice: input.carPrice,
+        description: input.description,
+        features: input.features,
+        parkingDetails: input.parkingDetails,
+        guidelines: input.guidelines,
+        dailyDistance: input.dailyDistance,
+        weeklyDistance: input.weeklyDistance,
+        monthlyDistance: input.monthlyDistance,
+        milage:  input.milage,
+        fuelType:  input.fuelType,
+        doorCount: input.doorCount,
+        seatCount: input.seatCount,
+      })
+      .subscribe(
+          data => {
+              console.log('PUT Request is successful ', data);
+          },
+          error => {
+              console.log('Error', error);
+          }
+      );
+  }
+
   putCar(input) {
     console.log("aaa"+  input);
     this.httpClient.post('http://localhost:3000/cars',
       {
-         'FirstName': input.carN,
-         'LastName': input.LastName,
-         'Email': input.Email,
-         'Password': input.Password,
-         'Address1': input.Address1,
-         'Address2': input.Address2,
-         'City': input.City,
-         'State': input.State,
-         'Zip': input.Zip,
-         'Alerts': input.Alerts
+        carName: input.carName,
+        carYear: input.carYear,
+        carImagePath: input.carImagePath,
+        carTrips: 0,
+        userId:  input.userId,
+        carPrice: input.carPrice,
+        description: input.description,
+        features: input.features,
+        parkingDetails: input.parkingDetails,
+        guidelines: input.guidelines,
+        dailyDistance: input.dailyDistance,
+        weeklyDistance: input.weeklyDistance,
+        monthlyDistance: input.monthlyDistance,
+        milage:  input.milage,
+        fuelType:  input.fuelType,
+        doorCount: input.doorCount,
+        seatCount: input.seatCount,
       })
       .subscribe(
           data => {
@@ -213,10 +265,10 @@ doPayment(payment){
       {
          'userId': payment.userName,
          'carId': payment.carId,
-         'startDate': payment.startDate,
-         'endDate': payment.endDate,
-         'bookingprice': payment.bookingprice,
-         
+         'booking_startTime': payment.startDate,
+         'booking_endTime': payment.endDate,
+         'booking_price': payment.bookingprice,
+
       })
       .subscribe(
           data => {

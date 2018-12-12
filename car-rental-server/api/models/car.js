@@ -9,38 +9,82 @@ let CarSchema = new Schema({
     /**
      * Title of the car.
      */
-    title: {
+    carName: {
         type: String,
-        required: "title is required"
+        required: "Name is required"
     },
-    make: {
+    carYear: {
         type: String,
-        required: "make is required"
+        required: "Year is required"
     },
-    model: {
+    carImagePath: {
         type: String,
-        required: "model is required"
+        required: "ImagePath is required"
     },
-    color: {
-        type: String,
-        required: "color is required"
-    },
-    seats: {
+    carTrips: {
         type: Number,
-        required: "seats is required"
+        required: "Trips is required",
+        default : 0
     },
+    carPrice: {
+        type: Number,
+        required: "Price is required"
+    },
+    description: {
+        type: String,
+        required: "Description is required"
+    },
+    features: {
+        type: String,
+        required: "features is required"
+    },
+    parkingDetails: {
+        type: String,
+        required: "parkingDetails is required"
+    },
+    guidelines: {
+        type: String,
+        required: "guidelines is required"
+    },
+    dailyDistance: {
+        type: Number,
+        required: "dailyDistance is required"
+    },
+    weeklyDistance: {
+        type: Number,
+        required: "weeklyDistance is required"
+    },
+    monthlyDistance: {
+        type: Number,
+        required: "monthlyDistance is required"
+    },
+    userId: {
+        type: String,
+        required: "userId is required"
+    },
+    milage: {
+        type: String,
+        required: "milage is required"
+    },
+    fuelType: {
+        type: String,
+        required: "fuelType is required"
+    },
+    doorCount: {
+        type: String,
+        required: "doorCount is required"
+    },
+    seatCount: {
+        type: String,
+        required: "seatCount is required"
+    },
+
     /**
      * car created date.
      */
     created_date: {
         type: Date,
         default: Date.now
-    },
-    /**
-     * car content.
-     */
-    content: {
-        type: String
     },
     /**
      * Last modified date.

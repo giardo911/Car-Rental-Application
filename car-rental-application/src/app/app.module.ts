@@ -17,14 +17,18 @@ import { ListCarComponent } from './list-car/list-car.component';
 import { AgmCoreModule } from '@agm/core';
 import { NpnSliderModule } from "npn-slider";
 import { AuthenticationService } from './services/authentication.services';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { FileService } from './services/files.service';
 import { FilterPipe } from './filter.pipe';
 import { MoneyPipe } from './money.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { PaymentComponent } from './payment/payment.component';
 //import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GoogleMapsAPIWrapper } from '@agm/core';
 //import {} from '@types/googlemaps';
+import { MyCarsComponent } from './my-cars/my-cars.component';
 
 @NgModule({
   declarations: [
@@ -36,15 +40,17 @@ import { GoogleMapsAPIWrapper } from '@agm/core';
     CarDetailsComponent,
     ListCarComponent,
     LoginPageComponent,
+    AccountSettingsComponent,
     FilterPipe,
     MoneyPipe,
     PaymentComponent,
+    MyCarsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFontAwesomeModule,
-     FormsModule,
+    FormsModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -53,7 +59,7 @@ import { GoogleMapsAPIWrapper } from '@agm/core';
       libraries :["places"]
     }),
     NpnSliderModule,
-    NgbAlertModule,
+    NgbModule
   ],
   providers: [CarsService, UsersService, AuthenticationService,GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]

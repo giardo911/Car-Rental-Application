@@ -14,5 +14,7 @@ exports.upload = function (request, response) {
         response.json(message);
     };
     console.log(request.files);
+    console.log("Incontroller : " + request.query.userId);
+    console.log('Params ' + request.params);
     fileService.save(request, response, callback);
 };

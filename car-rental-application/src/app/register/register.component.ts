@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { __await } from 'tslib';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
     submitted = false;
 
-    constructor(private Users: UsersService, private formBuilder: FormBuilder) { }
+    constructor(private Users: UsersService, private formBuilder: FormBuilder, private router : Router) { }
 
 
   states = [
@@ -37,6 +38,7 @@ export class RegisterComponent implements OnInit {
       city: ['', [Validators.required]],
       state: ['', [Validators.required]],
       zip: ['', [Validators.required, Validators.pattern('[0-9]*')]],
+      profPic: [],
       alerts: ['', [Validators.requiredTrue]]
   });
   }
@@ -52,6 +54,8 @@ export class RegisterComponent implements OnInit {
 
     this.Users.getUsers();
   }
+
+
 
   async addUser() {
     this.submitted = true;
@@ -75,13 +79,9 @@ export class RegisterComponent implements OnInit {
       'Alerts': this.registerForm.get('alerts').value
     };
 
-
     this.Users.getUser('Email=' + this.registerForm.get('email').value).then(
       data => {
       console.log(JSON.stringify(data));
-        // console.log(data.length > 0);
-        // console.log(data[0].Password === form.value.password);
-        // console.log("First"+ data[0].Password+"Second"+form.value.password)
         if (data.length > 0 )
         {
           console.log('User already exists');
@@ -91,9 +91,13 @@ export class RegisterComponent implements OnInit {
         {
           console.log('New user');
           this.Users.putUser(user);
+          alert('Registration Successful');
+          this.router.navigate(['/']);
+
         }
       }
     );
+
 
 
 
