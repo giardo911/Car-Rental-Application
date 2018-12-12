@@ -97,6 +97,22 @@ getUserId(query: String): Promise<any> {
   return promise;
 }
 
+updateRating(input, id){
+  let promise = new Promise((resolve, reject) => {
+    console.log(input);
+    let body = {"rating" : input}
+    this.httpClient.put('http://localhost:3000/users/' + id, body).subscribe(
+      data => {
+        resolve(data);
+        console.log(data);
+      },
+      (err: HttpErrorResponse) => {
+        console.log (err.message);
+      }
+    );
+  });
+  return promise;
+}
 
   getUser(query: String): Promise<any> {
 

@@ -51,6 +51,31 @@ export class BookingsService {
 
   }
 
+  updateBooking(input,id){
+    let params = {};
+    if(input.ownerRating){
+      params = {"ownerRating" : input.ownerRating}
+    }
+    if(input.userRating){
+      params = {"userRating" : input.userRating}
+    }
+    let promise = new Promise((resolve, reject) => {
+
+      this.httpClient.put('http://localhost:3000/bookings/' + id,
+      params)
+      .subscribe(
+          data => {
+              resolve(data);
+              console.log('PUT Request is successful ', data);
+          },
+          error => {
+              console.log('Error', error);
+          }
+      );
+    });
+    return promise;
+  }
+
   getBookingByCar(query){
     let promise = new Promise((resolve, reject) => {
 

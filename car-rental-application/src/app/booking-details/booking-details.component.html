@@ -110,6 +110,24 @@
           </td>
       </tr>
 
+      <tr *ngIf="loggedInUser == carObj.userId">
+
+        <td > Rate the User </td>
+        <td>
+        <ngb-rating [(rate)]="selected1" (rateChange)="onClickUser($event)" (hover)="hovered=$event" (leave)="hovered=0" [readonly]="false"   [max]=5></ngb-rating>
+            {{selected1}}
+
+        </td>
+      </tr>
+      <tr *ngIf="loggedInUser == bookingObj.userId">
+        <td > Rate the Owner </td>
+        <td>
+        <ngb-rating [(rate)]="selected2" (rateChange) = 'onClickOwner($event)' (hover)="hovered=$event" (leave)="hovered=0" [readonly]="false"   [max]=5></ngb-rating>
+            {{selected2}}
+
+        </td>
+
+      </tr>
 
   </table>
 

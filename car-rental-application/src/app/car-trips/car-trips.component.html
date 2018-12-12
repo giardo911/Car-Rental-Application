@@ -13,11 +13,12 @@
                       <p>{{'Booking Start Time:-'+book.booking_startTime}}</p>
                       <p>{{'Booking End Time:-'+book.booking_endTime}}</p>
                       <p>{{'Booking Date:-'+book.bookingDate}}</p>
+                      <ngb-rating [(rate)]="book.userRating" (hover)="hovered=$event" (leave)="hovered=0" [readonly]="true" *ngIf="book.end.getTime() < now.getTime()"  [max]=5></ngb-rating>
+                        {{book.userRating}}
                     </div>
                     <div class="col-md-8">
                       <img class="img-thumbnail pull-right"[src] = book.carImagePath width="100" height="100">
 
-                      <button class="btn btn-primary" *ngIf="book.end.getTime() < now.getTime() ">Rate this User</button>
                     </div>
 
                   </div>
@@ -31,6 +32,7 @@
           </ngb-alert>
 
         </ng-template>
+
 
     </div>
 
