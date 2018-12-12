@@ -10,6 +10,10 @@ import { Observable } from 'rxjs';
   styleUrls: ['./bookings.component.scss']
 })
 export class BookingsComponent implements OnInit {
+  /***
+   *
+   * Variables
+   */
   listBookings= [];
   booking= {};
   time;
@@ -21,7 +25,11 @@ export class BookingsComponent implements OnInit {
   ngOnInit() {
 
     this.time = new Date();
-
+    /***
+     * Method :- TO get all the bookings.
+     * Author:- Rajat Acharya
+     *
+     */
     this.bookings.getBookings( JSON.parse(localStorage.currentUser)[0]._id).then((data) => {
       console.log(data);
 
@@ -34,9 +42,9 @@ export class BookingsComponent implements OnInit {
           this.booking['booking_startTime']=booking['booking_startTime'];
           this.booking['booking_endTime']=booking['booking_endTime'];
           this.booking['ISODate'] = new Date(booking['booking_endTime']);
-          console.log( new Date(booking['booking_endTime']))
+          //console.log( new Date(booking['booking_endTime']))
           let car = data as string []
-          console.log(car);
+          //console.log(car);
           this.booking['carName'] = car['carName'];
           this.booking['carImagePath'] =car['carImagePath'];
           this.listBookings.push(this.booking);
@@ -47,7 +55,7 @@ export class BookingsComponent implements OnInit {
 
 
       }
-      console.log(this.listBookings.length);
+      //console.log(this.listBookings.length);
    });
   }
 
