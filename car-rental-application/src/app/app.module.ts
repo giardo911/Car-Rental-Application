@@ -65,7 +65,7 @@ import { MyCarsComponent } from './my-cars/my-cars.component';
     NpnSliderModule,
     NgbModule
   ],
-  providers: [CarsService, UsersService, AuthenticationService, FileService,BookingsService],
+  providers: [CarsService, UsersService, AuthenticationService, FileService,BookingsService,GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

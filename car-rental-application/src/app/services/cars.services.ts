@@ -246,6 +246,12 @@ export class CarsService {
         fuelType:  input.fuelType,
         doorCount: input.doorCount,
         seatCount: input.seatCount,
+        address: input.address,
+        city:input.city,
+        state:input.state,
+        zip: input.zip,
+        latitude: input.latitude,
+        longitude: input.longitude 
       })
       .subscribe(
           data => {

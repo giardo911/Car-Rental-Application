@@ -96,10 +96,7 @@ console.log( this.newObj);
     this.orderBy="";
   
 
- setTimeout(()=> {
- this.getLocation();
 
- },1000);
  //this.getLocation("Landon");
 
 this.active.params.subscribe(
@@ -184,6 +181,8 @@ this.ownerName = carObj.ownerName
 this.doorCount  = carObj.doorCount
 this.seatCount = carObj.seatCount
 this.carImages =[this.imgPath,'assets/images/car10.png','assets/images/car12.png' ]
+this.latitude =carObj.latitude
+this.longitude = carObj.longitude
 }
 
 
