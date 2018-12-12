@@ -169,7 +169,7 @@ export class CarsService {
       this.httpClient.get('http://localhost:3000/cars/'+ query).subscribe(
         data => {
           resolve(data);
-          console.log(data);
+          console.log("daaaa:::::"+ data);
         }
 
       );

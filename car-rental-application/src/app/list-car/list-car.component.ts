@@ -157,11 +157,11 @@ export class ListCarComponent implements OnInit {
 
 
   getLocation(address) {
-  console.log("in get location::::::::");
+  console.log("in get location::::::::"+ address);
   this.geocoder = new google.maps.Geocoder()
 //  if (!this.geocoder) this.geocoder = new google.maps.Geocoder()
     this.geocoder.geocode({
-      'address': "10,Ketan society, dhobi ali,tembhi naka thane,Maharashtra, India, 400601"
+      'address': address
     }, (results, status) => {
       console.log(results);
       if (status == google.maps.GeocoderStatus.OK) {

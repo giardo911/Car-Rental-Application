@@ -9,13 +9,14 @@ import{Observable} from 'rxjs';
  import { GoogleMapsAPIWrapper, MapsAPILoader } from '@agm/core';
  import { FormGroup, FormControl, FormBuilder, Validators, NgForm } from '@angular/forms';
  import { Component, Input, ViewChild, NgZone, OnInit,AfterViewInit } from '@angular/core';
- import {  AgmMap } from '@agm/core';
 import { AuthenticationService } from 'src/app/services/authentication.services';
+import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-car-details',
   templateUrl: './car-details.component.html',
-  styleUrls: ['./car-details.component.scss']
+  styleUrls: ['./car-details.component.scss'],
+  providers:[NgbRatingConfig]
 })
 export class CarDetailsComponent implements OnInit {
 
@@ -69,11 +70,11 @@ private ownerName : string ="Mr. Iyer" ;
 private carYear :string ;
 private imgPath : string;
 private carImages =[];
-
-constructor(private carservice:  CarsService,private active : ActivatedRoute,private formBuilder: FormBuilder, private route: Router ,public mapsApiLoader: MapsAPILoader,
+private rating;
+constructor(private carservice:  CarsService,config: NgbRatingConfig,private active : ActivatedRoute,private formBuilder: FormBuilder, private route: Router ,public mapsApiLoader: MapsAPILoader,
   private zone: NgZone,
   private wrapper: GoogleMapsAPIWrapper,private authService : AuthenticationService) { 
-
+    config.max = 5;
     this.mapsApiLoader = mapsApiLoader;
     this.zone = zone;
     this.wrapper = wrapper;
@@ -83,6 +84,7 @@ constructor(private carservice:  CarsService,private active : ActivatedRoute,pri
   }
 
   ngOnInit() {
+    this.rating = 2.5;
     this.isLoggedIn = this.authService.checkLoggedInUser();
     console.log(this.isLoggedIn);
     if(!this.isLoggedIn){
@@ -109,7 +111,7 @@ this.active.params.subscribe(
    data =>{
      console.log(data[0]);
      this.carObj =data[0]
-     console.log(this.carObj);
+     console.log("aaaaaaaaa"+this.carObj);
      this.populateCarsDetails(this.carObj);
 
     }
