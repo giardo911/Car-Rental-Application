@@ -48,15 +48,9 @@ export class BookingsComponent implements OnInit {
           this.booking['booking_startTime']=booking['booking_startTime'];
           this.booking['booking_endTime']=booking['booking_endTime'];
           this.booking['ISODate'] = new Date(booking['booking_endTime']);
-<<<<<<< HEAD
-          //console.log( new Date(booking['booking_endTime']))
-          let car = data as string []
-          //console.log(car);
-=======
           console.log( new Date(booking['booking_endTime']))
           let car = data2 as string []
           console.log(car);
->>>>>>> 633f8a3f7814bda39d9b29c1e4cdbb4ba0368d12
           this.booking['carName'] = car['carName'];
           this.booking['carImagePath'] =car['carImagePath'];
           this.listBookings.push(this.booking);
@@ -67,11 +61,7 @@ export class BookingsComponent implements OnInit {
 
 
       }
-<<<<<<< HEAD
-      //console.log(this.listBookings.length);
-=======
       console.log(this.listBookings);
->>>>>>> 633f8a3f7814bda39d9b29c1e4cdbb4ba0368d12
    });
   }
 

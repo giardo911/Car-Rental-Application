@@ -28,18 +28,8 @@ export class BookingsService {
 
 
   }
-<<<<<<< HEAD
-  /**
-   *
-   * @param query1
-   * @param query2
-   *
-   * get booking by dates
-   */
-=======
 
   //Get all bookings within a  date range
->>>>>>> 633f8a3f7814bda39d9b29c1e4cdbb4ba0368d12
   getcarsbydate(query1,query2) {
     let promise = new Promise((resolve, reject) => {
 
@@ -105,16 +95,9 @@ export class BookingsService {
     });
     return promise;
   }
-<<<<<<< HEAD
-/**
- *
- * @param query Get A booking
- */
-=======
 
 
   //Ger particular using bookingID
->>>>>>> 633f8a3f7814bda39d9b29c1e4cdbb4ba0368d12
   getBooking(query) {
     let promise = new Promise((resolve, reject) => {
 

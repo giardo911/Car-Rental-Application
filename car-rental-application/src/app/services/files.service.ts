@@ -9,25 +9,7 @@ export class FileService {
   constructor(private httpClient: HttpClient) {
   }
   file: File;
-<<<<<<< HEAD
-
-
-
-
-
-/**
- *
- * @param input
- *
- * @param userId
- *
- * Upload file
- */
-
-
-=======
   //Method to upload a new file into user folder and return path of uploaded file
->>>>>>> 633f8a3f7814bda39d9b29c1e4cdbb4ba0368d12
   uploadFile(input, userId) {
 
     this.file = input;

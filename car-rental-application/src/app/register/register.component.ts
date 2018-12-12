@@ -68,14 +68,11 @@ export class RegisterComponent implements OnInit {
       'Zip': this.registerForm.get('zip').value,
       'Alerts': this.registerForm.get('alerts').value
     };
-<<<<<<< HEAD
     /**
      * Add user
      */
-=======
 
     //Check if user with same email already exists
->>>>>>> 633f8a3f7814bda39d9b29c1e4cdbb4ba0368d12
     this.Users.getUser('Email=' + this.registerForm.get('email').value).then(
       data => {
       console.log(JSON.stringify(data));
