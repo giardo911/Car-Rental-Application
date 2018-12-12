@@ -226,7 +226,7 @@ export class CarsService {
   }
 
   putCar(input) {
-    console.log(input);
+    console.log("aaa"+  input);
     this.httpClient.post('http://localhost:3000/cars',
       {
         carName: input.carName,
@@ -282,4 +282,6 @@ doPayment(payment){
     });
     return promise;
 }
+
+
 }
