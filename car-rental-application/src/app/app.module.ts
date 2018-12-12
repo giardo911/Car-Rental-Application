@@ -31,6 +31,7 @@ import { BookingsComponent } from './bookings/bookings.component';
 import { BookingsService } from './services/bookings.service';
 import { PlacePipe } from './place.pipe';
 import { MyCarsComponent } from './my-cars/my-cars.component';
+import { BookingConfirmComponent } from './booking-details/booking-details.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { MyCarsComponent } from './my-cars/my-cars.component';
     BookingsComponent,
     PlacePipe,
     MyCarsComponent,
+    BookingConfirmComponent,
   ],
   imports: [
     BrowserModule,

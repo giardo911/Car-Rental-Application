@@ -51,3 +51,12 @@ exports.put = function (request, response) {
     car._id = request.params.carId;
     carService.update(car, callback);
 };
+
+exports.find = function (request, response) {
+        let callback = function (car) {
+        response.status(200);
+        response.json(car);
+    };
+    let id = request.params.carId;
+    carService.find(id, callback);
+};

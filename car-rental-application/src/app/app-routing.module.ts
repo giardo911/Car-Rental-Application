@@ -11,6 +11,7 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { PaymentComponent } from './payment/payment.component';
 import { BookingsComponent } from './bookings/bookings.component';
 import { MyCarsComponent } from './my-cars/my-cars.component';
+import { BookingConfirmComponent } from './booking-details/booking-details.component';
 const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: '', component: LoginPageComponent},
@@ -20,9 +21,10 @@ const routes: Routes = [
   {path: 'listCar/:id' , component: ListCarComponent},
   {path: 'home', component: HomeComponent},
   {path: 'account-settings', component: AccountSettingsComponent},
+  {path : 'my-cars', component: MyCarsComponent},
   {path: 'payment' , component: PaymentComponent},
-  {path: 'bookings', component: BookingsComponent},
-  {path : 'my-cars', component: MyCarsComponent}
+  {path: 'booking-confirm/:id' , component: BookingConfirmComponent},
+  {path: 'bookings', component: BookingsComponent}
 ];
 
 @NgModule({
