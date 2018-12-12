@@ -28,13 +28,13 @@ export class CarDetailsComponent implements OnInit {
 private carObj ={};
 private newObj={};
 private ownerObj = {};
-longitude   =-71.08546280000002           
- latitude   = 42.3456431    
+longitude   =-71.08546280000002
+ latitude   = 42.3456431
  registerForm :FormGroup;
 private startDate : Date;
 
- 
- 
+
+
 orderBy: string;
   private totalprice
  private ownerImg
@@ -74,7 +74,7 @@ private carTempImg='assets/images/Sinnbild_car.png '
 private test_pic = 'assets/images/test-profilepic.png'
 constructor(private carservice:  CarsService,config: NgbRatingConfig,private active : ActivatedRoute,private formBuilder: FormBuilder, private route: Router ,public mapsApiLoader: MapsAPILoader,
   private zone: NgZone,
-  private wrapper: GoogleMapsAPIWrapper,private authService : AuthenticationService, private users : UsersService) { 
+  private wrapper: GoogleMapsAPIWrapper,private authService : AuthenticationService, private users : UsersService) {
     config.max = 5;
     this.mapsApiLoader = mapsApiLoader;
     this.zone = zone;
@@ -114,10 +114,10 @@ this.active.params.subscribe(
      this.populateCarsDetails(this.carObj);
      this.users.getUserById(this.carObj.userId).then(
       data2 => {
-       
+
         this.ownerObj = data2;
         this.ownerName =this.ownerObj.FirstName
-        
+
         if(data2.Ratings)
         this.ratingArr = data2.Ratings;
         this.calculateCarDetails(this.ratingArr);
@@ -150,7 +150,7 @@ this.seatCount = carObj.seatCount
 this.carImages =carObj.carImagePath
 this.latitude =carObj.longitude
 this.longitude =carObj.latitude
-this.ownerImg = carObj.ownerImg 
+this.ownerImg = carObj.ownerImg
 this.ownerName= this.ownerObj.FirstName
 
 console.log(this.ownerObj.FirstName);
@@ -161,7 +161,7 @@ console.log(this.longitude);
 //method to check the
 if(!this.imgPath){
   console.log("no car image");
-  
+
 this.imgPath = this.carTempImg
 console.log(this.imgPath);
 
@@ -172,17 +172,17 @@ console.log('no image profile');
 
   this.ownerImg = this.test_pic
   console.log( this.ownerImg);
-  
+
 }
 }
-//method to checkout the form 
+//method to checkout the form
 onCheckout(f){
 
 console.log("Date"+f.value.startDate);
   }
 proceed(f: NgForm){
 
- 
+
   this.condition =(f.value.stDate > f.value.endDate);
 
 if (!(f.value.stDate > f.value.endDate)){
@@ -221,7 +221,7 @@ this.datevalidate1(f.value.stDate,f.value.endDate);
 
 datevalidate1(stdt: string , eddt: string){
 
-  
+
   if(stdt > eddt){
     console.log("validating dt::");
     return true;
