@@ -1,8 +1,8 @@
 'use strict';
-//import sticky service.
+//import file service.
 const fileService = require('../services/file-service');
 /**
- * Returns a list of stickies in JSON based on the
+ * Returns a list of file in JSON based on the
  * search parameters.
  *
  * @param {request} {HTTP request object}

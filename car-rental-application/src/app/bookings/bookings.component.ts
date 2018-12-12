@@ -35,16 +35,28 @@ export class BookingsComponent implements OnInit {
 
       for( let booking of data as string[]){
 
-        this.carsService.getCar(booking['carId']).then((data) => {
+        this.carsService.getCar(booking['carId']).then((data2) => {
           this.booking ={};
+          if(booking['isActive']){
+            this.booking['status']="Confirmed"
+          }
+          else{
+            this.booking['status']="Cancelled"
+          }
           this.booking['id']= booking['_id'];
           this.booking['bookingDate'] =booking['created_date']
           this.booking['booking_startTime']=booking['booking_startTime'];
           this.booking['booking_endTime']=booking['booking_endTime'];
           this.booking['ISODate'] = new Date(booking['booking_endTime']);
+<<<<<<< HEAD
           //console.log( new Date(booking['booking_endTime']))
           let car = data as string []
           //console.log(car);
+=======
+          console.log( new Date(booking['booking_endTime']))
+          let car = data2 as string []
+          console.log(car);
+>>>>>>> 633f8a3f7814bda39d9b29c1e4cdbb4ba0368d12
           this.booking['carName'] = car['carName'];
           this.booking['carImagePath'] =car['carImagePath'];
           this.listBookings.push(this.booking);
@@ -55,17 +67,18 @@ export class BookingsComponent implements OnInit {
 
 
       }
+<<<<<<< HEAD
       //console.log(this.listBookings.length);
+=======
+      console.log(this.listBookings);
+>>>>>>> 633f8a3f7814bda39d9b29c1e4cdbb4ba0368d12
    });
   }
 
-
-  onClick($event){
-console.log("in owner rating :::::");
-
-
-
-
-
+  cancelBooking(input){
+    console.log(input);
+    let params = {"active" : 0}
+    this.bookings.updateBooking(params,input);
   }
+
 }

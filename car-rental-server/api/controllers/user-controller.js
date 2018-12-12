@@ -29,6 +29,8 @@ exports.list = function (request, response) {
  * @param {response} {HTTP response object}
  */
 exports.post = function (request, response) {
+    console.log("In body");
+    console.log(request.body);
     let newUser = Object.assign({}, request.body),
         callback = function (user) {
         response.status(200);

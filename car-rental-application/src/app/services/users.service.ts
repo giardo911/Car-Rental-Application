@@ -15,6 +15,7 @@ export class UsersService {
  *Method Name:- Get Users
  */
   user = {};
+  //Method to fetch all users based on query params
    getUsers() {
     let promise = new Promise((resolve, reject) => {
       this.httpClient.get<Array<any>>('http://localhost:3000/users')
@@ -36,6 +37,7 @@ export class UsersService {
    * To Put user
    */
 
+  //Method to add a new user object into the database
   putUser(input) {
       console.log(input.FirstName);
       this.httpClient.post('http://localhost:3000/users',
@@ -58,8 +60,7 @@ export class UsersService {
             },
             error => {
                 console.log('Error', error);
-            }
-        );
+            });
   }
 
   /**
@@ -68,6 +69,7 @@ export class UsersService {
    *
    * To  update user
    */
+  //Method to update an existing user object in the database.
   updateUser(input) {
     console.log(input.FirstName);
     alert(input.ProfilePicPath);
@@ -91,8 +93,7 @@ export class UsersService {
           },
           error => {
               console.log('Error', error);
-          }
-      );
+          });
 }
 /**
  *
@@ -100,10 +101,11 @@ export class UsersService {
  *
  * TO get single user with a paticular user id
  */
+
+//Method to fetch a particular user object based on the ID
 getUserId(query: String): Promise<any> {
 
   let promise = new Promise((resolve, reject) => {
-
     this.httpClient.get('http://localhost:3000/users?_id=' + query).subscribe(
       data => {
         resolve(data);
@@ -111,17 +113,29 @@ getUserId(query: String): Promise<any> {
       },
       (err: HttpErrorResponse) => {
         console.log (err.message);
-      }
-    );
+      });
   });
   return promise;
 }
 
-/**
- *
- * @param query
- * get User through email
- */
+//Method to add new ratings into the user object
+updateRating(input, id){
+  let promise = new Promise((resolve, reject) => {
+    console.log(input);
+    let body = {"rating" : input}
+    this.httpClient.put('http://localhost:3000/users/' + id, body).subscribe(
+      data => {
+        resolve(data);
+        console.log(data);
+      },
+      (err: HttpErrorResponse) => {
+        console.log (err.message);
+      });
+  });
+  return promise;
+}
+
+  //Method to get user based on Email
   getUser(query: String): Promise<any> {
 
     let promise = new Promise((resolve, reject) => {
@@ -133,12 +147,12 @@ getUserId(query: String): Promise<any> {
         },
         (err: HttpErrorResponse) => {
           console.log (err.message);
-        }
-      );
+        });
     });
     return promise;
   }
 
+  //Method to get user based on Id
   getUserById(id): Promise<any>{
     let promise = new Promise((resolve, reject) => {
       this.httpClient.get<Array<any>>('http://localhost:3000/users/' + id)
@@ -153,18 +167,12 @@ getUserId(query: String): Promise<any> {
     return promise;
   }
 
-  // async checkUserEmailExists(emailId) {
-  //   const response = await fetch('http://localhost:3000/users?Email=' + emailId);
-  //   const json = await response.json();
-  //   console.log(json);
-  //   console.log(json);
-  // }
+
 
   async checkUserEmailExists(emailId) {
     let result = await this.httpClient.get('http://localhost:3000/users?Email=' + emailId).toPromise();
     console.log(result);
     return result;
-
   }
 
 }

@@ -44,18 +44,9 @@ export class RegisterComponent implements OnInit {
 
   get f() { return this.registerForm.controls; }
 
-  getUsers() {
-    console.log('tect');
-    this.submitted = true;
-    if (this.registerForm.invalid) {
-      return;
-  }
-
-    this.Users.getUsers();
-  }
 
 
-
+  //Method to add new user object using Server REST API
   async addUser() {
     this.submitted = true;
     if (this.registerForm.invalid) {
@@ -77,9 +68,14 @@ export class RegisterComponent implements OnInit {
       'Zip': this.registerForm.get('zip').value,
       'Alerts': this.registerForm.get('alerts').value
     };
+<<<<<<< HEAD
     /**
      * Add user
      */
+=======
+
+    //Check if user with same email already exists
+>>>>>>> 633f8a3f7814bda39d9b29c1e4cdbb4ba0368d12
     this.Users.getUser('Email=' + this.registerForm.get('email').value).then(
       data => {
       console.log(JSON.stringify(data));
@@ -96,15 +92,7 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(['/']);
 
         }
-      }
-    );
-
-
-
-
-
-
-
+      });
   }
 
 }

@@ -9,6 +9,7 @@ export class FileService {
   constructor(private httpClient: HttpClient) {
   }
   file: File;
+<<<<<<< HEAD
 
 
 
@@ -24,6 +25,9 @@ export class FileService {
  */
 
 
+=======
+  //Method to upload a new file into user folder and return path of uploaded file
+>>>>>>> 633f8a3f7814bda39d9b29c1e4cdbb4ba0368d12
   uploadFile(input, userId) {
 
     this.file = input;
@@ -32,11 +36,6 @@ export class FileService {
     const params = new HttpParams().set('userId', userId);
     const formdata: FormData = new FormData();
     formdata.append('profPic', this.file);
-
-    // const req = new HttpRequest('POST', 'http://localhost:3000/fileUpload', formdata, {
-    //   params
-    // });
-    // this.httpClient.request(req)
 
       //console.log(input.FirstName);
       this.httpClient.post('http://localhost:3000/fileUpload' , formdata ,
@@ -48,12 +47,9 @@ export class FileService {
             },
             error => {
                 console.log('Error', error);
-            }
-        );
+            });
       });
       return promise;
-
-
   }
 
 }

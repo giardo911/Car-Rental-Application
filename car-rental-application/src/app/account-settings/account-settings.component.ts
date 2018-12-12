@@ -21,6 +21,7 @@ export class AccountSettingsComponent implements OnInit {
 
   userObj = {};
 
+  //Initialization states array for dropdown
   states = [
     'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia',
     'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts',
@@ -30,6 +31,7 @@ export class AccountSettingsComponent implements OnInit {
     'Wisconsin', 'Wyoming'
 ];
 
+  //Fetching current loggedIn user
    user = localStorage.currentUser;
    filePath: any;
 
@@ -40,12 +42,14 @@ export class AccountSettingsComponent implements OnInit {
 
   ngOnInit() {
 
+    //Check if user has logged in
     this.isLoggedIn = this.authService.checkLoggedInUser();
     console.log(this.isLoggedIn);
     if(!this.isLoggedIn){
       alert("Kindly Login into your account");
       this.route.navigate(['']);
     }
+
 
     console.log(JSON.parse(this.user)[0]._id);
     this.registerForm = this.formBuilder.group({
@@ -69,6 +73,8 @@ export class AccountSettingsComponent implements OnInit {
     (params) => {
       id = params['id'];
     })
+
+    //Getting logged in user object from server
     this.Users.getUserById(this.userId).then(
 
     data =>{
@@ -86,17 +92,16 @@ export class AccountSettingsComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
   }
-
     this.Users.getUsers();
   }
 
 
   populateUserDetails(user){
     console.log(user);
-
-
   }
 
+
+  //Check if uploaded file is of correct format and add filePath
   checkFile(fileEvent : any){
     console.log(typeof this.registerForm.get('profPic'));
     this.file = fileEvent.target.files[0];
@@ -108,6 +113,7 @@ export class AccountSettingsComponent implements OnInit {
     }
   }
 
+  //Call REST API to upload file on server
   async addUser() {
     this.submitted = true;
     if (this.registerForm.invalid) {
@@ -138,7 +144,7 @@ export class AccountSettingsComponent implements OnInit {
         'Alerts': this.registerForm.get('alerts').value
       };
 
-
+      //Call REST API to update user details
       this.Users.updateUser(user);
 
     });
