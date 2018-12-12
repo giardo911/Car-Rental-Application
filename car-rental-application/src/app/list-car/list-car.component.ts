@@ -62,11 +62,7 @@ export class ListCarComponent implements OnInit {
       features:['',[Validators.required]],
       dailyDistance: ['', [Validators.required, Validators.pattern('[0-9]*')]],
       weeklyDistance:['', [Validators.required, Validators.pattern('[0-9]*')]],
-      monthlyDistance:['', [Validators.required, Validators.pattern('[0-9]*')]],
-      doors:['', [Validators.required, Validators.pattern('[0-9]*')]],
-      seats : ['', [Validators.required, Validators.pattern('[0-9]*')]],
-      milage : ['', [Validators.required,Validators.pattern('[0-9]*')]],
-      fuelType : ['', [Validators.required]]
+      monthlyDistance:['', [Validators.required, Validators.pattern('[0-9]*')]]
   });
   }
 
