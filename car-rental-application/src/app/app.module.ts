@@ -25,7 +25,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { PaymentComponent } from './payment/payment.component';
 import { FogotPasswordComponent } from './fogot-password/fogot-password.component';
-
+import { AuthService } from './auth/auth.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +57,7 @@ import { FogotPasswordComponent } from './fogot-password/fogot-password.componen
     NpnSliderModule,
     NgbModule
   ],
-  providers: [CarsService, UsersService, AuthenticationService, FileService],
+  providers: [CarsService, UsersService, AuthenticationService, FileService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
