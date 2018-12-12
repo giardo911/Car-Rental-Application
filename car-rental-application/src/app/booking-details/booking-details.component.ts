@@ -17,6 +17,11 @@ export class BookingConfirmComponent implements OnInit {
   userObj;
   carObj;
   ownerObj;
+  selected1=0;
+  selected2=0;
+
+  loggedInUser;
+
   constructor(private active : ActivatedRoute, private route: Router, private booking: BookingsService, private user: UsersService, private car: CarsService) { }
 
   ngOnInit() {
@@ -42,18 +47,32 @@ export class BookingConfirmComponent implements OnInit {
         this.car.getCar(this.bookingObj.carId).then(
           carData => {
             this.carObj = carData;
+            this.user.getUserById(this.carObj.userId).then(
+              ownerData => {
+                this.ownerObj = ownerData;
+              });
           });
-        this.user.getUserById(this.bookingObj.userId).then(
-          ownerData => {
-            this.ownerObj = ownerData;
-          });
+          this.user.getUserById(this.bookingObj.userId).then(
+            userData => {
+              this.userObj = userData;
+            });
       });
 
-      this.userObj = JSON.parse(localStorage.currentUser)[0];
       console.log(this.userObj);
-
+      this.loggedInUser = JSON.parse(localStorage.currentUser)[0]._id;
 
 
   }
 
+  onClickUser(){
+    console.log(this.selected1);
+    let inputs = {"userRating" : this.selected1}
+    this.booking.updateBooking(inputs,this.bookingObj._id);
+    this.user.updateRating(this.selected1,this.userObj._id);
+  }
+  onClickOwner($event){
+    let inputs = {"ownerRating" : this.selected2}
+    this.booking.updateBooking(inputs,this.bookingObj._id);
+    this.user.updateRating(this.selected2,this.userObj._id);
+  }
 }
