@@ -154,6 +154,7 @@ this.ownerImg = carObj.ownerImg
 this.ownerName= this.ownerObj['FirstName']
 
 
+
 //method to check the
 if(!this.imgPath){
   console.log("no car image");
