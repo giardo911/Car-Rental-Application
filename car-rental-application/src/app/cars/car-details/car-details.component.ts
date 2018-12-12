@@ -72,7 +72,7 @@ private carImages =[];
 
 constructor(private carservice:  CarsService,private active : ActivatedRoute,private formBuilder: FormBuilder, private route: Router ,public mapsApiLoader: MapsAPILoader,
   private zone: NgZone,
-  private wrapper: GoogleMapsAPIWrapper) { 
+  private wrapper: GoogleMapsAPIWrapper,private authService : AuthenticationService) { 
 
     this.mapsApiLoader = mapsApiLoader;
     this.zone = zone;
@@ -159,10 +159,10 @@ getLocation() {
       };
       console.log(that.pos);
 
+})
+  }
+
 }
-
-
-
 populateCarsDetails(carObj){
 console.log("abc"+carObj);
 
@@ -171,13 +171,12 @@ this.price = carObj.carPrice;
 this.carName =carObj.carName;
 this.carYear = carObj.carYear;
 this.imgPath =carObj.carImagePath;
-console.log("Car:::::::"+this.carName);
 this.description = carObj.description;
 this.milage = carObj.milage
 this.fuelType = carObj.fuelType
 this.features = carObj.features
 this.parkingDetails = carObj.parkingDetails
-this.guideLines = carObj.
+this.guideLines = carObj.guideLines
 this.dailyDistance = carObj.dailyDistance
 this.weeklyDistance = carObj.weeklyDistance
 this.monthlyDistance = carObj.monthlyDistance
@@ -218,7 +217,7 @@ console.log("Date:::::::::::::::::::::"+f.value.startDate);
 
 
   //map markers code
-/*
+
   private map
   initMap() {
     this.map = new google.maps.Map(document.getElementById('map'), {
