@@ -121,11 +121,6 @@ export class ListCarComponent implements OnInit {
 
   }
 
-
-  // onFileUpload(event){
-  //    this.file = event.target.files[0];
-  //    console.log(this.file);
-
   onFileUpload(event){
       this.file = event.target.files[0];
      console.log(this.file);

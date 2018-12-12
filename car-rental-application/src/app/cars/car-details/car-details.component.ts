@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+///<reference types="@types/googlemaps" />
 import { CarsService } from '../../services/cars.services';
 import { ActivatedRoute } from '@angular/router';
 import {Router} from '@angular/router'
 import * as moment from 'moment';
-//import {FormGroup} from '@angular/forms';
+
+
 import{Observable} from 'rxjs';
  import { GoogleMapsAPIWrapper, MapsAPILoader } from '@agm/core';
  import { FormGroup, FormControl, FormBuilder, Validators, NgForm } from '@angular/forms';
+ import { Component, Input, ViewChild, NgZone, OnInit,AfterViewInit } from '@angular/core';
+ import {  AgmMap } from '@agm/core';
 import { AuthenticationService } from 'src/app/services/authentication.services';
 
 @Component({
@@ -15,12 +18,14 @@ import { AuthenticationService } from 'src/app/services/authentication.services'
   styleUrls: ['./car-details.component.scss']
 })
 export class CarDetailsComponent implements OnInit {
+
+  
   checkoutForm: FormGroup;
   isLoggedIn;
 private carObj ={};
 private newObj={};
-  latitude = 51.678418;
-longitude = 7.809007;
+longitude  =72.97699829999999;
+ latitude =19.1985353;
  registerForm :FormGroup;
 private startDate : Date;
 show: boolean = false;
@@ -35,7 +40,8 @@ show: boolean = false;
   orderBy: string;
   totalprice
 
-   geocoder;
+   geocoder:any;
+    
 
  //infowindow = new google.maps.InfoWindow();
 
@@ -63,8 +69,17 @@ private ownerName : string ="Mr. Iyer" ;
 private carYear :string ;
 private imgPath : string;
 private carImages =[];
-constructor(private carservice:  CarsService,private active : ActivatedRoute,private formBuilder: FormBuilder, private route: Router, private authService : AuthenticationService) {
 
+constructor(private carservice:  CarsService,private active : ActivatedRoute,private formBuilder: FormBuilder, private route: Router ,public mapsApiLoader: MapsAPILoader,
+  private zone: NgZone,
+  private wrapper: GoogleMapsAPIWrapper,private authService : AuthenticationService) { 
+
+    this.mapsApiLoader = mapsApiLoader;
+    this.zone = zone;
+    this.wrapper = wrapper;
+    this.mapsApiLoader.load().then(() => {
+    this.geocoder = new google.maps.Geocoder();
+    });
   }
 
   ngOnInit() {
@@ -79,14 +94,13 @@ console.log( this.newObj);
  this.id = this.active.snapshot.params['id'];
     console.log("ID::::;"+this.id);
     this.orderBy="";
-   // this.infoWindow = new google.maps.InfoWindow;
-   // this.map = new google.maps.Map(this.myId.nativeElement, {
-     // center: new google.maps.LatLng(42.3600830, -71.0588800),
-     // zoom: 13,
-    //});
- //console.log("coords:::"+ this.getLocation("Landon"));
+  
+
+ setTimeout(()=> {
  this.getLocation();
-  //this.getLocation("Landon");
+
+ },1000);
+ //this.getLocation("Landon");
 
 this.active.params.subscribe(
   (params) => {
@@ -106,6 +120,22 @@ this.active.params.subscribe(
 }
 
 getLocation() {
+  console.log("in get location::::::::");
+  this.geocoder = new google.maps.Geocoder()
+//  if (!this.geocoder) this.geocoder = new google.maps.Geocoder()
+    this.geocoder.geocode({
+      'address': "10,Ketan society, dhobi ali,tembhi naka thane,Maharashtra, India, 400601"
+    }, (results, status) => {
+      console.log(results);
+      if (status == google.maps.GeocoderStatus.OK) {
+                // decompose the result
+
+                console.log(results[0].geometry.bounds.j.l);
+                console.log(results[0].geometry.bounds.l.l);
+      } else {
+        alert("Sorry, this search produced no results.");
+      }
+    })
 
   // this.geocoder.geocode({ 'address': "Boston" }, function (results, status) {
   //   if (status == google.maps.GeocoderStatus.OK) {
@@ -130,11 +160,9 @@ getLocation() {
       console.log(that.pos);
 
 })
+  }
+
 }
-}
-
-
-
 populateCarsDetails(carObj){
 console.log("abc"+carObj);
 
@@ -143,13 +171,12 @@ this.price = carObj.carPrice;
 this.carName =carObj.carName;
 this.carYear = carObj.carYear;
 this.imgPath =carObj.carImagePath;
-console.log("Car:::::::"+this.carName);
 this.description = carObj.description;
 this.milage = carObj.milage
 this.fuelType = carObj.fuelType
 this.features = carObj.features
 this.parkingDetails = carObj.parkingDetails
-this.guideLines = 'No guidelines '
+this.guideLines = carObj.guideLines
 this.dailyDistance = carObj.dailyDistance
 this.weeklyDistance = carObj.weeklyDistance
 this.monthlyDistance = carObj.monthlyDistance
@@ -190,7 +217,7 @@ console.log("Date:::::::::::::::::::::"+f.value.startDate);
 
 
   //map markers code
-/*
+
   private map
   initMap() {
     this.map = new google.maps.Map(document.getElementById('map'), {
@@ -283,7 +310,6 @@ console.log("Date:::::::::::::::::::::"+f.value.startDate);
   }
 
 
-*/
 
 proceed(f: NgForm){
 
