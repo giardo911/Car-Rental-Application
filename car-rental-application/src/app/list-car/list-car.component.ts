@@ -112,7 +112,7 @@ export class ListCarComponent implements OnInit {
     }
     else{
     
-      this.filePath = this.oldCar.carImagePath;
+     // this.filePath = this.oldCar.carImagePath;
 
       this.createCarObj();
     }
