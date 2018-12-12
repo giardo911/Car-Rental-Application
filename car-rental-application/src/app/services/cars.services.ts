@@ -169,7 +169,7 @@ export class CarsService {
       this.httpClient.get('http://localhost:3000/cars/'+ query).subscribe(
         data => {
           resolve(data);
-          console.log(data);
+          console.log("daaaa:::::"+ data);
         }
 
       );
@@ -226,7 +226,7 @@ export class CarsService {
   }
 
   putCar(input) {
-    console.log(input);
+    console.log("aaa"+  input);
     this.httpClient.post('http://localhost:3000/cars',
       {
         carName: input.carName,
@@ -246,6 +246,12 @@ export class CarsService {
         fuelType:  input.fuelType,
         doorCount: input.doorCount,
         seatCount: input.seatCount,
+        address: input.address,
+        city:input.city,
+        state:input.state,
+        zip: input.zip,
+        latitude: input.latitude,
+        longitude: input.longitude 
       })
       .subscribe(
           data => {
@@ -282,4 +288,6 @@ doPayment(payment){
     });
     return promise;
 }
+
+
 }

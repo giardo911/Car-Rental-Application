@@ -1,26 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+///<reference types="@types/googlemaps" />
 import { CarsService } from '../../services/cars.services';
 import { ActivatedRoute } from '@angular/router';
 import {Router} from '@angular/router'
 import * as moment from 'moment';
-//import {FormGroup} from '@angular/forms';
+
+
 import{Observable} from 'rxjs';
  import { GoogleMapsAPIWrapper, MapsAPILoader } from '@agm/core';
  import { FormGroup, FormControl, FormBuilder, Validators, NgForm } from '@angular/forms';
+ import { Component, Input, ViewChild, NgZone, OnInit,AfterViewInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.services';
+import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-car-details',
   templateUrl: './car-details.component.html',
-  styleUrls: ['./car-details.component.scss']
+  styleUrls: ['./car-details.component.scss'],
+  providers:[NgbRatingConfig]
 })
 export class CarDetailsComponent implements OnInit {
+
+  
   checkoutForm: FormGroup;
   isLoggedIn;
 private carObj ={};
 private newObj={};
-  latitude = 51.678418;
-longitude = 7.809007;
+longitude  =72.97699829999999;
+ latitude =19.1985353;
  registerForm :FormGroup;
 private startDate : Date;
 show: boolean = false;
@@ -35,7 +41,8 @@ show: boolean = false;
   orderBy: string;
   totalprice
 
-   geocoder;
+   geocoder:any;
+    
 
  //infowindow = new google.maps.InfoWindow();
 
@@ -63,11 +70,21 @@ private ownerName : string ="Mr. Iyer" ;
 private carYear :string ;
 private imgPath : string;
 private carImages =[];
-constructor(private carservice:  CarsService,private active : ActivatedRoute,private formBuilder: FormBuilder, private route: Router, private authService : AuthenticationService) {
-
+private rating;
+constructor(private carservice:  CarsService,config: NgbRatingConfig,private active : ActivatedRoute,private formBuilder: FormBuilder, private route: Router ,public mapsApiLoader: MapsAPILoader,
+  private zone: NgZone,
+  private wrapper: GoogleMapsAPIWrapper,private authService : AuthenticationService) { 
+    config.max = 5;
+    this.mapsApiLoader = mapsApiLoader;
+    this.zone = zone;
+    this.wrapper = wrapper;
+    this.mapsApiLoader.load().then(() => {
+    this.geocoder = new google.maps.Geocoder();
+    });
   }
 
   ngOnInit() {
+    this.rating = 2.5;
     this.isLoggedIn = this.authService.checkLoggedInUser();
     console.log(this.isLoggedIn);
     if(!this.isLoggedIn){
@@ -79,14 +96,10 @@ console.log( this.newObj);
  this.id = this.active.snapshot.params['id'];
     console.log("ID::::;"+this.id);
     this.orderBy="";
-   // this.infoWindow = new google.maps.InfoWindow;
-   // this.map = new google.maps.Map(this.myId.nativeElement, {
-     // center: new google.maps.LatLng(42.3600830, -71.0588800),
-     // zoom: 13,
-    //});
- //console.log("coords:::"+ this.getLocation("Landon"));
- this.getLocation();
-  //this.getLocation("Landon");
+  
+
+
+ //this.getLocation("Landon");
 
 this.active.params.subscribe(
   (params) => {
@@ -98,7 +111,7 @@ this.active.params.subscribe(
    data =>{
      console.log(data[0]);
      this.carObj =data[0]
-     console.log(this.carObj);
+     console.log("aaaaaaaaa"+this.carObj);
      this.populateCarsDetails(this.carObj);
 
     }
@@ -106,6 +119,22 @@ this.active.params.subscribe(
 }
 
 getLocation() {
+  console.log("in get location::::::::");
+  this.geocoder = new google.maps.Geocoder()
+//  if (!this.geocoder) this.geocoder = new google.maps.Geocoder()
+    this.geocoder.geocode({
+      'address': "10,Ketan society, dhobi ali,tembhi naka thane,Maharashtra, India, 400601"
+    }, (results, status) => {
+      console.log(results);
+      if (status == google.maps.GeocoderStatus.OK) {
+                // decompose the result
+
+                console.log(results[0].geometry.bounds.j.l);
+                console.log(results[0].geometry.bounds.l.l);
+      } else {
+        alert("Sorry, this search produced no results.");
+      }
+    })
 
   // this.geocoder.geocode({ 'address': "Boston" }, function (results, status) {
   //   if (status == google.maps.GeocoderStatus.OK) {
@@ -130,11 +159,9 @@ getLocation() {
       console.log(that.pos);
 
 })
+  }
+
 }
-}
-
-
-
 populateCarsDetails(carObj){
 console.log("abc"+carObj);
 
@@ -143,13 +170,12 @@ this.price = carObj.carPrice;
 this.carName =carObj.carName;
 this.carYear = carObj.carYear;
 this.imgPath =carObj.carImagePath;
-console.log("Car:::::::"+this.carName);
 this.description = carObj.description;
 this.milage = carObj.milage
 this.fuelType = carObj.fuelType
 this.features = carObj.features
 this.parkingDetails = carObj.parkingDetails
-this.guideLines = 'No guidelines '
+this.guideLines = carObj.guideLines
 this.dailyDistance = carObj.dailyDistance
 this.weeklyDistance = carObj.weeklyDistance
 this.monthlyDistance = carObj.monthlyDistance
@@ -157,6 +183,8 @@ this.ownerName = carObj.ownerName
 this.doorCount  = carObj.doorCount
 this.seatCount = carObj.seatCount
 this.carImages =[this.imgPath,'assets/images/car10.png','assets/images/car12.png' ]
+this.latitude =carObj.latitude
+this.longitude = carObj.longitude 
 }
 
 
@@ -190,7 +218,7 @@ console.log("Date:::::::::::::::::::::"+f.value.startDate);
 
 
   //map markers code
-/*
+
   private map
   initMap() {
     this.map = new google.maps.Map(document.getElementById('map'), {
@@ -283,7 +311,6 @@ console.log("Date:::::::::::::::::::::"+f.value.startDate);
   }
 
 
-*/
 
 proceed(f: NgForm){
 

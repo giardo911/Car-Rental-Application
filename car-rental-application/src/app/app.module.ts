@@ -21,9 +21,12 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { FileService } from './services/files.service';
 import { FilterPipe } from './filter.pipe';
 import { MoneyPipe } from './money.pipe';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { PaymentComponent } from './payment/payment.component';
+//  import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { GoogleMapsAPIWrapper } from '@agm/core';
+//import {} from '@types/googlemaps';
 import { BookingsComponent } from './bookings/bookings.component';
 import { BookingsService } from './services/bookings.service';
 import { PlacePipe } from './place.pipe';
@@ -66,7 +69,7 @@ import { CarTripsComponent } from './car-trips/car-trips.component';
     NpnSliderModule,
     NgbModule
   ],
-  providers: [CarsService, UsersService, AuthenticationService, FileService,BookingsService],
+  providers: [CarsService, UsersService, AuthenticationService, FileService,BookingsService,GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
