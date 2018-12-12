@@ -10,6 +10,10 @@ import { Observable } from 'rxjs';
   styleUrls: ['./bookings.component.scss']
 })
 export class BookingsComponent implements OnInit {
+  /***
+   *
+   * Variables
+   */
   listBookings= [];
   booking= {};
   time;
@@ -21,7 +25,11 @@ export class BookingsComponent implements OnInit {
   ngOnInit() {
 
     this.time = new Date();
-
+    /***
+     * Method :- TO get all the bookings.
+     * Author:- Rajat Acharya
+     *
+     */
     this.bookings.getBookings( JSON.parse(localStorage.currentUser)[0]._id).then((data) => {
       console.log(data);
 

@@ -39,6 +39,7 @@ export class CarTripsComponent implements OnInit {
     this.userId = JSON.parse(localStorage.currentUser)[0]._id;
     this.carsService.getCarsforUser(this.userId).then(
       data => {
+
         this.carId = data[0]._id;
         this.bookings.getBookingByCar(this.carId).then(
           data2 => {
@@ -65,7 +66,8 @@ export class CarTripsComponent implements OnInit {
                 this.booking['carImagePath'] =data[0].carImagePath;
                 console.log(this.booking);
                 this.listBookings.push(this.booking);
-                this.booking = {};
+                this.booking ={};
+
             }
             console.log(this.listBookings);
           });

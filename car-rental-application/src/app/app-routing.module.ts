@@ -12,6 +12,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { BookingsComponent } from './bookings/bookings.component';
 import { MyCarsComponent } from './my-cars/my-cars.component';
 import { BookingConfirmComponent } from './booking-details/booking-details.component';
+import { NotFoundComponentComponent } from './not-found-component/not-found-component.component';
 import { CarTripsComponent } from './car-trips/car-trips.component';
 const routes: Routes = [
   {path: 'register', component: RegisterComponent},
@@ -26,7 +27,10 @@ const routes: Routes = [
   {path: 'payment' , component: PaymentComponent},
   {path: 'booking-confirm/:id' , component: BookingConfirmComponent},
   {path: 'bookings', component: BookingsComponent},
-  {path: 'car-trips', component: CarTripsComponent}
+  {path: 'car-trips', component: CarTripsComponent},
+  {path: '404', component: NotFoundComponentComponent},
+ {path: '**', redirectTo: '/404'}
+
 ];
 
 @NgModule({

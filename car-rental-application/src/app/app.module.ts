@@ -32,6 +32,7 @@ import { BookingsService } from './services/bookings.service';
 import { PlacePipe } from './place.pipe';
 import { MyCarsComponent } from './my-cars/my-cars.component';
 import { BookingConfirmComponent } from './booking-details/booking-details.component';
+import { NotFoundComponentComponent } from './not-found-component/not-found-component.component';
 import { CarTripsComponent } from './car-trips/car-trips.component';
 
 @NgModule({
@@ -52,6 +53,7 @@ import { CarTripsComponent } from './car-trips/car-trips.component';
     PlacePipe,
     MyCarsComponent,
     BookingConfirmComponent,
+    NotFoundComponentComponent,
     CarTripsComponent,
   ],
   imports: [

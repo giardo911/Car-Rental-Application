@@ -112,11 +112,11 @@ this.active.params.subscribe(
      this.carObj =data
 
      this.populateCarsDetails(this.carObj);
-     this.users.getUserById(this.carObj.userId).then(
+     this.users.getUserById(this.carObj['userId']).then(
       data2 => {
 
         this.ownerObj = data2;
-        this.ownerName =this.ownerObj.FirstName
+        this.ownerName =this.ownerObj['FirstName']
 
         if(data2.Ratings)
         this.ratingArr = data2.Ratings;
@@ -151,12 +151,9 @@ this.carImages =carObj.carImagePath
 this.latitude =carObj.longitude
 this.longitude =carObj.latitude
 this.ownerImg = carObj.ownerImg
-this.ownerName= this.ownerObj.FirstName
+this.ownerName= this.ownerObj['FirstName']
 
-console.log(this.ownerObj.FirstName);
 
-console.log(this.latitude);
-console.log(this.longitude);
 
 //method to check the
 if(!this.imgPath){

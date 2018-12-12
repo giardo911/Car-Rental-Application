@@ -13,6 +13,10 @@ import { element } from 'protractor';
   styleUrls: ['./cars.component.scss']
 })
 export class CarsComponent implements OnInit {
+  /**
+   * Variables
+   *
+   */
    filters = ['Color', 'seatCount', 'carYear'];
    filterString;
    selcetedValue;
@@ -41,6 +45,12 @@ export class CarsComponent implements OnInit {
     });
 
   }
+  /**
+   *
+   * @param selectedValues
+   * Method:- TO get selected value in the Filter
+   * Author:-Rajat Acharya
+   */
   onSliderChange(selectedValues: number[]) {
     console.log(selectedValues);
     this.currentValues = selectedValues;

@@ -8,6 +8,12 @@ export class UsersService {
   constructor(private httpClient: HttpClient) {
   }
   users = [];
+
+
+/**
+ *
+ *Method Name:- Get Users
+ */
   user = {};
   //Method to fetch all users based on query params
    getUsers() {
@@ -23,6 +29,13 @@ export class UsersService {
     });
     return promise;
   }
+
+  /**
+   *
+   * @param input ]
+   *
+   * To Put user
+   */
 
   //Method to add a new user object into the database
   putUser(input) {
@@ -50,6 +63,12 @@ export class UsersService {
             });
   }
 
+  /**
+   *
+   * @param input
+   *
+   * To  update user
+   */
   //Method to update an existing user object in the database.
   updateUser(input) {
     console.log(input.FirstName);
@@ -76,6 +95,12 @@ export class UsersService {
               console.log('Error', error);
           });
 }
+/**
+ *
+ * @param query
+ *
+ * TO get single user with a paticular user id
+ */
 
 //Method to fetch a particular user object based on the ID
 getUserId(query: String): Promise<any> {
