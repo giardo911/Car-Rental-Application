@@ -27,6 +27,12 @@ export class LoginPageComponent implements OnInit {
       debounceTime(5000)
     ).subscribe(() => this.status = null);
   }
+  /**
+   *
+   * @param form
+   *
+   * Method Name:- Authenticate the user
+   */
   onSignIn(form: NgForm) {
     const username = form.value.email;
     this.auth.login(username).then(

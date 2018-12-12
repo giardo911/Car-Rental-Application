@@ -17,7 +17,7 @@ export class CarsComponent implements OnInit {
    * Variables
    *
    */
-   filters = ['Color', 'seatCount', 'carYear'];
+   filters = ['seatCount', 'carYear'];
    filterString;
    selcetedValue;
    currentValues = [0, 0];

@@ -17,7 +17,10 @@ export class NavbarComponent implements OnInit {
     this.user = JSON.parse(localStorage.currentUser)[0].FirstName;
     console.log(this.user);
   }
-
+  /**
+   * Method Name:- Logout
+   * Author:- Rajat Acharya
+   */
   logout() {
     localStorage.clear();
     this.router.navigate(['/'])
