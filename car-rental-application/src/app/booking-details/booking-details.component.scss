@@ -1,4 +1,4 @@
-.invoice-box {
+.invoice-box, .container {
   max-width: 800px;
   margin: auto;
   padding: 30px;
@@ -8,6 +8,11 @@
   line-height: 24px;
   font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
   color: #555;
+}
+
+h2{
+  position: relative;
+  left: 30%;
 }
 
 .invoice-box table {

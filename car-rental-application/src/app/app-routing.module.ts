@@ -11,7 +11,7 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { PaymentComponent } from './payment/payment.component';
 import { BookingsComponent } from './bookings/bookings.component';
 import { MyCarsComponent } from './my-cars/my-cars.component';
-import { BookingConfirmComponent } from './booking-confirm/booking-confirm.component';
+import { BookingConfirmComponent } from './booking-details/booking-details.component';
 const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: '', component: LoginPageComponent},
