@@ -3,7 +3,6 @@ import { UsersService } from '../services/users.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { __await } from 'tslib';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -45,18 +44,9 @@ export class RegisterComponent implements OnInit {
 
   get f() { return this.registerForm.controls; }
 
-  getUsers() {
-    console.log('tect');
-    this.submitted = true;
-    if (this.registerForm.invalid) {
-      return;
-  }
-
-    this.Users.getUsers();
-  }
 
 
-
+  //Method to add new user object using Server REST API
   async addUser() {
     this.submitted = true;
     if (this.registerForm.invalid) {
@@ -78,7 +68,11 @@ export class RegisterComponent implements OnInit {
       'Zip': this.registerForm.get('zip').value,
       'Alerts': this.registerForm.get('alerts').value
     };
+    /**
+     * Add user
+     */
 
+    //Check if user with same email already exists
     this.Users.getUser('Email=' + this.registerForm.get('email').value).then(
       data => {
       console.log(JSON.stringify(data));
@@ -95,15 +89,7 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(['/']);
 
         }
-      }
-    );
-
-
-
-
-
-
-
+      });
   }
 
 }

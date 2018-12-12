@@ -1,5 +1,5 @@
 /**
- * Service for sticky operations.
+ * Service for file operations.
  */
 
 'use strict';
@@ -23,7 +23,7 @@ let throwError = function (error) {
 };
 
 /**
- * Returns an array of sticky object matching the search parameters.
+ * Returns an array of file object matching the search parameters.
  *
  * @param {Object} params {Request parameters}
  * @param {function} callback {Sucess callback function}

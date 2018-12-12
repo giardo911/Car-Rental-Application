@@ -33,6 +33,18 @@ let BookingSchema = new Schema({
         type: Boolean,
         default: true
     },
+    isRated: {
+        type: Boolean,
+        default: false
+    },
+    ownerRating: {
+        type: Number,
+        default: 0
+    },
+    userRating: {
+        type: Number,
+        default: 0
+    },
     /**
      * car created date.
      */

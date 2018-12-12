@@ -31,6 +31,9 @@ import { BookingsComponent } from './bookings/bookings.component';
 import { BookingsService } from './services/bookings.service';
 import { PlacePipe } from './place.pipe';
 import { MyCarsComponent } from './my-cars/my-cars.component';
+import { BookingConfirmComponent } from './booking-details/booking-details.component';
+import { NotFoundComponentComponent } from './not-found-component/not-found-component.component';
+import { CarTripsComponent } from './car-trips/car-trips.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,9 @@ import { MyCarsComponent } from './my-cars/my-cars.component';
     BookingsComponent,
     PlacePipe,
     MyCarsComponent,
+    BookingConfirmComponent,
+    NotFoundComponentComponent,
+    CarTripsComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +71,7 @@ import { MyCarsComponent } from './my-cars/my-cars.component';
     NpnSliderModule,
     NgbModule
   ],
-  providers: [CarsService, UsersService, AuthenticationService, FileService,BookingsService],
+  providers: [CarsService, UsersService, AuthenticationService, FileService,BookingsService,GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,9 +1,9 @@
 /**
- * Controller for sticky endpoints.
+ * Controller for booking endpoints.
  */
 
 'use strict';
-//import sticky service.
+//import booking service.
 const bookingService = require('../services/booking-service');
 /**
  * Returns a list of stickies in JSON based on the
@@ -21,8 +21,8 @@ exports.list = function (request, response) {
 };
 
 /**
- * Creates a new sticky with the request JSON and
- * returns sticky JSON object.
+ * Creates a new booking with the request JSON and
+ * returns booking JSON object.
  *
  * @param {request} {HTTP request object}
  * @param {response} {HTTP response object}
@@ -46,6 +46,7 @@ exports.find = function (request, response) {
 };
 
 exports.update = function (request, response) {
+    console.log(request.body);
     let booking = Object.assign({}, request.body),
         callback = function (booking) {
         response.status(200);

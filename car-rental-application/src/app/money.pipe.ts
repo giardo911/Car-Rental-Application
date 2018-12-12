@@ -7,6 +7,7 @@ export class MoneyPipe implements PipeTransform {
 
   transform(list: any, value: any): any {
     if(list.length==0|| value === 200 ) {
+      console.log("money")
       return list;
   }
   const resultArray =[];

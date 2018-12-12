@@ -1,5 +1,5 @@
 /**
- * Service for sticky operations.
+ * Service for Car operations.
  */
 
 'use strict';
@@ -18,7 +18,7 @@ let throwError = function (error) {
 };
 
 /**
- * Returns an array of sticky object matching the search parameters.
+ * Returns an array of Car object matching the search parameters.
  *
  * @param {Object} params {Search parameters}
  * @param {function} callback {Sucess callback function}
@@ -47,7 +47,7 @@ exports.save = function (car, callback) {
 };
 
 /**
- * Updates and returns the sticky object.
+ * Updates and returns the Car object.
  *
  * @param {Object} car {Car object}
  * @param {function} callback {Sucess callback function}
@@ -64,3 +64,19 @@ exports.update = function (car, callback) {
         new: true
     }, resultCallback);
 };
+
+exports.find = function(id, callback){
+    let resultCallback = function (err, car) {
+        throwError(err);
+        callback(car);
+    };
+    Car.findById(id,resultCallback);
+}
+
+exports.delete = function(id, callback){
+    let resultCallback = function (err, car) {
+        throwError(err);
+        callback(car);
+    };
+    Car.findByIdAndDelete(id, resultCallback);
+}

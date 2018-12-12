@@ -4,7 +4,8 @@ import { UsersService } from './users.service';
 import { Injectable } from '@angular/core';
 @Injectable()
 export class AuthenticationService {
-  constructor(private httpClient: HttpClient,private user:UsersService) {
+  constructor(private httpClient: HttpClient,
+    private user:UsersService) {
 
   }
   /**
@@ -28,6 +29,13 @@ export class AuthenticationService {
     } );
     return  promise ;
   }
+/**
+ * Method Name:-
+ *
+ */
+  logout() {
+    localStorage.removeItem('currentUser');
+  }
 
   checkLoggedInUser(){
     let isLoggedIn = false;
@@ -37,10 +45,5 @@ export class AuthenticationService {
       isLoggedIn = true;
     }
     return isLoggedIn;
-  }
-
-
-  logout() {
-    localStorage.removeItem('currentUser');
   }
 }

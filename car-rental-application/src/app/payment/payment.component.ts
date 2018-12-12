@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class PaymentComponent implements OnInit {
  isLoggedIn;
+ bookingId;
  private userObj = {}
  private username
  private carId  =localStorage.carId
@@ -34,7 +35,10 @@ private bookingprice  =localStorage.bookingPrice
     console.log(this.userObj[0]._id);
 this.username = this.userObj[0]._id;
   }
-
+/**
+ *
+ * Adding Payment
+ */
 
 payment(){
   console.log("doing payment::::::");
@@ -48,7 +52,14 @@ payment(){
 
  };
 
- this.carservice.doPayment(payment);
+ this.carservice.doPayment(payment).then(
+  data =>{
+    this.bookingId = data['_id'];
+    console.log(this.bookingId);
+    this.route.navigate(['booking-confirm/' + this.bookingId]);
+  });
+
+
 
 
   }

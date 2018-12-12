@@ -3,7 +3,7 @@
     <div class="row">
       <a class=" col-sm-3 card" [routerLink]="['/listCar',car._id]" *ngFor="let car of cars">
         <div class="card-header">
-            <img class="card-img-top" src="../../assets/images/homePageImage.jpg" alt="Card image cap">
+            <img class="card-img-top" [src]=car.carImagePath alt="Card image cap">
             <span class="badge badge-light">${{car.carPrice}}/<span class="small">day</span></span>
         </div>
         <div class="card-body">

@@ -51,6 +51,9 @@ let UserSchema = new Schema({
         type: Number,
         Default: 0
     },
+    Ratings: [{
+        rating: Number
+    }],
     /**
      * car created date.
      */
