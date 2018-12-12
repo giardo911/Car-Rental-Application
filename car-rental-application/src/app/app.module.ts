@@ -25,6 +25,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { PaymentComponent } from './payment/payment.component';
 import { MyCarsComponent } from './my-cars/my-cars.component';
+import { BookingConfirmComponent } from './booking-confirm/booking-confirm.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { MyCarsComponent } from './my-cars/my-cars.component';
     MoneyPipe,
     PaymentComponent,
     MyCarsComponent,
+    BookingConfirmComponent,
   ],
   imports: [
     BrowserModule,

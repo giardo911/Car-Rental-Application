@@ -10,6 +10,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PaymentComponent } from './payment/payment.component';
 import { MyCarsComponent } from './my-cars/my-cars.component';
+import { BookingConfirmComponent } from './booking-confirm/booking-confirm.component';
 const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: '', component: LoginPageComponent},
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'account-settings', component: AccountSettingsComponent},
   {path : 'my-cars', component: MyCarsComponent},
-  {path: 'payment' , component: PaymentComponent}
+  {path: 'payment' , component: PaymentComponent},
+  {path: 'booking-confirm/:id' , component: BookingConfirmComponent}
 ];
 
 @NgModule({
