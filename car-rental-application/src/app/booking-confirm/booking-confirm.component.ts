@@ -27,6 +27,11 @@ export class BookingConfirmComponent implements OnInit {
       this.route.navigate(['home']);
 
     }
+
+
+
+
+
   }
 
 }

@@ -24,6 +24,9 @@ import { MoneyPipe } from './money.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { PaymentComponent } from './payment/payment.component';
+import { BookingsComponent } from './bookings/bookings.component';
+import { BookingsService } from './services/bookings.service';
+import { PlacePipe } from './place.pipe';
 import { MyCarsComponent } from './my-cars/my-cars.component';
 import { BookingConfirmComponent } from './booking-confirm/booking-confirm.component';
 
@@ -41,6 +44,8 @@ import { BookingConfirmComponent } from './booking-confirm/booking-confirm.compo
     FilterPipe,
     MoneyPipe,
     PaymentComponent,
+    BookingsComponent,
+    PlacePipe,
     MyCarsComponent,
     BookingConfirmComponent,
   ],
@@ -59,7 +64,7 @@ import { BookingConfirmComponent } from './booking-confirm/booking-confirm.compo
     NpnSliderModule,
     NgbModule
   ],
-  providers: [CarsService, UsersService, AuthenticationService, FileService],
+  providers: [CarsService, UsersService, AuthenticationService, FileService,BookingsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

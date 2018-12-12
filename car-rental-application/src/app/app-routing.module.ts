@@ -9,6 +9,7 @@ import { ListCarComponent } from './list-car/list-car.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PaymentComponent } from './payment/payment.component';
+import { BookingsComponent } from './bookings/bookings.component';
 import { MyCarsComponent } from './my-cars/my-cars.component';
 import { BookingConfirmComponent } from './booking-confirm/booking-confirm.component';
 const routes: Routes = [
@@ -22,7 +23,8 @@ const routes: Routes = [
   {path: 'account-settings', component: AccountSettingsComponent},
   {path : 'my-cars', component: MyCarsComponent},
   {path: 'payment' , component: PaymentComponent},
-  {path: 'booking-confirm/:id' , component: BookingConfirmComponent}
+  {path: 'booking-confirm/:id' , component: BookingConfirmComponent},
+  {path: 'bookings', component: BookingsComponent}
 ];
 
 @NgModule({

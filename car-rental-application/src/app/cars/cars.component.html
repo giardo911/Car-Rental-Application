@@ -1,19 +1,19 @@
 <app-navbar></app-navbar>
 <div class="container header">
-    <form class="form-inline">
+    <form class="form-inline" (ngSubmit)="onSubmit(f)" #f="ngForm">
       <h1>Search by Date</h1>
         <div class="form-group">
             <label for="inputPassword2" class="sr-only">Where</label>
-            <input type="where" class="form-control" id="" placeholder="Place">
+            <input type="where" class="form-control" id="" placeholder="Place" name="place"[(ngModel)]="filterStringplace">
         </div>
         <div class="form-group">
-          <label for="inputPassword2" class="sr-only">From</label>
-          <input type="date" class="form-control" id="" placeholder="From">
+            <label for="inputPassword2" class="sr-only">From</label>
+            <input class="form-control" type="datetime-local" value="2011-08-19 10:00:00" ngModel id="from" name="from">
+
         </div>
         <div class="form-group">
             <label for="inputPassword2" class="sr-only">Until</label>
-            <input type="date" class="form-control" id="" placeholder="Until">
-            <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+            <input class="form-control" type="datetime-local" value="2011-08-19 10:00:00" ngModel id="until" name="until">
           </div>
           <button type="submit" class="btn btn-primary mb-2">Search</button>
           <hr>
@@ -43,7 +43,7 @@
 </div>
 <div class="container">
       <div class="row">
-        <a class=" col-sm-3 card" [routerLink]="['/cars',car._id]" *ngFor="let car of cars | filter:filterString:selcetedValue|money:currentValues[1]">
+        <a class=" col-sm-3 card" [routerLink]="['/cars',car._id]" *ngFor="let car of cars | filter:filterString:selcetedValue|money:currentValues[1]|place:filterStringplace">
           <div class="card-header">
               <img class="card-img-top" src="../../assets/images/homePageImage.jpg" alt="Card image cap">
               <span class="badge badge-light">${{car.carPrice}}/<span class="small">day</span></span>
