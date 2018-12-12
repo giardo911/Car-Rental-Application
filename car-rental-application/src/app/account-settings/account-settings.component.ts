@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { FileService} from '../services/files.service'
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { from } from 'rxjs';
+import { AuthenticationService } from '../services/authentication.services';
 
 @Component({
   selector: 'app-register',
@@ -12,10 +13,11 @@ import { from } from 'rxjs';
 })
 export class AccountSettingsComponent implements OnInit {
 
+  isLoggedIn;
   registerForm: FormGroup;
     submitted = false;
 
-    constructor(private Users: UsersService, private Files: FileService, private formBuilder: FormBuilder, private active : ActivatedRoute) { }
+    constructor(private Users: UsersService, private Files: FileService, private authService: AuthenticationService,private formBuilder: FormBuilder, private active : ActivatedRoute, private route: Router) { }
 
   userObj = {};
 
@@ -37,6 +39,14 @@ export class AccountSettingsComponent implements OnInit {
    file: File;
 
   ngOnInit() {
+
+    this.isLoggedIn = this.authService.checkLoggedInUser();
+    console.log(this.isLoggedIn);
+    if(!this.isLoggedIn){
+      alert("Kindly Login into your account");
+      this.route.navigate(['']);
+    }
+
     console.log(JSON.parse(this.user)[0]._id);
     this.registerForm = this.formBuilder.group({
       firstName: ['', Validators.required],

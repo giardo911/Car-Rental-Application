@@ -29,6 +29,10 @@ let BookingSchema = new Schema({
         type: Number,
         required: 'Price is required'
     },
+    isActive: {
+        type: Boolean,
+        default: true
+    },
     /**
      * car created date.
      */

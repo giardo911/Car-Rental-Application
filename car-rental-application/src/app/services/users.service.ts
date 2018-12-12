@@ -80,6 +80,22 @@ export class UsersService {
           }
       );
 }
+getUserId(query: String): Promise<any> {
+
+  let promise = new Promise((resolve, reject) => {
+
+    this.httpClient.get('http://localhost:3000/users?_id=' + query).subscribe(
+      data => {
+        resolve(data);
+        console.log(data);
+      },
+      (err: HttpErrorResponse) => {
+        console.log (err.message);
+      }
+    );
+  });
+  return promise;
+}
 
 
   getUser(query: String): Promise<any> {

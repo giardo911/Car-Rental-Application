@@ -7,6 +7,11 @@ export class AuthenticationService {
   constructor(private httpClient: HttpClient,private user:UsersService) {
 
   }
+  /**
+   * Method Name:-Login
+   * Created by :Rajat Acharya
+   *
+   */
   login(user): Promise<any> {
     let promise  = new Promise((resolve, reject) => {
 
@@ -23,6 +28,17 @@ export class AuthenticationService {
     } );
     return  promise ;
   }
+
+  checkLoggedInUser(){
+    let isLoggedIn = false;
+    let user = localStorage.currentUser;
+    console.log(user);
+    if(user){
+      isLoggedIn = true;
+    }
+    return isLoggedIn;
+  }
+
 
   logout() {
     localStorage.removeItem('currentUser');

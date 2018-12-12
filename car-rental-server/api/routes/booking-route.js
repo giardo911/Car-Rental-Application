@@ -11,7 +11,8 @@ module.exports = function (app) {
         .post(bookingController.post);
     
     app.route('/bookings/:bookingId')
-        .get(bookingController.find);
+        .get(bookingController.find)
+        .put(bookingController.update);
 
     
     
